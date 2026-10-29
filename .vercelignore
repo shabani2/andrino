@@ -1,0 +1,9 @@
+.git/
+.next/
+node_modules/
+artifacts/
+design/
+design-system/
+.env*
+*.tsbuildinfo
+*.log

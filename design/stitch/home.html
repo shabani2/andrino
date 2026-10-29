@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-tertiary-fixed":"#281900","on-primary-fixed":"#052019","on-secondary-container":"#793821","surface-bright":"#f6fbf5","error-container":"#ffdad6","on-primary-fixed-variant":"#324c44","secondary":"#914b32","tertiary-container":"#5e4417","on-tertiary":"#ffffff","error":"#ba1a1a","on-primary":"#ffffff","on-surface":"#181d1a","outline-variant":"#c1c8c4","on-surface-variant":"#424845","secondary-fixed-dim":"#ffb59c","on-secondary-fixed-variant":"#73341d","surface-dim":"#d7dbd6","surface-container-low":"#f0f5f0","tertiary":"#452e02","on-tertiary-container":"#d7b27b","on-tertiary-fixed-variant":"#5c4215","tertiary-fixed-dim":"#e6c188","on-primary-container":"#a2beb4","on-background":"#181d1a","inverse-primary":"#b0cdc2","primary-fixed-dim":"#b0cdc2","inverse-on-surface":"#edf2ed","surface":"#f6fbf5","on-error-container":"#93000a","surface-container-high":"#e5e9e4","secondary-fixed":"#ffdbcf","secondary-container":"#ffa586","on-error":"#ffffff","primary-fixed":"#cce9de","surface-variant":"#dfe4df","primary-container":"#344e46","surface-tint":"#49645b","surface-container-lowest":"#ffffff","surface-container":"#ebefea","inverse-surface":"#2c322e","background":"#f6fbf5","surface-container-highest":"#dfe4df","on-secondary":"#ffffff","tertiary-fixed":"#ffdead","outline":"#727975","on-secondary-fixed":"#390c00","primary":"#1d3730"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-xl":"3rem","gutter":"1.5rem","space-lg":"1.75rem","gutter-desktop":"2.5rem","space-xs":"0.25rem","space-2xl":"5rem","space-sm":"0.5rem","margin":"1.25rem","space-md":"1rem","margin-desktop":"4rem"},"fontFamily":{"headline-xl-mobile":["Newsreader"],"body-lg":["DM Sans"],"label-sm":["DM Sans"],"headline-xl":["Newsreader"],"headline-sm":["Newsreader"],"headline-md":["Newsreader"],"headline-lg-mobile":["Newsreader"],"headline-lg":["Newsreader"],"body-sm":["DM Sans"],"body-md":["DM Sans"],"label-md":["DM Sans"]},"fontSize":{"headline-xl-mobile":["2.25rem",{"lineHeight":"1.2","letterSpacing":"-0.015em","fontWeight":"400"}],"body-lg":["1.125rem",{"lineHeight":"1.65","fontWeight":"400"}],"label-sm":["0.6875rem",{"lineHeight":"1.2","letterSpacing":"0.1em","fontWeight":"500"}],"headline-xl":["3.5rem",{"lineHeight":"1.15","letterSpacing":"-0.02em","fontWeight":"400"}],"headline-sm":["1.25rem",{"lineHeight":"1.4","fontWeight":"500"}],"headline-md":["1.75rem",{"lineHeight":"1.3","fontWeight":"400"}],"headline-lg-mobile":["1.75rem",{"lineHeight":"1.25","letterSpacing":"-0.01em","fontWeight":"400"}],"headline-lg":["2.5rem",{"lineHeight":"1.2","letterSpacing":"-0.015em","fontWeight":"400"}],"body-sm":["0.875rem",{"lineHeight":"1.5","fontWeight":"400"}],"body-md":["1rem",{"lineHeight":"1.6","fontWeight":"400"}],"label-md":["0.75rem",{"lineHeight":"1.3","letterSpacing":"0.08em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-7xl mx-auto px-margin md:px-margin-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm"><a class="flex items-center gap-space-sm group" data-path="home" href="#"><span class="font-headline-sm text-headline-sm text-primary group-hover:text-secondary transition-colors">ANDRINO</span><span class="hidden sm:inline-block w-px h-4 bg-outline-variant"></span><span class="hidden sm:inline-block font-label-sm text-label-sm uppercase text-on-surface-variant">Andrino AKUDA KANGELA</span></a></div><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-bold"><a aria-current="page" class="uppercase transition-colors text-primary font-bold" data-path="home" href="#">HOME</a><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface transition-colors" data-path="about" href="#">ABOUT</a><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface transition-colors" data-path="portfolio" href="#">PORTFOLIO</a><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface transition-colors" data-path="writing" href="#">WRITING</a><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface transition-colors" data-path="projects" href="#">PROJECTS</a><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface transition-colors" data-path="links" href="#">LINKS</a></nav><div class="flex items-center gap-space-md"><a class="inline-flex items-center px-space-md py-space-xs rounded-lg font-label-md text-label-md uppercase bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary hover:text-on-secondary transition-colors" data-path="contact" href="#">Let's Talk</a><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1VTFtBdR54aD6EO-gbaHMQ3-uECmffZN6I_o7vYrr1CagCzBAMr6oJhmfQdgMuhAkBDxTlrrzZXt5EMuWh32ikXmcDSA-DxRAr_n94UpteBxTOMSdKuoZ_cTxKVAKKL-j_2Ltr_HtJjibO38lqdqtT6i4Hsq40NCFS4hQTfyXiChttUD3pjZfFELzgsmbkl5nshR1wfysDND3Kjk6gIidAlrHMWk2O2XU0cvawrP3Ao"/></div></div></header><main class="w-full pt-20 bg-surface"><div class="flex flex-col w-full">
+<!-- SECTION A: HERO (Asymmetric Broadsheet Composition) -->
+<section class="relative w-full max-w-7xl mx-auto px-margin md:px-margin-desktop py-space-xl md:py-space-2xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-stretch">
+<!-- Left Column: Typographic Masthead & Intention -->
+<div class="lg:col-span-7 flex flex-col justify-between pr-0 lg:pr-space-md">
+<div>
+<!-- Micro Label -->
+<div class="inline-flex items-center gap-space-xs mb-space-lg">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">COMMUNICATIONS · STORYTELLING · WRITING</span>
+</div>
+<!-- Main Greeting -->
+<h1 class="font-headline-xl text-headline-xl text-primary mb-space-sm tracking-tight">
+            Hi, I'm Andrino.
+          </h1>
+<!-- Secondary Subtitle -->
+<p class="font-headline-md text-headline-md italic text-secondary mb-space-lg">
+            My work. My stories. My point of view.
+          </p>
+<!-- Supporting Manifesto Copy -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-space-xl leading-relaxed">
+            I'm a communications professional, storyteller and writer interested in the people, ideas and everyday realities shaping Africa. Based in Goma, Democratic Republic of the Congo.
+          </p>
+</div>
+<!-- Action CTAs: 3 Tiered Editorial Hierarchy -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-md">
+<a class="inline-flex items-center justify-center px-space-lg py-space-sm rounded-lg bg-primary text-on-primary font-label-md text-label-md uppercase tracking-wider hover:bg-inverse-surface shadow-sm transition-all duration-200" data-path="portfolio" href="#">
+            Explore my work
+          </a>
+<a class="inline-flex items-center justify-center px-space-lg py-space-sm rounded-lg bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md uppercase tracking-wider hover:bg-secondary hover:text-on-secondary transition-all duration-200" data-path="writing" href="#">
+            Read my articles
+          </a>
+<a class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-lg text-on-surface font-label-md text-label-md uppercase tracking-wider hover:text-secondary transition-colors" data-path="contact" href="#">
+<span>Get in touch</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Live Dispatch Metadata Strip -->
+<div class="mt-space-2xl pt-space-md bg-surface-container-low rounded-lg p-space-md flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase text-secondary font-semibold">COORDINATES</span>
+<span class="font-body-sm text-body-sm text-on-surface">1°40′S 29°13′E · Lake Kivu Basin</span>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span>AVAILABLE FOR EDITORIAL &amp; STRATEGY DISPATCH</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Documentarian Portrait & Physical Issue Framing -->
+<div class="lg:col-span-5 flex flex-col justify-between mt-space-xl lg:mt-0">
+<div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden shadow-xl bg-surface-container">
+<img class="w-full h-full object-cover grayscale-[15%] contrast-[1.08] hover:scale-[1.02] transition-transform duration-700 ease-out" data-alt="Editorial candid documentary portrait of Andrino Akuda Kangela in Goma Democratic Republic of the Congo. Natural overcast light framing contemplative posture, wearing minimal natural linen and dark jacket, softened misty volcanic landscape of Mount Nyiragongo and Lake Kivu in background. Fine grain high-end photojournalism aesthetic, grounded organic tones of forest green, warm charcoal and terracotta." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5clSkvHBpnuBqfE0UpRnfBvYMf4QUsnL0q5YfGlAv5wniHTotk-qIzfT-qvJs8Fm-h8gdJwagRBsmOqcM_6qmEu5qaE-ZA1JMdQCMV52egL3u9nnqUqgaDFvLOyATXgHc_aqPz24Ru_hBbv-2ZpzVtKfsR_FCQS0-I5Ypbq58fp1mv4dyXIyUXtin7aUmd3JwcFkzVPh6MlnobAVxr4NquwcBp_vfMrnt-bxl82A"/>
+<!-- Editorial Stamp Overlay -->
+<div class="absolute top-space-md left-space-md bg-surface/90 backdrop-blur-md px-space-md py-space-xs rounded-lg shadow-sm">
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">
+              ISSUE N° 01 · GOMA, DRC
+            </p>
+</div>
+<!-- Bottom Graduated Scrim & Vertical Stamp -->
+<div class="absolute inset-x-0 bottom-0 p-space-md bg-gradient-to-t from-primary/90 via-primary/40 to-transparent flex justify-between items-end">
+<div>
+<p class="font-headline-sm text-headline-sm text-on-primary">Andrino AKUDA KANGELA</p>
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-primary-fixed-dim">Goma Bureau · Eastern DR Congo</p>
+</div>
+<span class="font-label-sm text-label-sm tracking-widest text-secondary-fixed uppercase font-mono">2025 // VOL. I</span>
+</div>
+</div>
+<!-- Vertical Editorial Caption Strip below visual -->
+<div class="flex items-center justify-between mt-space-sm px-space-xs text-on-surface-variant">
+<p class="font-body-sm text-body-sm italic">Documentation through lived context, nuanced reporting and local dignity.</p>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">FIG. 01</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION B: INTRODUCTION & MANIFESTO PULL QUOTE -->
+<section class="w-full bg-surface-container-low py-space-2xl">
+<div class="max-w-7xl mx-auto px-margin md:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop">
+<!-- Section Header Sticky Left -->
+<div class="lg:col-span-4">
+<div class="inline-block px-space-sm py-space-xs bg-surface rounded-lg mb-space-sm shadow-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">01 / PROLOGUE</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+            Stories, perspectives and possibilities.
+          </h2>
+<div class="w-12 h-1 bg-secondary rounded-full mt-space-md mb-space-lg"></div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm">
+            Reframing narratives from the heart of the Great Lakes region through rigor, narrative balance, and contextual resonance.
+          </p>
+</div>
+<!-- Section Content Right -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<div class="space-y-space-md font-body-lg text-body-lg text-on-surface leading-relaxed">
+<p>
+              Operating at the intersection of strategic communications, grassroots media, and creative development, my practice interrogates how human experience is chronicled across East DRC and the broader African continent. Rather than reducing complex social realities to predictable emergency bulletins, I document systemic resilience, cultural vitality, and ground-level innovation.
+            </p>
+<p>
+              From institutional communications campaigns for international non-profits to independent investigative dispatches along Lake Kivu, my mandate remains constant: bridging the chasm between raw local realities and global audiences without forfeiting agency, subtlety, or lyrical integrity.
+            </p>
+</div>
+<!-- Dramatic Oversized Pull Quote -->
+<div class="relative bg-surface rounded-xl p-space-xl shadow-md my-space-md">
+<div class="absolute -top-3 left-space-xl px-space-sm bg-secondary text-on-secondary rounded-lg font-label-sm text-label-sm uppercase tracking-widest">
+              EDITORIAL CONVICTION
+            </div>
+<div class="flex gap-space-md items-start">
+<span class="font-headline-xl text-headline-xl text-secondary leading-none select-none font-serif">“</span>
+<div>
+<blockquote class="font-headline-md md:font-headline-lg text-headline-md md:text-headline-lg text-primary italic leading-snug font-serif">
+                  I believe that where a story comes from should never limit how far it can travel.
+                </blockquote>
+<div class="mt-space-md flex items-center gap-space-sm">
+<span class="w-6 h-px bg-secondary"></span>
+<cite class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant not-italic">Andrino Akuda Kangela</cite>
+</div>
+</div>
+</div>
+</div>
+<!-- Supporting Field Insight Strip -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md pt-space-sm">
+<div class="p-space-md bg-surface-container rounded-lg">
+<span class="font-headline-sm text-headline-sm text-primary block">8+ Years</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Active field communications &amp; frontline reporting.</span>
+</div>
+<div class="p-space-md bg-surface-container rounded-lg">
+<span class="font-headline-sm text-headline-sm text-primary block">30+ Dispatches</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Authored essays on regional dynamics and culture.</span>
+</div>
+<div class="p-space-md bg-surface-container rounded-lg">
+<span class="font-headline-sm text-headline-sm text-primary block">Goma Based</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Deep regional immersion across the Great Lakes corridor.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION C: WHAT I DO (Four Pillar Editorial System) -->
+<section class="w-full max-w-7xl mx-auto px-margin md:px-margin-desktop py-space-2xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-2xl gap-space-md">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">02 / CORE DISCIPLINES</span>
+<h2 class="font-headline-xl text-headline-xl text-primary tracking-tight mt-space-xs">
+          What I Do.
+        </h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+        Synthesizing high-level institutional communications with unvarnished narrative journalism and community media architecture.
+      </p>
+</div>
+<!-- 4 Pillar Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter-desktop">
+<!-- Block 01 -->
+<div class="group bg-surface-container-low rounded-xl p-space-xl flex flex-col justify-between hover:bg-surface-container transition-all duration-300 shadow-sm hover:shadow-md">
+<div>
+<div class="flex items-center justify-between mb-space-lg">
+<span class="font-headline-lg text-headline-lg font-serif text-secondary/70 group-hover:text-secondary transition-colors">01</span>
+<span class="material-symbols-outlined text-primary text-2xl group-hover:translate-x-1 transition-transform">campaign</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-space-sm">
+            Strategic Communications
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-lg">
+            Designing comprehensive, context-grounded advocacy frameworks, multi-stakeholder messaging protocols, crisis communications roadmaps, and stakeholder alignment for development agencies, international institutions, and local coalitions.
+          </p>
+</div>
+<div class="pt-space-md flex flex-wrap gap-space-xs">
+<span class="px-space-sm py-space-xs rounded bg-surface font-label-sm text-label-sm uppercase text-on-surface">Advocacy Plans</span>
+<span class="px-space-sm py-space-xs rounded bg-surface font-label-sm text-label-sm uppercase text-on-surface">Crisis Advisory</span>
+<span class="px-space-sm py-space-xs rounded bg-surface font-label-sm text-label-sm uppercase text-on-surface">PR Architecture</span>
+</div>
+</div>
+<!-- Block 02 -->
+<div class="group bg-surface-container-low rounded-xl p-space-xl flex flex-col justify-between hover:bg-surface-container transition-all duration-300 shadow-sm hover:shadow-md">
+<div>
+<div class="flex items-center justify-between mb-space-lg">
+<span class="font-headline-lg text-headline-lg font-serif text-secondary/70 group-hover:text-secondary transition-colors">02</span>
+<span class="material-symbols-outlined text-primary text-2xl group-hover:translate-x-1 transition-transform">history_edu</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-space-sm">
+            Storytelling and Writing
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-lg">
+            Long-form essays, humanitarian human-interest profiles, documentary scriptwriting, and analytical op-eds that honor the complexity of lived experiences while remaining compelling for international editors and readers.
+          </p>
+</div>
+<div class="pt-space-md flex flex-wrap gap-space-xs">
+<span class="px-space-sm py-space-xs rounded bg-surface font-label-sm text-label-sm uppercase text-on-surface">Longform Essays</span>
+<span class="px-space-sm py-space-xs rounded bg-surface font-label-sm text-label-sm uppercase text-on-surface">Documentary Scripting</span>
+<span class="px-space-sm py-space-xs rounded bg-surface font-label-sm text-label-sm uppercase text-on-surface">Field Journalism</span>
+</div>
+</div>
+<!-- Block 03 -->
+<div class="group bg-surface-container-low rounded-xl p-space-xl flex flex-col justify-between hover:bg-surface-container transition-all duration-300 shadow-sm hover:shadow-md">
+<div>
+<div class="flex items-center justify-between mb-space-lg">
+<span class="font-headline-lg text-headline-lg font-serif text-secondary/70 group-hover:text-secondary transition-colors">03</span>
+<span class="material-symbols-outlined text-primary text-2xl group-hover:translate-x-1 transition-transform">podcasts</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-space-sm">
+            Digital Media and Content Creation
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-lg">
+            Directing digital engagement strategies, visual asset production, cross-platform audio-visual dispatches, and newsletter ecosystems designed to cultivate sustained discourse rather than fleeting algorithmic outrage.
+          </p>
+</div>
+<div class="pt-space-md flex flex-wrap gap-space-xs">
+<span class="px-space-sm py-space-xs rounded bg-surface font-label-sm text-label-sm uppercase text-on-surface">Newsletters</span>
+<span class="px-space-sm py-space-xs rounded bg-surface font-label-sm text-label-sm uppercase text-on-surface">Visual Direction</span>
+<span class="px-space-sm py-space-xs rounded bg-surface font-label-sm text-label-sm uppercase text-on-surface">Social Strategy</span>
+</div>
+</div>
+<!-- Block 04 -->
+<div class="group bg-surface-container-low rounded-xl p-space-xl flex flex-col justify-between hover:bg-surface-container transition-all duration-300 shadow-sm hover:shadow-md">
+<div>
+<div class="flex items-center justify-between mb-space-lg">
+<span class="font-headline-lg text-headline-lg font-serif text-secondary/70 group-hover:text-secondary transition-colors">04</span>
+<span class="material-symbols-outlined text-primary text-2xl group-hover:translate-x-1 transition-transform">lightbulb</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-space-sm">
+            Projects and Innovation
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-lg">
+            Incubating civic youth labs, community media infrastructure, and cultural curation initiatives that empower local Congolese storytellers to retain intellectual ownership of their community narratives.
+          </p>
+</div>
+<div class="pt-space-md flex flex-wrap gap-space-xs">
+<span class="px-space-sm py-space-xs rounded bg-surface font-label-sm text-label-sm uppercase text-on-surface">Civic Labs</span>
+<span class="px-space-sm py-space-xs rounded bg-surface font-label-sm text-label-sm uppercase text-on-surface">Storytelling Workshops</span>
+<span class="px-space-sm py-space-xs rounded bg-surface font-label-sm text-label-sm uppercase text-on-surface">Cultural Curation</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION D: BEYOND THE HEADLINES (Immersive Documentary Canvas) -->
+<section class="w-full bg-primary text-on-primary py-space-2xl relative overflow-hidden">
+<!-- Visual background accent lines -->
+<div class="max-w-7xl mx-auto px-margin md:px-margin-desktop relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<!-- Emotive Narrative Column -->
+<div class="lg:col-span-6 flex flex-col justify-center">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded bg-primary-container text-on-primary-container font-label-sm text-label-sm uppercase tracking-widest mb-space-md w-fit">
+<span>DISPATCH FROM GOMA // NORTH KIVU</span>
+</div>
+<h2 class="font-headline-lg md:font-headline-xl text-headline-lg md:text-headline-xl text-on-primary mb-space-lg leading-tight font-serif">
+            Beyond the Headlines.
+          </h2>
+<div class="p-space-lg bg-primary-container/60 rounded-xl mb-space-lg">
+<p class="font-headline-md text-headline-md italic text-secondary-fixed leading-snug">
+              Africa is more than the stories most frequently told about it. Goma is more than the headlines that define it.
+            </p>
+</div>
+<p class="font-body-lg text-body-lg text-on-primary-container leading-relaxed mb-space-md">
+            The mainstream lens captures Eastern DRC exclusively through the vocabulary of crisis, emergency, and depletion. While those hardships are real and lived, they do not exhaust the truth of our cities.
+          </p>
+<p class="font-body-md text-body-md text-on-primary-container/80 leading-relaxed mb-space-xl">
+            Between the shores of Lake Kivu and the shadows of the volcanic range lies a restless generator of visual art, entrepreneurial grit, musical movements, and dignified intellectual renewal. My work exists to document this broader, deeper, indelible reality.
+          </p>
+<div class="flex items-center gap-space-lg">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-secondary-fixed font-serif">Lake Kivu</span>
+<span class="font-label-sm text-label-sm uppercase text-on-primary-container">Living Waters</span>
+</div>
+<div class="w-px h-8 bg-on-primary-container/30"></div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-secondary-fixed font-serif">Nyiragongo</span>
+<span class="font-label-sm text-label-sm uppercase text-on-primary-container">Volcanic Resilience</span>
+</div>
+<div class="w-px h-8 bg-on-primary-container/30"></div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-secondary-fixed font-serif">Birere &amp; Himbi</span>
+<span class="font-label-sm text-label-sm uppercase text-on-primary-container">Creative Pulses</span>
+</div>
+</div>
+</div>
+<!-- Documentary Photography Presentation -->
+<div class="lg:col-span-6 flex flex-col gap-space-md mt-space-xl lg:mt-0">
+<div class="relative rounded-xl overflow-hidden shadow-2xl bg-primary-container aspect-[16/10]">
+<img class="w-full h-full object-cover" data-alt="Cinematic photojournalism scene in Goma on the shores of Lake Kivu at dusk. Traditional wooden pirogues and small modern fishing boats reflected in still turquoise water, mist wrapping around volcanic ridges in the background. Young Congolese creators, thinkers and artisans gathered on the lava rock shoreline in thoughtful exchange. Warm incandescent ambient light, deep forest shadows, cinematic depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbDltFSusNvGM11OFddVp9FEn3fXi1dFygH4w28zpnwvzL-kqkN6nnmefZjbzr2Xc7FhZnK6VJ6DMgRRItwcVeksmb5PXnd_qxmfrut4KtKhNGB_IDASTxvN06W5_0ndEMqN4vjYxkhKHB464_dLqJQSkSm-GPzrj6pPij_qkCO5m-ft3b_BnMjLX6ZnXOWCpKnqMXg3EVuIXhBoGc0zPf2XSXI1dIUYucsCAd5sg"/>
+<div class="absolute bottom-space-md left-space-md right-space-md p-space-sm bg-primary/80 backdrop-blur-md rounded-lg flex items-center justify-between text-on-primary">
+<span class="font-body-sm text-body-sm font-medium">Lakeside gathering, Goma, DRC</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed">PHOTO ARCHIVE N° 402</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div class="rounded-lg overflow-hidden bg-primary-container aspect-[4/3] relative">
+<img class="w-full h-full object-cover" data-alt="Documentary close-up photograph of an art exhibition in an industrial warehouse space in Goma North Kivu. Vibrant contemporary paintings on walls, thoughtful attendees analyzing cultural works, soft natural daylight from tall corrugated windows, honest and dignified tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUvmAPR0h5STtr8-MwM9tehdt570XUFdcjAQaZ_OvAaKGjFmQZ0M6DubPP9EsxXE9Bthl7cuaGBKJsOoSvPpRImw5oQN1DLf6bca0FnQm7gUeAnEx7MxA2oOKcBYq8SftRb5_CR-t64y1hNdGwzthddAQ_LqFkznmiLBGKYCC651NMhtoUcpurSC6N5woycHt7W6ghoXWG-_2FXYjtwge5VDigqwEbwNiuXlR60SA"/>
+<div class="absolute inset-x-0 bottom-0 p-space-xs bg-primary/70 backdrop-blur-sm text-center">
+<span class="font-label-sm text-label-sm uppercase text-on-primary tracking-wider">Cultural Assemblage</span>
+</div>
+</div>
+<div class="rounded-lg overflow-hidden bg-primary-container aspect-[4/3] relative">
+<img class="w-full h-full object-cover" data-alt="Street level candid photograph in Goma DRC showcasing young innovators collaborating with laptops, notebooks and broadcast equipment at an open-air collective terrace. Architectural volcanic stone structures, lush tropical greenery, determined creative energy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlQga2uhDSIoxm2HA-o_gjgO4RZF1Ubjdqv7Sk9c7wYkyXK4Hp71uxDPO1uXIdzICWQs9OIypOjxeUOtflcqK9Mwhuq7IZ7NkvQAbDGIwOFVHH4JUtULJ6tFiC-4pTIKukmjSXVkQcU3GwZFwxkvyshQwopRBnJennaxpRkugtsqmMSNGe0TLzrzF1o_CQhRxsIfP6C2Ou-wsX2RI0qj4z6TNgVjv1cj08ysTCE3Q"/>
+<div class="absolute inset-x-0 bottom-0 p-space-xs bg-primary/70 backdrop-blur-sm text-center">
+<span class="font-label-sm text-label-sm uppercase text-on-primary tracking-wider">Independent Dispatches</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION E: SELECTED WORK (Editorial Project Previews) -->
+<section class="w-full max-w-7xl mx-auto px-margin md:px-margin-desktop py-space-2xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-md">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">03 / CASE ARCHIVES</span>
+<h2 class="font-headline-xl text-headline-xl text-primary tracking-tight mt-space-xs">
+          Selected Work.
+        </h2>
+</div>
+<a class="inline-flex items-center gap-space-xs font-label-md text-label-md uppercase tracking-wider text-secondary hover:text-primary transition-colors pb-space-xs" data-path="portfolio" href="#">
+<span>Explore my portfolio</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Asymmetrical Editorial Project Cards -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop">
+<!-- Feature 01: 7-Col Spread (Strategic Communication & Campaigns) -->
+<div class="md:col-span-7 bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col justify-between">
+<div class="aspect-[16/9] w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Documentary photography of a community health and civic awareness campaign rally in Eastern DRC. Humanitarians, local leaders, and youth liaisons gathered under shade trees distributing informative broadsheets, vibrant participation, clear midday sunlight, photojournalistic realism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYMSfmEdhrNnAP0hDAiJ50q7EpFyyaBccTZOHlAevfhhsk9T4EYZvJ3zm2wYDu1LbOBAHY-WULcfioe1Po84vzLY7bJC_jC2zpJbo_p-4ZJI9Rf8bchrMxEwoZgL9jHS2GRE5rZMjS5e7d8c2w9rqklX_gXpCdo-L356-Fo36jspuJ3PQNTGomT-uUcPTPT-LfoZhO1ZI__Z8pjKsyrOXCNOBh1TblImc79TwDk5I"/>
+</div>
+<div class="p-space-lg flex flex-col justify-between flex-grow">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-secondary font-bold tracking-wider">Strategic Communication &amp; Campaigns</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">2024</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-space-xs group-hover:text-secondary transition-colors">
+              The Great Lakes Regional Cohesion Initiative
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md line-clamp-2">
+              Cross-border messaging frameworks and localized public information campaigns unifying cross-generational community voices across Goma, Bukavu, and Rubavu.
+            </p>
+</div>
+<div class="flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase group-hover:underline">
+<span>Read Case Overview</span>
+<span class="material-symbols-outlined text-xs">arrow_outward</span>
+</div>
+</div>
+</div>
+<!-- Feature 02: 5-Col Spread (Humanitarian & Development Storytelling) -->
+<div class="md:col-span-5 bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col justify-between">
+<div class="aspect-[16/10] w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Intimate editorial documentary portrait of a Congolese female agronomist inspecting high-altitude coffee cherries on the slopes surrounding Lake Kivu. Warm morning light, lush terraced green hills in backdrop, authentic working atmosphere, soft earth tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGGT0knax_tpbUov4QpAAwznqBM3Z3tac-Kb5ShinGBlaLVHP0sWbEJrfMjTmKsSZIJq1_T1_5rJjazDwRM7KML-RmUsxhN4Su3d4XtStrH0rfXJnrDWs9NiZLhUgPxv0cQ5IsJd9_0SSZj_4zDvolanJUf3OXqYMkNm5R2OC90rYG_jTL_Cc99g4ufr78X6hZ-AmLEZssVWkrKUhNgU_gjmFbFEgJcx7eDOX3g5Q"/>
+</div>
+<div class="p-space-lg flex flex-col justify-between flex-grow">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-secondary font-bold tracking-wider">Humanitarian Storytelling</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">2023-2024</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-space-xs group-hover:text-secondary transition-colors">
+              Voices of the Soil: Agricultural Dignity
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md line-clamp-2">
+              Documenting sustainable farming collectives in North Kivu through human-centered longform journalism and photo-essays.
+            </p>
+</div>
+<div class="flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase group-hover:underline">
+<span>View Documentation</span>
+<span class="material-symbols-outlined text-xs">arrow_outward</span>
+</div>
+</div>
+</div>
+<!-- Feature 03: 4-Col Spread (Digital Content & Social Media) -->
+<div class="md:col-span-4 bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col justify-between">
+<div class="aspect-[4/3] w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up of a mobile video recording setup on a minimalist studio tripod against an olive green backdrop, a condenser microphone and field notebook with handwritten notes in Goma. Clean aesthetic, intentional creative setup." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCI-1MVwy-br19eUOkiSStkL6DXvuqyZqRQvItbihDRCq0jiHvffygNkb4SdkzTtVeEkX6E9swE3ceAmtBmjmC25eCaNHkw0RhcWBuYQ-Zirx-WEWL3D7h7sIhEhNhio-2lY2ENHzpe5UrdpwrwErFdFmojB2R0lRLwm5PTYN6PcGy2XUKElGo1lqVCVzCBMH38dMvDob2Zg6OIpsqmYSDdebh7ncH8ehdRm00NYj4"/>
+</div>
+<div class="p-space-md flex flex-col justify-between flex-grow">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-secondary font-bold tracking-wider">Digital &amp; Social</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">2024</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-space-xs group-hover:text-secondary transition-colors">
+              The Kivu Chronicle: Substack &amp; Audio Dispatch
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md line-clamp-2">
+              A bi-weekly digital dispatch reaching over 12,000 global readers analyzing culture, tech, and civic life in East Africa.
+            </p>
+</div>
+<div class="flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase group-hover:underline">
+<span>Explore Channel</span>
+<span class="material-symbols-outlined text-xs">arrow_outward</span>
+</div>
+</div>
+</div>
+<!-- Feature 04: 4-Col Spread (Editorial & Media Work) -->
+<div class="md:col-span-4 bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col justify-between">
+<div class="aspect-[4/3] w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Printed editorial broadsheet magazine open on a wooden table next to a cup of black coffee, showing high-contrast black and white photography and rich serif typography articles about Central African history. Rich organic textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu41X1S8Qm4JlOO966E4AsqILGRd3SDX40wc48TzeYEebgRDEHdc8Pcj1djQurF1_gWUy0bgZmDB9SKx89H1pPnDiXQbNB-snebJuhC7gjNaYcJXTaiBY13Ato2406iaENLW5YXph5oQrUn9HdiqtS4ZsbjelNXr8kSr2dwQfG2f7ErRWiVV7f2pCKwJGve-owZKceCjktEr8vCC3ZwBUEBFnas8H5gdO5C-wj6M8"/>
+</div>
+<div class="p-space-md flex flex-col justify-between flex-grow">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-secondary font-bold tracking-wider">Editorial &amp; Media</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">2023</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-space-xs group-hover:text-secondary transition-colors">
+              Kinshasa to Goma: An Internal Corridor
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md line-clamp-2">
+              In-depth reported magazine feature dissecting commerce, aviation routes, and shared cultural identity across the Congo River basin.
+            </p>
+</div>
+<div class="flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase group-hover:underline">
+<span>Read Publication</span>
+<span class="material-symbols-outlined text-xs">arrow_outward</span>
+</div>
+</div>
+</div>
+<!-- Feature 05: 4-Col Spread (Multimedia & Creative Production) -->
+<div class="md:col-span-4 bg-surface-container-low rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col justify-between">
+<div class="aspect-[4/3] w-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Behind the scenes documentary film production in Goma. Young Congolese cinematographer operating a cinema camera on shoulder mount at golden hour overlooking the city rooftops with Mount Nyiragongo volcano smoking softly in background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxmI4lRO8E_5w0qosQWuLtGklSTHfYBixeQiOJ0Wh62XrF-a7nh3BO0ZIeCoy8raXaXJZptypHG1D_-dFo07ecNw8Y22tSjEFMl_GueWVV0ktoiie4QXQLO5oTSg0lczaXwL-NZd5pLlJuwgQZ_Szbjo9l9AOmA6vQt-TvHzNw04Isd-ZJE8wNVqq3WG8V3HQY4hAaVEQzGcdbpZECUQc4Vzqb_KcpxN2DU2hG7z8"/>
+</div>
+<div class="p-space-md flex flex-col justify-between flex-grow">
+<div>
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase text-secondary font-bold tracking-wider">Multimedia &amp; Production</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">2024</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-space-xs group-hover:text-secondary transition-colors">
+              Resonance: The Sounds of North Kivu
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md line-clamp-2">
+              Short documentary series mapping the oral histories, acoustic rhythms, and contemporary sound design emerging from youth collectives.
+            </p>
+</div>
+<div class="flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase group-hover:underline">
+<span>Watch Docuseries</span>
+<span class="material-symbols-outlined text-xs">arrow_outward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION F: LATEST WRITING (Broadsheet Magazine Article Grid) -->
+<section class="w-full bg-surface-container-low py-space-2xl">
+<div class="max-w-7xl mx-auto px-margin md:px-margin-desktop">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-md">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">04 / DISPATCHES &amp; ESSAYS</span>
+<h2 class="font-headline-xl text-headline-xl text-primary tracking-tight mt-space-xs">
+            Latest Writing.
+          </h2>
+</div>
+<a class="inline-flex items-center gap-space-xs font-label-md text-label-md uppercase tracking-wider text-secondary hover:text-primary transition-colors pb-space-xs" data-path="writing" href="#">
+<span>Read all articles</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Magazine Article 3-Column Card Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop">
+<!-- Article Card 1 -->
+<article class="bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
+<div class="aspect-[16/10] bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Atmospheric documentary photograph of dusk falling over the city of Goma with calm Lake Kivu waters in the foreground and city street lights flickering against dark volcanic terrain. Somber, reflective, poetic atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWU2MYTSNW203odm3sJfCblRSRoLTQLeOFNHZz6QJKjSzwxmrg9353I7DRAwzsjc6pf7mSWZTc0x7GpRuDlMeyBEhhtlV4NsjD6CCrj4yahIoKvUt5tmyeGuD93cnAGEdCP9K-wBVNxCL508HYzEq-j4zuKuqj8G8t-qg805VURr4qR7AE6dWLWpE38ZF9mVudDEOGX_TkgwI8gOKfue6N6lZg7YeFFJYBG-5wlCA"/>
+</div>
+<div class="p-space-lg flex flex-col justify-between flex-grow">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-space-sm py-0.5 rounded bg-surface-container font-label-sm text-label-sm uppercase text-secondary font-semibold">ESSAY</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">7 MIN READ</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-space-sm group-hover:text-secondary transition-colors">
+                The Tyranny of the Urgent: Rethinking Communications in Eastern DRC
+              </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg line-clamp-3">
+                Why emergency public relations frameworks fail the communities they claim to advocate for, and how narrative sovereignty begins by slowing down.
+              </p>
+</div>
+<div class="pt-space-md flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>OCT 14, 2024</span>
+<span class="group-hover:text-primary group-hover:underline">Read Dispatch →</span>
+</div>
+</div>
+</article>
+<!-- Article Card 2 -->
+<article class="bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
+<div class="aspect-[16/10] bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Editorial portrait of a young Congolese technological inventor holding a custom circuit board in an electronics workshop in Goma. Warm workshop lighting, soldering irons, microcontrollers, focused creative intensity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvaj4e4avegWq0ENmoU-fc0pB_ydLW6XHZFCpLF5zVVaQGz1BBS3iEki2e0WFtpmhLAGiociBo-YiBa1eXr0wxK0dwcJOQf68eLlaQws8Ic-7yC1byiTDSGsfZ9XbJUoRaR-9dJKcbxM0LP-QGclICaQB9YfNB6u5m393XOE2cn-_T0lRu_MWMe9ZK__wPNLdXkBV474oSn7GvsKxELi6z4BgY0kVj2XWDOxt8qoM"/>
+</div>
+<div class="p-space-lg flex flex-col justify-between flex-grow">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-space-sm py-0.5 rounded bg-surface-container font-label-sm text-label-sm uppercase text-secondary font-semibold">CULTURE &amp; TECH</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">5 MIN READ</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-space-sm group-hover:text-secondary transition-colors">
+                In the Shadow of the Volcano: Grassroots Innovation in Goma
+              </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg line-clamp-3">
+                Behind the volcanic basalt rock and intermittent electrical grids, a new class of digital makers is quietly architecting autonomous local platforms.
+              </p>
+</div>
+<div class="pt-space-md flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>NOV 02, 2024</span>
+<span class="group-hover:text-primary group-hover:underline">Read Dispatch →</span>
+</div>
+</div>
+</article>
+<!-- Article Card 3 -->
+<article class="bg-surface rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group">
+<div class="aspect-[16/10] bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Black and white candid photograph of an open-air public book stall and reading circle in Goma, DRC. Young men and women holding paperbacks, intense philosophical discussion, filtered sunlight through acacia trees, literary atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWno-JPwULSxCFTvPFyk9BEvC_2fRT3BA7aJ2e7dbAQ4k8_QaOcx6WDnMqkMdnwdPRzMXLOjT3qGsiv6hth9-lo1gXhq_gKjrLk3ul_kmSHZtATPfBDlObMeqlwCq6O4Q38-T2Q6GcDZCadFLTbSairt-u9qXsaU7ps2zO6XeiLnz5W525RWuQbjcIHnyOHMIAPApZw29w-HY5fHPzb4jRKCMN_hzcfgA7huPesIY"/>
+</div>
+<div class="p-space-lg flex flex-col justify-between flex-grow">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-space-sm py-0.5 rounded bg-surface-container font-label-sm text-label-sm uppercase text-secondary font-semibold">PERSPECTIVES</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">9 MIN READ</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-space-sm group-hover:text-secondary transition-colors">
+                Reframing Africa: The Power and Responsibility of Local Narrators
+              </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg line-clamp-3">
+                Decentering the international gaze in African documentary reporting: on editorial autonomy, linguistic nuance, and refusing to perform victimization.
+              </p>
+</div>
+<div class="pt-space-md flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>DEC 18, 2024</span>
+<span class="group-hover:text-primary group-hover:underline">Read Dispatch →</span>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- SECTION G: LET'S CONNECT (Oversized Closing Editorial Invitation) -->
+<section class="w-full max-w-7xl mx-auto px-margin md:px-margin-desktop py-space-2xl">
+<div class="relative bg-surface-container rounded-2xl p-space-xl md:p-space-2xl overflow-hidden shadow-lg">
+<!-- Background subtle typographic watermark -->
+<div class="absolute -right-12 -bottom-16 text-surface-container-highest font-headline-xl text-[14rem] select-none pointer-events-none opacity-30 leading-none font-serif">
+        GOMA
+      </div>
+<div class="relative z-10 max-w-3xl">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded bg-surface text-secondary font-label-sm text-label-sm uppercase tracking-widest font-semibold mb-space-md shadow-sm">
+<span>05 / COLLABORATION</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-primary tracking-tight mb-space-lg">
+          Let's connect.
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed mb-space-xl">
+          Whether you are an editor, communications professional, fellow storyteller, organisation or someone with an interesting idea, I welcome conversations that can lead to meaningful work.
+        </p>
+<div class="flex flex-wrap items-center gap-space-md">
+<a class="inline-flex items-center gap-space-xs px-space-xl py-space-md rounded-lg bg-primary text-on-primary font-label-md text-label-md uppercase tracking-wider hover:bg-inverse-surface shadow-md transition-all duration-200" data-path="contact" href="#">
+<span>Get in touch</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+<a class="inline-flex items-center gap-space-xs px-space-lg py-space-md rounded-lg bg-surface text-on-surface font-label-md text-label-md uppercase tracking-wider hover:text-secondary shadow-sm transition-colors" href="mailto:contact@andrino.cd">
+<span class="material-symbols-outlined text-base">mail</span>
+<span>Direct Email</span>
+</a>
+</div>
+<div class="mt-space-2xl pt-space-lg flex flex-wrap items-center gap-x-space-xl gap-y-space-sm text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-sm text-secondary">location_on</span>
+<span>Goma, DR Congo</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-sm text-secondary">schedule</span>
+<span>CAT (Central Africa Time · UTC+2)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-sm text-secondary">translate</span>
+<span>French · English · Swahili</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-low shadow-[0_-1px_8px_rgba(0,0,0,0.02)] mt-space-2xl"><div class="max-w-7xl mx-auto px-margin md:px-margin-desktop py-space-2xl"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop mb-space-xl"><div class="md:col-span-6 flex flex-col gap-space-sm"><span class="font-headline-md text-headline-md text-primary">ANDRINO</span><p class="font-headline-sm text-headline-sm italic text-secondary">My work. My stories. My point of view.</p><p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">Communications · Storytelling · Writing · Ideas — Goma, Democratic Republic of the Congo.</p></div><div class="md:col-span-6 flex flex-col justify-between items-start md:items-end gap-space-md"><nav class="flex flex-wrap gap-x-space-md gap-y-space-xs text-left md:text-right"><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors" data-path="home" href="#">Home</a><span class="text-outline-variant">·</span><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors" data-path="about" href="#">About</a><span class="text-outline-variant">·</span><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors" data-path="portfolio" href="#">Portfolio</a><span class="text-outline-variant">·</span><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors" data-path="writing" href="#">Writing</a><span class="text-outline-variant">·</span><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors" data-path="projects" href="#">Projects</a><span class="text-outline-variant">·</span><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors" data-path="links" href="#">Links</a><span class="text-outline-variant">·</span><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-primary transition-colors" data-path="contact" href="#">Contact</a></nav><div class="flex items-center gap-space-lg"><a class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors" href="https://linkedin.com" rel="noopener" target="_blank">LinkedIn</a><span class="text-outline-variant">·</span><a class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors" href="#">Substack</a><span class="text-outline-variant">·</span><a class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-secondary transition-colors" href="#">X / Dispatch</a><a class="inline-flex items-center gap-space-xs font-label-md text-label-md uppercase text-primary hover:text-secondary transition-colors ml-space-md" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;"><span class="material-symbols-outlined text-sm">arrow_upward</span>Back to top</a></div></div></div><div class="pt-space-lg bg-surface-container/40 -mx-margin md:-mx-margin-desktop px-margin md:px-margin-desktop flex flex-col md:flex-row items-start md:items-center justify-between gap-space-sm"><p class="font-body-sm text-body-sm text-on-surface-variant">© Andrino. All rights reserved.</p><p class="font-body-sm text-body-sm italic text-on-surface-variant">The views expressed in my personal writing are my own unless otherwise stated.</p></div></div></footer></body></html>
