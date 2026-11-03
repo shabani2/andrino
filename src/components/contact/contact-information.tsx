@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import { EditorialImage, Eyebrow } from "@/components/shared/editorial";
 import { identity } from "@/config/identity";
+import { socialLinks } from "@/config/social";
+import { useTranslations } from "next-intl";
 import { LocalTime } from "./local-time";
 const ways = [
   {
@@ -36,6 +38,7 @@ const ways = [
 ];
 export function ContactInformation() {
   const c = useCopy();
+  const t = useTranslations("contactChannels");
 
   return (
     <aside className="contact-sidebar" aria-label={c("Contact information")}>
@@ -96,36 +99,33 @@ export function ContactInformation() {
       <section className="sidebar-panel">
         <Eyebrow>{c("Direct channels")}</Eyebrow>
         <div className="channel-list">
-          <a
-            className="channel-link"
-            href={identity.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div>
-              {c("LinkedIn")}<small>{c("Professional updates and connections")}</small>
-            </div>
-            <ArrowUpRight size={18} aria-hidden="true" />
-            <span className="sr-only">{c("Opens in a new tab")}</span>
-          </a>
-          <a
-            className="channel-link"
-            href={identity.substack}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div>
-              {c("The Dispatch / Substack")}<small>{c("Writing and longer conversations")}</small>
-            </div>
-            <ArrowUpRight size={18} aria-hidden="true" />
-            <span className="sr-only">{c("Opens in a new tab")}</span>
-          </a>
           <a className="channel-link" href={"mailto:" + identity.email}>
-            <div>
-              {c("Direct email")}<small>{c(identity.email)}</small>
-            </div>
+            <div>{c("Direct email")}<small>{identity.email}</small></div>
             <ArrowUpRight size={18} aria-hidden="true" />
           </a>
+          <a className="channel-link" href={"tel:" + identity.phone}>
+            <div>{t("phone")}<small>{identity.phoneDisplay}</small></div>
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </a>
+          <a
+            className="channel-link"
+            href={identity.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div>
+              WhatsApp<small>{identity.phoneDisplay}</small>
+            </div>
+            <ArrowUpRight size={18} aria-hidden="true" />
+            <span className="sr-only">{c("Opens in a new tab")}</span>
+          </a>
+          {socialLinks.map((link) => (
+            <a key={link.label} className="channel-link" href={link.href} target="_blank" rel="noopener noreferrer">
+              <div>{link.label}</div>
+              <ArrowUpRight size={18} aria-hidden="true" />
+              <span className="sr-only">{c("Opens in a new tab")}</span>
+            </a>
+          ))}
         </div>
       </section>
       <blockquote className="sidebar-panel">

@@ -22,8 +22,8 @@ Ouvrir [localhost:3000](http://localhost:3000).
 
 ## Personnalisation
 
-- `src/config/identity.ts` : nom, adresse e-mail et liens publics. Les destinations
-  actuelles sont des exemples, à remplacer par les profils officiels.
+- `src/config/identity.ts` : identité, e-mail, téléphone, WhatsApp et profils
+  officiels LinkedIn, Facebook, X, Instagram et YouTube fournis par le propriétaire.
 - `src/content/editorial.ts` : biographie, disciplines, convictions, six domaines
   du portfolio, six thèmes d’écriture et trois projets.
 - `src/content/pages/links.ts` : annuaire de liens.
@@ -89,14 +89,16 @@ Copier `.env.example` vers `.env.local`, puis renseigner :
 ```dotenv
 NEXT_PUBLIC_SITE_URL=https://votre-domaine.example
 RESEND_API_KEY=
-CONTACT_EMAIL=adresse-de-reception@example.com
+CONTACT_EMAIL=andrino243@gmail.com
 CONTACT_FROM_EMAIL=Andrino <contact@votre-domaine.example>
 ```
 
 Le formulaire valide les champs côté serveur, affiche les erreurs accessibles et
 conserve le message après un échec. L’envoi utilise Resend avec un domaine
-d’expédition vérifié. Sans les trois variables d’envoi, il indique que le message
-n’a pas été envoyé. Aucune clé n’est exposée au navigateur.
+d’expédition vérifié. Le destinataire par défaut est `andrino243@gmail.com` ;
+`CONTACT_EMAIL` permet de le remplacer. Sans clé Resend et adresse d’expédition,
+le formulaire indique que le message n’a pas été envoyé. Aucune clé n’est exposée
+au navigateur.
 
 `NEXT_PUBLIC_SITE_URL` configure les URL du sitemap et les métadonnées SEO.
 

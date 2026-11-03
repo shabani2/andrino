@@ -496,6 +496,22 @@
   font-size: 13px;
   color: var(--muted-foreground);
 }
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 18px;
+  font-size: 12px;
+  color: var(--primary);
+}
+.footer-contact a {
+  padding-block: 5px;
+  overflow-wrap: anywhere;
+}
+.footer-contact a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
 .footer-right {
   display: flex;
   flex-direction: column;

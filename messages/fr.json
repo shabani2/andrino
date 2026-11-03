@@ -509,6 +509,11 @@
     "m3cb8201e7ff1": "thème",
     "mff582559c394": "thèmes"
   },
+  "contactChannels": {
+    "phone": "Téléphone",
+    "whatsapp": "Discuter sur WhatsApp",
+    "youtube": "Me retrouver sur YouTube"
+  },
   "preferences": {
     "language": "Langue",
     "appearance": "Apparence",

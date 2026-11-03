@@ -18,7 +18,7 @@ export const links: PublicLink[] = [
     description: "Stories, observations and the subjects I am exploring.",
   },
   {
-    label: "Social media",
+    label: "X",
     href: identity.social,
     description:
       "Selected work, perspectives and conversations across the web.",
@@ -35,9 +35,32 @@ export const links: PublicLink[] = [
     description: "Selected initiatives and ideas as they develop.",
   },
   {
-    label: "The Dispatch / Substack",
-    href: identity.substack,
-    description: "A space for longer conversations and independent writing.",
+    label: "Facebook",
+    href: identity.facebook,
+    description: "Selected work, perspectives and conversations across the web.",
     external: true,
+  },
+  {
+    label: "Instagram",
+    href: identity.instagram,
+    description: "Photography, video, audio and other storytelling formats.",
+    external: true,
+  },
+  {
+    label: "YouTube",
+    href: identity.youtube,
+    description: "Photography, video, audio and other ways to bring stories to life.",
+    external: true,
+  },
+  {
+    label: "WhatsApp",
+    href: identity.whatsapp,
+    description: identity.phoneDisplay,
+    external: true,
+  },
+  {
+    label: "Direct email",
+    href: "mailto:" + identity.email,
+    description: identity.email,
   },
 ];

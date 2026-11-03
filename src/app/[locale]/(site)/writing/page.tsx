@@ -7,6 +7,7 @@ import { ArrowLink, Eyebrow } from "@/components/shared/editorial";
 import { FeaturedArticle } from "@/components/writing/featured-article";
 import { WritingExplorer } from "@/components/writing/writing-explorer";
 import { identity } from "@/config/identity";
+import { useTranslations } from "next-intl";
 import { getArticles } from "@/lib/articles";
 import { createMetadata } from "@/lib/seo";
 export async function generateMetadata() { return createMetadata(
@@ -16,6 +17,7 @@ export async function generateMetadata() { return createMetadata(
 ); }
 export default function WritingPage() {
   const c = useCopy();
+  const t = useTranslations("contactChannels");
 
   return (
     <>
@@ -58,8 +60,8 @@ export default function WritingPage() {
                 {c("A space for ideas.")}<br />{c("A conversation that continues.")}</h2>
               <p>
                 {c("Some articles will be based on reporting and conversations with people. Others will be personal essays or commentary on issues that interest me.")}</p>
-              <ArrowLink href={identity.substack} external>
-                {c("Find me on Substack")}</ArrowLink>
+              <ArrowLink href={identity.youtube} external>
+                {t("youtube")}</ArrowLink>
               <ArrowLink href="/links">{c("Across the web")}</ArrowLink>
             </section>
           </div>

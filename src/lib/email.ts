@@ -4,7 +4,7 @@ export async function sendContactEmail(
   input: ContactInput,
 ): Promise<ContactResult> {
   const apiKey = process.env.RESEND_API_KEY,
-    recipient = process.env.CONTACT_EMAIL,
+    recipient = process.env.CONTACT_EMAIL || "andrino243@gmail.com",
     from = process.env.CONTACT_FROM_EMAIL;
   if (!apiKey || !recipient || !from)
     return {

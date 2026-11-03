@@ -509,6 +509,11 @@
     "m10a5080a4918": "“The purpose is not to have an opinion on everything. It is to explore the subjects I care about with curiosity, context and a willingness to think critically.”",
     "m95e5c5ec5218": "“Who gets to tell Africa’s stories, and what happens when we begin to tell them differently?”"
   },
+  "contactChannels": {
+    "phone": "Phone",
+    "whatsapp": "Chat on WhatsApp",
+    "youtube": "Find me on YouTube"
+  },
   "preferences": {
     "language": "Language",
     "appearance": "Appearance",

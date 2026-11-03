@@ -6,8 +6,10 @@ import { identity } from "@/config/identity";
 import { SocialLinks } from "@/components/shared/social-links";
 import { Container } from "./container";
 import { ReadingPreferences } from "./reading-preferences";
+import { useTranslations } from "next-intl";
 export function Footer() {
   const c = useCopy();
+  const t = useTranslations("contactChannels");
 
   return (
     <footer className="site-footer">
@@ -20,6 +22,11 @@ export function Footer() {
             <p className="footer-description">
               {c("Communications · Storytelling · Writing · Ideas")}<br />
               {c("Goma, Democratic Republic of the Congo.")}</p>
+            <div className="footer-contact">
+              <a href={"mailto:" + identity.email}>{identity.email}</a>
+              <a href={"tel:" + identity.phone}>{identity.phoneDisplay}</a>
+              <a href={identity.whatsapp} target="_blank" rel="noopener noreferrer">{t("whatsapp")}<span className="sr-only"> {c("(opens in a new tab)")}</span></a>
+            </div>
           </div>
           <div className="footer-right">
             <ReadingPreferences />

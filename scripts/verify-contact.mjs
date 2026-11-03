@@ -29,6 +29,12 @@ try {
     return Response.json({ id: "mocked-delivery-id" });
   };
   assert.equal((await sendContactEmail(valid)).status, "success");
+  delete process.env.CONTACT_EMAIL;
+  globalThis.fetch = async (_url, options) => {
+    assert.deepEqual(JSON.parse(options.body).to, ["andrino243@gmail.com"]);
+    return Response.json({ id: "mocked-owner-delivery-id" });
+  };
+  assert.equal((await sendContactEmail(valid)).status, "success");
   globalThis.fetch = async () => Response.json({ error: "provider failure" }, { status: 503 });
   assert.equal((await sendContactEmail(valid)).status, "error");
   globalThis.fetch = async () => Response.json({});

@@ -1,5 +1,20 @@
 # Validation — 28 octobre 2026
 
+## Coordonnées officielles — 3 novembre 2026
+
+Les cinq profils fournis sont intégrés au footer, à Contact et à Liens. Les
+paramètres de suivi sont supprimés ; le lien de partage Facebook est conservé.
+L’accueil, Contact et le footer proposent les liens e-mail, appel et WhatsApp.
+Le lien Substack provisoire de la page Écriture est remplacé par YouTube.
+
+Lint, TypeScript, compilation et validation des 521 messages FR/EN : réussis.
+Le test de l’envoi simulé vérifie également le destinataire officiel par défaut.
+Seize rendus locaux sur quatre pages, deux langues et deux largeurs (375/1440 px)
+confirment les cinq URL officielles, les liens de contact, l’absence des anciens
+liens et de débordement horizontal. Aucune exception JavaScript détectée.
+Rapport et captures : `artifacts/qa-contact-links/`. Aucun e-mail, appel ou
+message WhatsApp réel n’a été déclenché pendant la vérification.
+
 ## Préférences en haut sur mobile — 29 octobre 2026
 
 Les contrôles de langue et de thème occupent une seconde ligne fixe dans
@@ -147,8 +162,9 @@ production à `http://127.0.0.1:3001`.
 
 ## Configuration restante
 
-L’adresse et les liens publics de `src/config/identity.ts` sont volontairement
-des destinations par défaut. Remplacer ces valeurs et configurer le domaine
-public ainsi que les variables Resend de `.env.example` avant la mise en ligne.
-L’envoi réel, les profils officiels et la délivrabilité des e-mails n’ont pas
+Les coordonnées officielles fournies le 3 novembre 2026 sont intégrées dans
+`src/config/identity.ts` : cinq réseaux, e-mail, téléphone et WhatsApp.
+Configurer le domaine public et les variables Resend de `.env.example` avant
+l’envoi en production. Le destinataire par défaut du formulaire est
+`andrino243@gmail.com`. L’envoi réel et la délivrabilité des e-mails n’ont pas
 été testés. Les images des maquettes restent illustratives.
