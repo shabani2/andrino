@@ -9,7 +9,7 @@ import { links } from "@/content/pages/links";
 import { createMetadata } from "@/lib/seo";
 export async function generateMetadata() { return createMetadata(
   "Links",
-  "Find Andrino's work, writing, projects and professional updates across the web.",
+  "Connect with Andrino on social media and follow his latest updates, stories and projects.",
   "/links",
 ); }
 export default function LinksPage() {
@@ -18,9 +18,9 @@ export default function LinksPage() {
   return (
     <>
       <PageHero
-        label={c("Across the web")}
-        title={c("Find me across the web.")}
-        description={c("This is the place to find my work, follow my professional journey and discover what I am publishing elsewhere.")}
+        label={c("Social media")}
+        title={c("Find me on social media.")}
+        description={c("Follow my updates, discover my work and connect with me on social media.")}
       />
       <section className="section-padding pt-4!">
         <Container>
