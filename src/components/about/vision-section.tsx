@@ -25,7 +25,7 @@ export function VisionSection() {
             <div className="actions-row">
               <ActionLink href="/portfolio" variant="peach">
                 {c("Explore selected work")}</ActionLink>
-              <ArrowLink href="/contact" className="text-white">
+              <ArrowLink href="/contact">
                 {c("Get in touch")}</ArrowLink>
             </div>
           </div>

@@ -1,52 +1,59 @@
-import { createHash } from "node:crypto";
+import nodemailer from "nodemailer";
 import type { ContactInput, ContactResult } from "@/types/contact";
 export async function sendContactEmail(
   input: ContactInput,
 ): Promise<ContactResult> {
-  const apiKey = process.env.RESEND_API_KEY,
-    recipient = process.env.CONTACT_EMAIL || "andrino243@gmail.com",
-    from = process.env.CONTACT_FROM_EMAIL;
-  if (!apiKey || !recipient || !from)
+  const recipient = process.env.CONTACT_EMAIL || "andrino243@gmail.com";
+  const user = process.env.GMAIL_USER || "andrino243@gmail.com";
+  const password = process.env.GMAIL_APP_PASSWORD?.replace(/\s/g, "");
+  if (!password)
     return {
       status: "error",
       message:
         "Message delivery is not available yet. Please use the direct email link or try again later. Your message has not been sent.",
     };
   try {
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + apiKey,
-        "Content-Type": "application/json",
-        "Idempotency-Key": createHash("sha256")
-          .update(input.email + input.subject + input.message)
-          .digest("hex"),
-      },
-      body: JSON.stringify({
-        from,
-        to: [recipient],
-        reply_to: input.email,
-        subject: "Andrino website · " + input.subject,
-        text:
-          "From: " +
-          input.name +
-          " <" +
-          input.email +
-          ">\nSubject: " +
-          input.subject +
-          "\n\n" +
-          input.message,
-      }),
-      signal: AbortSignal.timeout(15000),
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: { user, pass: password },
+      connectionTimeout: 10000,
+      greetingTimeout: 5000,
+      socketTimeout: 15000,
+      disableFileAccess: true,
+      disableUrlAccess: true,
+      logger: false,
+      debug: false,
     });
-    if (!response.ok)
+    const result = await transporter.sendMail({
+      // The visitor never controls the sender or recipient.
+      from: { name: "Andrino · Site web", address: user },
+      to: recipient,
+      replyTo: { name: input.name, address: input.email },
+      subject: "Andrino · " + input.subject,
+      text: [
+        "Nouveau message depuis le site Andrino / New website message",
+        "",
+        "Nom / Name: " + input.name,
+        "E-mail: " + input.email,
+        "Objet / Subject: " + input.subject,
+        "",
+        input.message,
+      ].join("\n"),
+      disableFileAccess: true,
+      disableUrlAccess: true,
+    });
+    const accepted = result.accepted.some((address) =>
+      address.toLowerCase() === recipient.toLowerCase(),
+    );
+    if (!accepted || result.rejected.length)
       return {
         status: "error",
         message:
           "Your message could not be sent. Please try again later or use the direct email link.",
       };
-    const result = (await response.json()) as { id?: string };
-    if (!result.id)
+    if (!result.messageId)
       return {
         status: "error",
         message: "Delivery could not be confirmed. Please try again later.",

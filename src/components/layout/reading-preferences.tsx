@@ -86,7 +86,7 @@ export function ReadingPreferences({ compact = false }: { compact?: boolean }) {
       )}
       <div className="preference-row theme-preference">
         {!compact && <span className="preference-label">{t("appearance")}</span>}
-        <RadioGroup.Root className="segmented-control theme-segments" value={mounted ? theme : "system"} onValueChange={setTheme} orientation="horizontal" aria-label={t("appearance")}>
+        <RadioGroup.Root className="segmented-control theme-segments" value={mounted ? theme : "dark"} onValueChange={setTheme} orientation="horizontal" aria-label={t("appearance")}>
           {themes.map(({ value, label, Icon }) => (
             <RadioGroup.Item className="segment-option" key={value} value={value} aria-label={t(label)} title={t(label)}>
               <Icon size={16} strokeWidth={1.7} aria-hidden="true" />

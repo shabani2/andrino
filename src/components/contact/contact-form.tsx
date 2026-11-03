@@ -31,7 +31,7 @@ export function ContactForm() {
     setFields((current) => ({ ...current, [key]: value }));
   }
   return (
-    <section className="contact-form-panel" aria-labelledby="inquiry-title">
+    <section id="contact-form" className="contact-form-panel" aria-labelledby="inquiry-title">
       <div className="contact-form-top">
         <div>
           <p className="eyebrow">{c("Editorial contact")}</p>

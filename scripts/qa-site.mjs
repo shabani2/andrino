@@ -86,7 +86,7 @@ try {
   assert.equal(await page.locator('[aria-invalid="true"]').count(), 5);
   assert.equal(await page.locator(".form-feedback").evaluate((element) => element === document.activeElement), true);
   interactions.push("Contact empty-form server validation and focused error summary: passed");
-  if (!process.env.RESEND_API_KEY && !existsSync(".env.local") && !existsSync(".env")) {
+  if (!process.env.GMAIL_APP_PASSWORD && !existsSync(".env.local") && !existsSync(".env")) {
     await page.getByLabel("Full name", { exact: false }).fill("Editorial QA");
     await page.getByLabel("Email address", { exact: false }).fill("editorial-qa@example.com");
     await page.getByLabel("Subject / Nature", { exact: false }).selectOption("Creative collaboration");

@@ -2,6 +2,9 @@
 
 Source of truth: the six approved Stitch screens in project
 `2457981840842964874`, archived in `design/stitch/`.
+The owner's dark palette request of 3 November 2026 supersedes the original
+Stitch colours. Palette implementation: `src/styles/theme.css`; contrast and
+verification notes: `design/THEME.md`. Preserve the existing compositions.
 The supplied editorial context takes precedence over invented sample content in
 the mockups. Never publish unverified performance figures, client assignments,
 publication dates, social destinations, or professional credentials.
@@ -11,20 +14,23 @@ publication dates, social destinations, or professional credentials.
 An independent editorial portfolio for editors, cultural organisations,
 communications teams and curious readers. Calm, contextual, literary and rooted
 in Goma. The signature is an asymmetric photographic composition with fine
-rules, small folio labels, generous margins and forest-green editorial panels.
+rules, small folio labels, generous margins and slate editorial panels.
 
 ## Tokens
 
-- Canvas: `#f6fbf5` (the actual Stitch screen token).
-- Main text: `#181d1a`; secondary text: `#424845`.
-- Forest: `#1d3730`; forest panel: `#344e46`.
-- Terracotta: `#914b32`; peach: `#ffdbcf`; gold: `#d7b27b`.
-- Muted surfaces: `#f0f5f0`, `#ebefea`; rules: `#c1c8c4`.
+- Canvas and surfaces: `--color-bg`, `--color-surface` from `theme.css`.
+- Main and secondary text: `--color-text`, `--color-text-muted`.
+- Brand blue: `--color-primary`; accessible text links: `--color-link`.
+- Orange actions: `--color-accent`, with dark ink text; use orange sparingly.
+- Fine separators: `--color-border`; identifiable form borders: `--input`.
 - Newsreader regular and italic for headings; DM Sans for body and labels.
 - Body: 16–18px, line-height 1.65; headings: 28/40/56px.
 - Container: 1280px including 64px desktop gutters, 20px mobile gutters.
 - Sections: 80px desktop, 48–56px mobile; header: 80px.
-- Fine borders, small 4–8px radii, no ornamental drop shadows.
+- Cards: 16px radii, faint single borders and diffuse token-based shadows.
+- Card content has 20–40px of padding according to size and viewport; home work
+  and article cards use `--card-padding-compact`, including inset images.
+- Buttons and compact controls retain their existing smaller radii.
 
 ## Responsive and interaction rules
 
@@ -33,7 +39,7 @@ Use a real keyboard-operable mobile menu below the full navigation breakpoint.
 All controls have visible focus, useful labels and comfortable touch targets.
 Filters update the actual displayed collection and announce the result count.
 No fake newsletter subscriptions, publication links or successful contact sends.
-Respect reduced motion; hover effects may only change colour or image transform.
+Respect reduced motion; colour and shadow transitions last 150–250ms.
 
 ## Skill evidence
 
@@ -44,21 +50,24 @@ screenshots at 375/768/1440px and automated accessibility.
 
 UI UX Pro Max: initial design-system query returned generic Swiss suggestions;
 the narrower verified result is `editorial-grid-magazine` from `styles.csv`
-(query `editorial magazine serif`). Stitch's approved palette and typography
+(query `editorial magazine serif`). The owner's palette and Stitch typography
 override generic dataset recommendations. Next.js stack guidance confirms
 responsive `next/image`, `next/link` navigation and server-only secrets.
 
 ## Dark theme and languages
 
-The light palette above remains the Stitch reference. Dark mode uses a deep
-green canvas `#121e19`, cards `#192820`, warm light text `#e9eee9`, mint headings
-`#d5e7dd` and terracotta accents `#e6ab93`. Dark editorial panels keep a stable
-forest background instead of inheriting the light heading colour. Buttons use
-paired foreground/background tokens, including focus, hover and error states.
+Dark mode uses the owner's navy/slate, blue and orange palette centralised in
+`src/styles/theme.css`. Light mode remains available through a coordinated
+variant in the same file. Dark editorial panels keep paired text/link tokens
+in either theme. Buttons include paired foreground/background tokens, including
+focus, hover, active, disabled and error states. New visits default to dark;
+stored light/dark/system choices remain respected. See `design/THEME.md` for
+the contrast adjustments and media that were deliberately left unchanged.
 
 Use `next-themes` for light/dark/system selection before hydration and persistent
 preferences. Keep controls keyboard-accessible in the header on all screen
-sizes and in the desktop footer. `next-intl` owns locale routing (`/en`, `/fr`), catalogs, links,
+sizes. The footer contains social profiles and contact details, without page
+navigation or reading preferences. `next-intl` owns locale routing (`/en`, `/fr`), catalogs, links,
 metadata and number/date formatting. French keeps the original editorial voice,
 using “récits”, “regards” and “communication” consistently. Names, routes, image
 paths, category query values and form option values remain stable identifiers.
@@ -68,7 +77,7 @@ header and an always-visible sun/moon/monitor segmented theme control.
 On mobile, a second fixed header row exposes both controls without opening
 navigation, with 44 px touch targets; hide the footer controls and omit them
 from the navigation menu. Main content, anchors and the menu account for the
-136 px mobile header height. The desktop footer uses labelled inline segments. Selected controls have
+136 px mobile header height. Selected controls have
 a raised canvas surface, a fine border and a restrained shadow; hover, focus,
 pressed, pending and reduced-motion states are explicit. Keep the control order
 consistent: language, appearance. No native select styling in these controls.

@@ -42,10 +42,10 @@ filtres et l’ancre courants.
 
 Les sélecteurs sont visibles dans le header sur ordinateur et mobile. Sur
 mobile, une seconde ligne fixe les rend accessibles sans ouvrir le menu ; les
-boutons tactiles mesurent au moins 44 px. Ils sont masqués dans le pied de page
-mobile. Le header utilise un menu de langue personnalisé et un groupe d’icônes
-soleil/lune/écran pour le thème. Le footer desktop conserve les contrôles
-segmentés avec libellés. Les composants Radix
+boutons tactiles mesurent au moins 44 px. Le header utilise un menu de langue
+personnalisé et un groupe d’icônes soleil/lune/écran pour le thème. Le footer
+regroupe les réseaux sociaux et les coordonnées, sans menu de pages ni réglages.
+Les composants Radix
 gèrent les groupes de choix, le clavier et le retour du focus du menu.
 La langue est conservée un an dans le cookie `ANDRINO_LOCALE` ;
 le thème est enregistré localement sous `andrino-theme`. Le mode système suit
@@ -80,7 +80,7 @@ vercel deploy --prod --yes --scope shabani2s-projects
 ```
 
 Le déploiement utilise les fichiers locaux. L’envoi des messages nécessite les
-variables Resend décrites ci-dessous dans l’environnement de production Vercel.
+variables Gmail décrites ci-dessous dans l’environnement de production Vercel.
 
 ## Formulaire et domaine
 
@@ -88,17 +88,33 @@ Copier `.env.example` vers `.env.local`, puis renseigner :
 
 ```dotenv
 NEXT_PUBLIC_SITE_URL=https://votre-domaine.example
-RESEND_API_KEY=
+GMAIL_USER=andrino243@gmail.com
+GMAIL_APP_PASSWORD=
 CONTACT_EMAIL=andrino243@gmail.com
-CONTACT_FROM_EMAIL=Andrino <contact@votre-domaine.example>
 ```
 
 Le formulaire valide les champs côté serveur, affiche les erreurs accessibles et
-conserve le message après un échec. L’envoi utilise Resend avec un domaine
-d’expédition vérifié. Le destinataire par défaut est `andrino243@gmail.com` ;
-`CONTACT_EMAIL` permet de le remplacer. Sans clé Resend et adresse d’expédition,
-le formulaire indique que le message n’a pas été envoyé. Aucune clé n’est exposée
-au navigateur.
+conserve le message après un échec. L’envoi utilise Gmail SMTP via Nodemailer,
+avec TLS sur le port 465. Le compte expéditeur et le destinataire par défaut
+sont `andrino243@gmail.com`. `GMAIL_USER` et `CONTACT_EMAIL` permettent de les
+modifier. `Reply-To` contient l’adresse du visiteur pour lui répondre directement.
+Sans mot de passe d’application configuré, le formulaire indique que le message
+n’a pas été envoyé. Le secret reste uniquement sur le serveur.
+
+Activer la validation en deux étapes et créer un mot de passe d’application
+dans le [compte Google](https://myaccount.google.com/apppasswords) de l’expéditeur.
+Renseigner ce mot de passe dans `.env.local`, puis dans les variables du projet
+Vercel. Ne pas utiliser le mot de passe habituel du compte. Redémarrer le serveur
+local ou redéployer après modification des variables. La commande suivante teste
+l’authentification SMTP sans envoyer d’e-mail :
+
+```bash
+node --env-file=.env.local scripts/check-gmail.mjs
+```
+
+Le footer contient les réseaux sociaux et coordonnées avec leurs icônes, ainsi
+qu’un formulaire dépliable « Envoyez-nous un message ». Sur la page Contact,
+ce lien mène au formulaire principal afin de ne pas le dupliquer.
 
 `NEXT_PUBLIC_SITE_URL` configure les URL du sitemap et les métadonnées SEO.
 

@@ -507,9 +507,20 @@
     "m1b0058b895e0": "domaine",
     "m35e53e2adbd3": "domaines",
     "m3cb8201e7ff1": "thème",
-    "mff582559c394": "thèmes"
+    "mff582559c394": "thèmes",
+    "mfa3fb0dbd908": "Portrait d’Andrino Akuda Kangela",
+    "m420ac6b4803c": "Portrait de profil en noir et blanc d’Andrino Akuda Kangela",
+    "m2f7e22d88216": "Andrino Akuda Kangela à Google I/O Extended à Goma",
+    "mdf46cc003cc7": "Andrino échange avec les participants à Google I/O Extended à Goma",
+    "m4b5c2ada0018": "Partage d’idées à Google I/O Extended, Goma.",
+    "m8d27e842c37b": "Andrino anime une session à Google I/O Extended à Goma",
+    "mdc3072086bb6": "Andrino partage ses idées lors d’une session à Goma",
+    "m4d2016b04211": "Échangeons ensemble"
   },
   "contactChannels": {
+    "socialTitle": "Réseaux sociaux",
+    "messageTitle": "Envoyez-nous un message",
+    "messageIntro": "Une question, un projet ou une idée à partager ? Écrivez-nous.",
     "phone": "Téléphone",
     "whatsapp": "Discuter sur WhatsApp",
     "youtube": "Me retrouver sur YouTube"

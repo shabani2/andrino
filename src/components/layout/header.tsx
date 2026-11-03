@@ -21,7 +21,7 @@ export function Header() {
           <Link href="/contact" className="header-cta">
             {c("Let’s talk")}</Link>
           <Image
-            src="/images/home/home-1.webp"
+            src="/images/andrino/portrait.webp"
             width={32}
             height={32}
             alt=""

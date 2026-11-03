@@ -14,6 +14,7 @@ import { identity } from "@/config/identity";
 import { socialLinks } from "@/config/social";
 import { useTranslations } from "next-intl";
 import { LocalTime } from "./local-time";
+import { PlatformIcon } from "@/components/shared/platform-icon";
 const ways = [
   {
     title: "Editorial writing & stories",
@@ -45,12 +46,13 @@ export function ContactInformation() {
       <section className="station-card">
         <div className="station-photo">
           <EditorialImage
-            src="/images/home/home-2.webp"
-            alt={c("Lake Kivu and the landscape of Goma at dusk")}
+            src="/images/andrino/conversation.webp"
+            alt={c("Andrino sharing ideas during a session in Goma")}
+            className="andrino-conversation"
           />
           <div className="station-photo-caption">
-            <Eyebrow>{c("Field post & home base")}</Eyebrow>
-            <h2>{c("Goma, North Kivu")}</h2>
+            <Eyebrow>{c("Let’s start a conversation")}</Eyebrow>
+            <h2>{c("Andrino Akuda Kangela")}</h2>
           </div>
         </div>
         <div className="station-information">
@@ -100,11 +102,11 @@ export function ContactInformation() {
         <Eyebrow>{c("Direct channels")}</Eyebrow>
         <div className="channel-list">
           <a className="channel-link" href={"mailto:" + identity.email}>
-            <div>{c("Direct email")}<small>{identity.email}</small></div>
+            <div className="channel-identity"><PlatformIcon name="Direct email" /><div>{c("Direct email")}<small>{identity.email}</small></div></div>
             <ArrowUpRight size={18} aria-hidden="true" />
           </a>
           <a className="channel-link" href={"tel:" + identity.phone}>
-            <div>{t("phone")}<small>{identity.phoneDisplay}</small></div>
+            <div className="channel-identity"><PlatformIcon name="Phone" /><div>{t("phone")}<small>{identity.phoneDisplay}</small></div></div>
             <ArrowUpRight size={18} aria-hidden="true" />
           </a>
           <a
@@ -113,15 +115,13 @@ export function ContactInformation() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div>
-              WhatsApp<small>{identity.phoneDisplay}</small>
-            </div>
+            <div className="channel-identity"><PlatformIcon name="WhatsApp" /><div>WhatsApp<small>{identity.phoneDisplay}</small></div></div>
             <ArrowUpRight size={18} aria-hidden="true" />
             <span className="sr-only">{c("Opens in a new tab")}</span>
           </a>
           {socialLinks.map((link) => (
             <a key={link.label} className="channel-link" href={link.href} target="_blank" rel="noopener noreferrer">
-              <div>{link.label}</div>
+              <div className="channel-identity"><PlatformIcon name={link.label} /><span>{link.label}</span></div>
               <ArrowUpRight size={18} aria-hidden="true" />
               <span className="sr-only">{c("Opens in a new tab")}</span>
             </a>

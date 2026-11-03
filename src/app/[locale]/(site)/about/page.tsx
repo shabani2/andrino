@@ -54,11 +54,11 @@ export default function AboutPage() {
             <figure>
               <div className="editorial-image hero-portrait">
                 <Image
-                  src="/images/about/about-1.webp"
+                  src="/images/andrino/portrait-profile.webp"
                   fill
                   preload
                   sizes="(max-width: 767px) 100vw, 45vw"
-                  alt={c("Editorial portrait in the landscape of Goma and the Great Lakes")}
+                  alt={c("Black-and-white profile portrait of Andrino Akuda Kangela")}
                   className="object-cover"
                 />
                 <span className="portrait-stamp">{c("Fig. 01 · Perspective")}</span>
@@ -70,7 +70,7 @@ export default function AboutPage() {
                 </div>
               </div>
               <figcaption className="image-caption">
-                <span>{c("Goma, Democratic Republic of the Congo.")}</span>
+                <span>{c("Portrait of Andrino Akuda Kangela")}</span>
                 <span>{c("FIELD NOTES")}</span>
               </figcaption>
             </figure>

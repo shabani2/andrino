@@ -25,6 +25,7 @@ try {
   for (const locale of process.env.QA_INTERACTIONS_ONLY ? [] : ["en", "fr"]) {
     for (const theme of ["light", "dark"]) {
       const context = await browser.newContext({ locale: locale === "fr" ? "fr-FR" : "en-GB", colorScheme: theme, reducedMotion: "reduce" });
+      await context.addInitScript((preference) => localStorage.setItem("andrino-theme", preference), theme);
       const page = await context.newPage();
       record(page);
       for (const width of [1440, 768, 375]) {
@@ -73,12 +74,14 @@ try {
   }
 
   const context = await browser.newContext({ locale: "en-GB", colorScheme: "light" });
+  await context.addInitScript(() => {
+    if (!localStorage.getItem("andrino-theme")) localStorage.setItem("andrino-theme", "light");
+  });
   const page = await context.newPage();
   record(page);
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto(base, { waitUntil: "networkidle" });
-  const appearance = () => page.locator("footer").getByRole("radiogroup", { name: /Appearance|Apparence/ });
-  const language = () => page.locator("footer").getByRole("radiogroup", { name: /Language|Langue/ });
+  const appearance = () => page.locator("header").getByRole("radiogroup", { name: /Appearance|Apparence/ });
   await appearance().getByRole("radio", { name: "Dark", exact: true }).click();
   await page.waitForFunction(() => document.documentElement.classList.contains("dark"));
   await page.reload({ waitUntil: "networkidle" });
@@ -120,11 +123,12 @@ try {
   assert.equal(await page.locator(".portfolio-card").count(), 1);
   assert.match(await page.locator(".portfolio-card h2").innerText(), /humanitaires/);
   await page.reload({ waitUntil: "networkidle" });
-  assert.equal(await language().getByRole("radio", { name: "Français", exact: true }).getAttribute("aria-checked"), "true");
+  assert.match(await languageTrigger().getAttribute("aria-label"), /Français/);
   await page.goto(base, { waitUntil: "networkidle" });
   assert.equal(new URL(page.url()).pathname, "/fr");
   await page.goto(base + "/fr/about#main-content", { waitUntil: "networkidle" });
-  await language().getByRole("radio", { name: "English", exact: true }).click();
+  await languageTrigger().click();
+  await page.getByRole("menuitemradio", { name: /English/ }).click();
   await page.waitForURL("**/en/about#main-content");
   assert.equal(await page.locator("html").getAttribute("lang"), "en");
   interactions.push("Language switch preserves route, category filters and anchor; preference survives reload and root revisit.");
@@ -150,7 +154,7 @@ try {
   assert.equal(await page.locator('[aria-invalid="true"]').count(), 5);
   assert.match(await page.locator(".form-feedback").innerText(), /Veuillez vérifier/);
   assert.equal(await page.locator(".form-feedback").evaluate((node) => node === document.activeElement), true);
-  if (!process.env.RESEND_API_KEY && !existsSync(".env") && !existsSync(".env.local")) {
+  if (!process.env.GMAIL_APP_PASSWORD && !existsSync(".env") && !existsSync(".env.local")) {
     await page.locator("#contact-name").fill("Vérification locale");
     await page.locator("#contact-email").fill("qa@example.com");
     await page.locator("#contact-subject").selectOption("Creative collaboration");

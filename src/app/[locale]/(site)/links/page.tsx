@@ -1,6 +1,7 @@
 import { useCopy } from "@/i18n/copy";
 import { Link } from "@/i18n/navigation";
-import { ArrowUpRight, ArrowRight, Link2 } from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { PlatformIcon } from "@/components/shared/platform-icon";
 import { Container } from "@/components/layout/container";
 import { PageHero } from "@/components/shared/page-hero";
 import { EditorialImage, Eyebrow } from "@/components/shared/editorial";
@@ -26,8 +27,9 @@ export default function LinksPage() {
           <div className="links-layout">
             <aside className="links-sidebar">
               <EditorialImage
-                src="/images/home/home-1.webp"
-                alt={c("Editorial portrait with the Goma landscape in the background")}
+                src="/images/andrino/at-google-io.webp"
+                alt={c("Andrino Akuda Kangela at Google I/O Extended in Goma")}
+                className="andrino-links"
               />
               <div>
                 <Eyebrow>{c("Andrino Akuda Kangela")}</Eyebrow>
@@ -47,7 +49,7 @@ export default function LinksPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Link2 size={22} aria-hidden="true" />
+                    <PlatformIcon name={item.label} size={22} />
                     <div>
                       <h2>{c(item.label)}</h2>
                       <p>{c(item.description)}</p>
@@ -62,7 +64,7 @@ export default function LinksPage() {
                     href={item.href}
                     key={item.label}
                   >
-                    <Link2 size={22} aria-hidden="true" />
+                    <PlatformIcon name={item.label} size={22} />
                     <div>
                       <h2>{c(item.label)}</h2>
                       <p>{c(item.description)}</p>

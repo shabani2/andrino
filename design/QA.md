@@ -1,5 +1,105 @@
 # Validation — 28 octobre 2026
 
+## Cartes aérées et contours adoucis — 3 novembre 2026
+
+Padding de 20 à 28 px ajouté aux cartes de l'accueil et des articles ;
+espacement harmonisé dans les cartes Portfolio/Projets et les panneaux latéraux.
+Les doubles contours sont retirés au profit d'une bordure très discrète,
+d'angles de 16 px et d'ombres diffuses, avec des variantes pour chaque thème.
+Les focus clavier et bordures des champs conservent leur visibilité.
+
+ESLint et compilation de production, incluant TypeScript : réussis.
+50 rendus et états contrôlés : sept pages françaises en clair/sombre à
+375/768/1440 px, accueil et écriture en anglais sur mobile, erreurs du formulaire
+et formulaire du footer ouvert dans les deux thèmes. Aucun débordement de page
+ou de carte, image cassée, exception JavaScript ou violation Axe détecté.
+Le focus des cartes-liens conserve un contour visible de 2 px.
+
+Les captures des cartes ont été relues en clair et en sombre, sur ordinateur
+et mobile. Rapport et captures : `artifacts/qa-cards/`.
+
+## Palette sombre bleu nuit / ardoise — 3 novembre 2026
+
+Palette, variantes accessibles et fichiers : `design/THEME.md`.
+Les couleurs des styles applicatifs sont centralisées dans
+`src/styles/theme.css` ; aucune couleur littérale ne subsiste ailleurs dans
+les sources CSS/TSX. Les médias raster sont conservés.
+
+- ESLint, TypeScript et dernière compilation de production : réussis.
+- Sept pages principales en FR/EN, clair/sombre, à 375/768/1440 px :
+  84 rendus contrôlés, sans débordement, image cassée ou traduction manquante.
+- Le lien du panneau Vision était trop sombre en mode clair. La correction
+  retire une classe de couleur qui masquait le style du lien. Les 36 rendus
+  concernés par les derniers changements des pages Accueil, À propos et
+  Écriture ont été repris : aucune violation Axe détectée.
+- 30 contrôles supplémentaires couvrent les trois gabarits de détail,
+  les erreurs de formulaire, le formulaire du footer déplié, le menu de langue
+  et la navigation mobile, en clair/sombre à 375/1440 px : réussis.
+- Après uniformisation des fonds, 26 contrôles ciblés de Projets, Liens,
+  des formulaires et des menus : réussis, sans violation Axe ni débordement.
+- Focus des champs et état désactivé vérifiés ; contraste des textes et
+  contrôles documenté dans `design/THEME.md`.
+- Sélecteurs au clavier, mémorisation du thème, mode système, changement de
+  langue conservant filtre et ancre, navigation mobile et validation serveur
+  du formulaire : réussis. Aucun message réel n'a été envoyé.
+- Les 44 routes du sitemap répondent en HTTP 200. Aucune exception JavaScript
+  détectée dans les parcours vérifiés.
+
+Rapports : `artifacts/qa-preferences/report.json` (contrôle initial),
+`artifacts/qa-switchers/report.json` (interactions),
+`artifacts/qa-theme/final-report.json` (36 rendus corrigés),
+`artifacts/qa-theme/states-report.json` et
+`artifacts/qa-theme/surfaces-report.json` (30 et 26 états complémentaires).
+La version finale tourne sur `http://127.0.0.1:3001`.
+
+Contrôles manuels restants : rendu sur un téléphone réel, photos et captures
+avec zones claires, favicon anthracite d'origine. Les médias n'ont pas été
+recolorés. Axe ne remplace pas un audit complet avec lecteur d'écran.
+
+## Icônes et formulaire Gmail — 3 novembre 2026
+
+Le footer porte le titre « Réseaux sociaux » et chaque réseau est précédé de
+son pictogramme. E-mail, téléphone et WhatsApp ont également leur icône. Les
+mêmes repères visuels sont utilisés dans Contact et l’annuaire de liens.
+
+Un formulaire dépliable est accessible depuis le footer des pages publiques.
+Sur Contact, son accès mène au formulaire principal afin de conserver un seul
+formulaire et des identifiants de champs uniques par page.
+
+À la demande du propriétaire, Nodemailer et Gmail SMTP remplacent Resend.
+L’expéditeur et le destinataire par défaut sont `andrino243@gmail.com` ;
+l’adresse du visiteur est utilisée comme Reply-To. TLS est actif sur le port
+465, les délais réseau sont limités et les accès aux fichiers et URL sont
+désactivés pour les messages. Les tests simulent SMTP : configuration absente,
+succès, destinataire par défaut, rejet, absence de confirmation et erreur de
+connexion. Aucun e-mail réel n’a été envoyé.
+
+Le mot de passe d’application Gmail n’est pas encore fourni. L’envoi réel
+reste à activer en renseignant `GMAIL_APP_PASSWORD` dans `.env.local` et dans
+les variables Vercel, puis en redémarrant/redéployant. Le fichier local créé
+ne contient aucun secret et est ignoré par Git. `scripts/check-gmail.mjs`
+permet de vérifier l’authentification SMTP sans envoyer de message.
+
+Lint, TypeScript, build, 524 traductions et tests SMTP simulés : réussis.
+Huit rendus du footer et du formulaire (FR/EN, clair/sombre, 375/1440 px)
+confirment les icônes, la présence d’un seul formulaire par page et les cinq
+erreurs de validation traduites. Aucune violation Axe ni exception JavaScript
+détectée. Les liens du résumé d’erreurs ont été agrandis pour le tactile.
+Captures et rapport : `artifacts/qa-footer-form/`.
+
+## Footer simplifié — 3 novembre 2026
+
+Le footer conserve l’identité, les cinq profils sociaux officiels, l’e-mail,
+le téléphone, WhatsApp et le retour en haut. Le menu des pages et les réglages
+de langue et de thème sont retirés. Ces réglages restent dans le header sur
+ordinateur et mobile. Les anciens styles du menu et des réglages du footer
+sont supprimés ; le parcours de test des préférences cible désormais le header.
+
+Lint, TypeScript et build de production réussis. Quatre rendus vérifiés en
+français et anglais, à 375 et 1440 px : aucun débordement, cinq profils et trois
+liens de contact présents, aucun menu ni réglage dans le footer, sélecteurs du
+header visibles. Captures : `artifacts/qa-footer/`.
+
 ## Coordonnées officielles — 3 novembre 2026
 
 Les cinq profils fournis sont intégrés au footer, à Contact et à Liens. Les
@@ -164,7 +264,7 @@ production à `http://127.0.0.1:3001`.
 
 Les coordonnées officielles fournies le 3 novembre 2026 sont intégrées dans
 `src/config/identity.ts` : cinq réseaux, e-mail, téléphone et WhatsApp.
-Configurer le domaine public et les variables Resend de `.env.example` avant
+Configurer le domaine public et les variables Gmail de `.env.example` avant
 l’envoi en production. Le destinataire par défaut du formulaire est
 `andrino243@gmail.com`. L’envoi réel et la délivrabilité des e-mails n’ont pas
 été testés. Les images des maquettes restent illustratives.

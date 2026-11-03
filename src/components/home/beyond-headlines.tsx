@@ -50,8 +50,9 @@ export function BeyondHeadlines() {
                 alt={c("Art and cultural exchange at an exhibition in Goma")}
               />
               <EditorialImage
-                src="/images/home/home-4.webp"
-                alt={c("Young creatives exchanging ideas in a shared workspace")}
+                src="/images/andrino/workshop.webp"
+                alt={c("Andrino leading a session at Google I/O Extended in Goma")}
+                className="andrino-workshop"
               />
             </div>
           </div>

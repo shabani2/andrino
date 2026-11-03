@@ -1,12 +1,12 @@
 import { useCopy } from "@/i18n/copy";
 import { Link } from "@/i18n/navigation";
 import { ArrowUp } from "lucide-react";
-import { navigation } from "@/config/navigation";
 import { identity } from "@/config/identity";
 import { SocialLinks } from "@/components/shared/social-links";
 import { Container } from "./container";
-import { ReadingPreferences } from "./reading-preferences";
 import { useTranslations } from "next-intl";
+import { PlatformIcon } from "@/components/shared/platform-icon";
+import { FooterMessageForm } from "@/components/contact/footer-message-form";
 export function Footer() {
   const c = useCopy();
   const t = useTranslations("contactChannels");
@@ -14,6 +14,7 @@ export function Footer() {
   return (
     <footer className="site-footer">
       <Container>
+        <FooterMessageForm />
         <div className="footer-grid">
           <div>
             <Link href="/" className="wordmark footer-wordmark">
@@ -23,26 +24,20 @@ export function Footer() {
               {c("Communications · Storytelling · Writing · Ideas")}<br />
               {c("Goma, Democratic Republic of the Congo.")}</p>
             <div className="footer-contact">
-              <a href={"mailto:" + identity.email}>{identity.email}</a>
-              <a href={"tel:" + identity.phone}>{identity.phoneDisplay}</a>
-              <a href={identity.whatsapp} target="_blank" rel="noopener noreferrer">{t("whatsapp")}<span className="sr-only"> {c("(opens in a new tab)")}</span></a>
+              <a href={"mailto:" + identity.email}><PlatformIcon name="Direct email" />{identity.email}</a>
+              <a href={"tel:" + identity.phone}><PlatformIcon name="Phone" />{identity.phoneDisplay}</a>
+              <a href={identity.whatsapp} target="_blank" rel="noopener noreferrer"><PlatformIcon name="WhatsApp" />{t("whatsapp")}<span className="sr-only"> {c("(opens in a new tab)")}</span></a>
             </div>
           </div>
           <div className="footer-right">
-            <ReadingPreferences />
-            <nav aria-label={c("Footer navigation")}>
-              {navigation.map((item) => (
-                <Link key={item.href} href={item.href}>
-                  {c(item.label)}
-                </Link>
-              ))}
-            </nav>
             <div className="footer-social">
+              <p className="eyebrow">{t("socialTitle")}</p>
               <SocialLinks />
-              <a href="#top" className="text-link small">
-                <ArrowUp size={14} aria-hidden="true" />
-                {c("Back to top")}</a>
             </div>
+            <a href="#top" className="text-link small">
+              <ArrowUp size={14} aria-hidden="true" />
+              {c("Back to top")}
+            </a>
           </div>
         </div>
         <div className="footer-bottom">

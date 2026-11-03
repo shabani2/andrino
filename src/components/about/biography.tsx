@@ -44,11 +44,11 @@ export function Biography() {
             </div>
             <figure>
               <EditorialImage
-                src="/images/about/about-2.webp"
-                alt={c("People exchanging ideas during a community gathering in the Great Lakes region")}
+                src="/images/andrino/speaking.webp"
+                alt={c("Andrino speaking to participants at Google I/O Extended in Goma")}
               />
               <figcaption className="image-caption">
-                <span>{c("People, places and the conversations between them.")}</span>
+                <span>{c("Sharing ideas at Google I/O Extended, Goma.")}</span>
               </figcaption>
             </figure>
             <div className="sidebar-panel">

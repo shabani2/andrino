@@ -1,0 +1,98 @@
+/* All palette values live here. Components consume semantic aliases below. */
+:root {
+  --color-bg: #0B0F1A;
+  --color-surface: #1E293B;
+  --color-primary: #2563EB;
+  --color-accent: #F59E0B;
+  --color-text: #E5E7EB;
+  --color-text-muted: #94A3B8;
+
+  /* Accessible text variants: brand blue alone is 2.83:1 on a surface. */
+  --color-link: #6EA8FE;
+  --color-link-hover: #93C5FD;
+  --color-primary-hover: #3B82F6;
+  --color-accent-hover: #FBBF24;
+  --color-ink: #0B0F1A;
+  --color-on-brand: #F1F5F9;
+  --color-surface-hover: #29384D;
+  --color-control-border: #64748B;
+  --color-border: rgba(148, 163, 184, 0.15);
+  --color-focus-glow: rgba(37, 99, 235, 0.35);
+  --color-highlight: rgba(37, 99, 235, 0.12);
+  --color-error: #FCA5A5;
+  --color-error-surface: #34232E;
+  --color-shadow: rgba(0, 0, 0, 0.4);
+  --color-panel-bg: #1E293B;
+  --color-panel-text: #E5E7EB;
+  --color-panel-muted: #94A3B8;
+  --color-panel-link: #6EA8FE;
+  --color-panel-link-hover: #93C5FD;
+  --color-overlay: rgba(11, 15, 26, 0.96);
+  --color-image-badge: rgba(30, 41, 59, 0.96);
+  --color-image-text: #E5E7EB;
+  --color-image-muted: #CBD5E1;
+  --color-panel-highlight: rgba(229, 231, 235, 0.04);
+  --color-card-border: rgba(148, 163, 184, 0.045);
+  --color-card-border-hover: rgba(148, 163, 184, 0.09);
+  --color-card-shadow: rgba(0, 0, 0, 0.22);
+  --color-card-shadow-hover: rgba(0, 0, 0, 0.28);
+
+  --background: var(--color-bg);
+  --foreground: var(--color-text);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-text);
+  --primary: var(--color-link);
+  --primary-foreground: var(--color-ink);
+  --secondary: var(--color-link);
+  --secondary-foreground: var(--color-ink);
+  --muted: var(--color-surface);
+  --muted-foreground: var(--color-text-muted);
+  --accent: var(--color-accent);
+  --action-bg: var(--color-accent);
+  --accent-foreground: var(--color-ink);
+  --border: var(--color-border);
+  --input: var(--color-control-border);
+  --ring: var(--color-link);
+  --destructive: var(--color-error);
+  --forest-panel: var(--color-panel-bg);
+  --surface-mid: var(--color-surface);
+  --surface-high: var(--color-surface-hover);
+  --gold: var(--color-panel-muted);
+  --deep-forest: var(--color-panel-bg);
+  --primary-hover: var(--color-link-hover);
+  --error-surface: var(--color-error-surface);
+  --heading: var(--color-text);
+  --shadow-surface: 0 4px 20px var(--color-shadow);
+  --shadow-control: 0 1px 4px var(--color-shadow);
+  --shadow-menu: 0 8px 24px var(--color-shadow);
+  --shadow-card: 0 12px 36px -16px var(--color-card-shadow), 0 3px 12px -6px var(--color-card-shadow);
+  --shadow-card-hover: 0 18px 44px -16px var(--color-card-shadow-hover), 0 5px 16px -8px var(--color-card-shadow);
+  --card-radius: 16px;
+  --card-padding: clamp(28px, 2.5vw, 40px);
+  --card-padding-compact: clamp(20px, 2vw, 28px);
+  --radius: 0.5rem;
+  color-scheme: dark;
+}
+
+/* Keep the existing light-mode choice and stored preferences functional. */
+:root.light {
+  --color-bg: #F3F6FC;
+  --color-surface: #E7EDF6;
+  --color-text: #172033;
+  --color-text-muted: #526176;
+  --color-link: #1D4ED8;
+  --color-link-hover: #1E40AF;
+  --color-surface-hover: #DCE5F2;
+  --color-control-border: #64748B;
+  --color-border: rgba(71, 85, 105, 0.25);
+  --color-error: #B4233B;
+  --color-error-surface: #FCE8ED;
+  --color-shadow: rgba(11, 15, 26, 0.12);
+  --color-card-border: rgba(71, 85, 105, 0.065);
+  --color-card-border-hover: rgba(71, 85, 105, 0.12);
+  --color-card-shadow: rgba(11, 15, 26, 0.075);
+  --color-card-shadow-hover: rgba(11, 15, 26, 0.12);
+  --primary-foreground: var(--color-on-brand);
+  --secondary-foreground: var(--color-on-brand);
+  color-scheme: light;
+}

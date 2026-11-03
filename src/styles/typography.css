@@ -5,7 +5,7 @@
   h4 {
     font-family: var(--font-newsreader), Georgia, serif;
     font-weight: 400;
-    color: var(--primary);
+    color: var(--heading);
     text-wrap: balance;
   }
   h1 {

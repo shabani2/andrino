@@ -37,8 +37,8 @@ export function HeroSection() {
           <figure>
             <div className="editorial-image hero-portrait">
               <Image
-                src="/images/home/home-1.webp"
-                alt={c("Editorial portrait overlooking the city and Lake Kivu")}
+                src="/images/andrino/portrait.webp"
+                alt={c("Portrait of Andrino Akuda Kangela")}
                 fill
                 sizes="(max-width: 767px) 100vw, 45vw"
                 preload
