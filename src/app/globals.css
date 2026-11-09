@@ -141,7 +141,7 @@
 .site-footer {
   box-shadow: inset 0 1px var(--border), inset 0 -1px var(--border);
 }
-:is(button, .menu-button, .language-trigger):hover:not(:disabled):not([aria-disabled="true"]) {
+:is(button, .menu-button):hover:not(:disabled):not([aria-disabled="true"]) {
   border-color: var(--color-link);
 }
 body :is(button, input, textarea, select):disabled,
@@ -2195,20 +2195,12 @@ textarea[data-slot="textarea"]:focus {
 .segment-option[data-state="checked"] svg {
   stroke-width: 2;
 }
-.segment-option:focus-visible,
-.language-trigger:focus-visible {
+.segment-option:focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 3px;
 }
-.segment-option:active,
-.language-trigger:active {
+.segment-option:active {
   transform: scale(0.96);
-}
-.locale-short {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  color: var(--secondary);
 }
 .preferences-compact {
   display: flex;
@@ -2226,107 +2218,22 @@ textarea[data-slot="textarea"]:focus {
   padding: 0;
   border-radius: 50%;
 }
-.language-trigger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  min-height: 42px;
-  padding: 0 12px;
-  border: 1px solid color-mix(in srgb, var(--border) 65%, transparent);
+.language-preference {
+  gap: 8px;
+}
+.language-segments-compact {
+  padding: 3px;
   border-radius: 999px;
-  background: var(--background);
-  color: var(--primary);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  line-height: 1;
-  transition: background-color 160ms, border-color 160ms, transform 160ms;
 }
-.language-trigger > svg:first-child {
-  color: var(--muted-foreground);
-}
-.language-trigger:hover,
-.language-trigger[data-state="open"] {
-  background: var(--surface-mid);
-  border-color: var(--muted-foreground);
-}
-.language-chevron {
-  opacity: 0.65;
-  transition: transform 160ms;
-}
-.language-trigger[data-state="open"] .language-chevron {
-  transform: rotate(180deg);
-}
-.language-menu {
-  z-index: 100;
-  min-width: 220px;
-  max-width: calc(100vw - 32px);
-  padding: 8px;
-  border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
-  border-radius: 16px;
-  background: var(--card);
-  color: var(--foreground);
-  box-shadow: var(--shadow-menu);
-  transform-origin: var(--radix-dropdown-menu-content-transform-origin);
-  animation: preference-menu-in 150ms ease-out;
-}
-.language-menu-label {
-  padding: 7px 10px 9px;
-  color: var(--muted-foreground);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-.language-menu-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 48px;
-  padding: 6px 10px;
-  border-radius: 9px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  user-select: none;
-  outline: none;
-}
-.language-menu-item[data-state="checked"] {
-  color: var(--primary);
-  background: var(--muted);
-}
-.language-menu-item[data-highlighted] {
-  background: var(--surface-mid);
-  box-shadow: inset 0 0 0 1px var(--border);
-}
-.language-code {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 30px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--muted-foreground);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-}
-.language-check {
-  display: inline-flex;
-  margin-left: auto;
-  color: var(--secondary);
-}
-@keyframes preference-menu-in {
-  from { opacity: 0; transform: translateY(-4px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+.language-segments-compact .segment-option {
+  width: auto;
+  min-height: 34px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 11px;
 }
 @media (prefers-reduced-motion: reduce) {
-  .language-menu { animation: none; }
-  .language-trigger,
-  .segment-option,
-  .language-chevron { transition: none; }
-  .language-trigger:active,
+  .segment-option { transition: none; }
   .segment-option:active { transform: none; }
 }
 @media (max-width: 374px) {
@@ -2395,12 +2302,11 @@ textarea[data-slot="textarea"]:focus {
     align-items: center;
     justify-content: space-between;
   }
-  .header-preferences .language-trigger {
+  .header-preferences .segment-option {
     min-height: 44px;
   }
-  .header-preferences .segment-option {
-    width: 44px;
-    min-height: 44px;
+  .header-preferences .language-segments-compact .segment-option {
+    padding: 0 12px;
   }
   .header-preferences .theme-segments {
     padding: 2px;
