@@ -10,12 +10,14 @@
     "lint": "eslint . --max-warnings=0",
     "typecheck": "next typegen && tsc --noEmit",
     "test:contact": "node scripts/verify-contact.mjs",
+    "test:supabase": "node --env-file=.env.local scripts/verify-supabase.mjs",
     "test:i18n": "node scripts/check-locales.mjs"
   },
   "engines": {
     "node": ">=20.9.0"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.119.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.63.0",

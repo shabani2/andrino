@@ -1,4 +1,6 @@
 import { getCopy } from "@/i18n/copy-server";
+import { getLocale } from "next-intl/server";
+import type { Locale } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/container";
 import {
@@ -7,21 +9,18 @@ import {
   Eyebrow,
 } from "@/components/shared/editorial";
 import { CallToAction } from "@/components/shared/call-to-action";
-import { getPortfolioItems, getPortfolioItemBySlug } from "@/lib/portfolio";
+import { getPortfolioItemBySlug } from "@/lib/portfolio";
 import { createMetadata } from "@/lib/seo";
 type Props = { params: Promise<{ slug: string }> };
-export function generateStaticParams() {
-  return getPortfolioItems().map((item) => ({ slug: item.slug }));
-}
 export async function generateMetadata({ params }: Props) {
-  const item = getPortfolioItemBySlug((await params).slug);
+  const item = await getPortfolioItemBySlug(await getLocale() as Locale, (await params).slug);
   if (!item) notFound();
   return createMetadata(item.title, item.description, "/portfolio/" + item.slug);
 }
 export default async function CaseStudyPage({ params }: Props) {
   const c = await getCopy();
 
-  const item = getPortfolioItemBySlug((await params).slug);
+  const item = await getPortfolioItemBySlug(await getLocale() as Locale, (await params).slug);
   if (!item) notFound();
   return (
     <section className="detail-page">

@@ -1,9 +1,11 @@
 import { useCopy } from "@/i18n/copy";
+import { useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Article } from "@/types/article";
 import { EditorialImage, ArrowLink } from "@/components/shared/editorial";
 export function ArticleCard({ article }: { article: Article }) {
   const c = useCopy();
+  const locale = useLocale();
 
   return (
     <article className="article-card">
@@ -33,9 +35,11 @@ export function ArticleCard({ article }: { article: Article }) {
       </div>
       <div className="article-card-bottom">
         <span>
-          {c(article.status === "forthcoming"
-            ? "Forthcoming writing"
-            : article.publishedAt)}
+          {article.status === "forthcoming"
+            ? c("Forthcoming writing")
+            : article.publishedAt
+              ? new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeZone: "UTC" }).format(new Date(article.publishedAt))
+              : ""}
         </span>
         <ArrowLink href={"/writing/" + article.slug}>
           {c(article.status === "forthcoming" ? "Explore" : "Read")}
