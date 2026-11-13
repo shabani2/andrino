@@ -11,8 +11,8 @@
 
 ## Publication
 
-Supabase Studio sert d’interface de gestion initiale aux personnes ayant accès
-au tableau de bord du projet. Elles ajoutent une entrée, puis ses traductions.
+L’espace `/fr/admin` permet aux membres actifs de gérer les entrées et leurs
+traductions. Supabase Studio reste disponible pour les opérations avancées.
 La publication d’une langue consiste à passer
 sa traduction à `published`. Les pages et le sitemap prennent en compte les
 nouvelles entrées sans reconstruction de l’application, avec un cache de 60 secondes.
@@ -31,6 +31,7 @@ publiées. La clé secrète utilisée pour les contacts ne quitte jamais le serv
 L’ancien système de newsletter, de planification et de diffusion sociale a été
 retiré du schéma. Les identités Auth existantes restent disponibles.
 
-`staff_members` prépare les droits d’un futur espace d’édition dans l’application.
-Les évolutions suivantes peuvent ajouter un espace `/admin` avec Supabase Auth,
-un éditeur de contenu et une invalidation immédiate du cache après publication.
+Les membres actifs peuvent modifier les contenus, traiter les messages et compléter
+leur profil. Les administrateurs gèrent les comptes et les rôles de l’équipe.
+Chaque action vérifie de nouveau le compte Auth et l’appartenance à l’équipe.
+Les modifications de contenu invalident le cache public.
