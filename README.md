@@ -24,8 +24,8 @@ Ouvrir [localhost:3000](http://localhost:3000).
 
 - `src/config/identity.ts` : identité, e-mail, téléphone, WhatsApp et profils
   officiels LinkedIn, Facebook, X, Instagram et YouTube fournis par le propriétaire.
-- `src/content/editorial.ts` : biographie, disciplines, convictions, six domaines
-  du portfolio, six thèmes d’écriture et trois projets.
+- Supabase : articles, thèmes d’écriture, domaines du portfolio et projets publiés.
+  `src/content/editorial.ts` fournit le contenu initial et le repli local.
 - `src/content/pages/links.ts` : annuaire de liens.
 - `src/config/navigation.ts` : menu ; `src/app/globals.css` : styles et couleurs.
 - `public/images/` et `public/fonts/` : médias locaux et polices Newsreader / DM Sans.
@@ -58,10 +58,43 @@ stables. Pour modifier ou ajouter une phrase, synchroniser cette association et
 les deux catalogues, puis exécuter `npm run test:i18n`. Les valeurs techniques
 des filtres et des options du formulaire restent stables dans les deux langues.
 
-Les articles sont présentés comme des thèmes à venir. Les pages de détail du
-portfolio décrivent des pratiques professionnelles ; elles ne prétendent pas
+Les six thèmes d’écriture initiaux restent des thèmes à venir. Les nouveaux
+articles publiés dans Supabase apparaissent dans Writing. Les pages de détail
+du portfolio décrivent des pratiques professionnelles ; elles ne prétendent pas
 documenter des missions ou des résultats non fournis. Les images issues des
 maquettes sont illustratives et peuvent être remplacées par les photos réelles.
+
+## Contenu Supabase
+
+Le projet Supabase est `Andrino_Blog` (`qvuexmazymzziewbxmow`). Définir
+`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` et
+`SUPABASE_SECRET_KEY` dans `.env.local`. La clé secrète reste côté serveur.
+Sans les deux variables publiques, le site affiche le contenu local initial.
+
+Les migrations sont dans `supabase/migrations/`. `supabase/seed.sql` importe les
+15 contenus initiaux en anglais et en français. Pour le régénérer :
+
+```bash
+node scripts/generate-supabase-seed.mjs
+```
+
+Dans Supabase Studio, créer une ligne `entries`, puis une ligne
+`entry_translations` par langue. Le champ `kind` accepte `article`,
+`writing_theme`, `project`, `practice_area` et `case_study`. Les contenus sont
+visibles seulement lorsque leur traduction a l’état `published`. Les slugs des
+articles et des thèmes d’écriture doivent être distincts. `body` contient des
+paragraphes en texte brut, séparés par une ligne vide. Les pages rafraîchissent
+les données publiques au plus tard après 60 secondes.
+
+Les images publiées vont dans le bucket `site-media`. Le bucket `draft-media`
+reste privé. `cover_path` accepte une image locale `/images/...` ou l’URL
+publique complète d’un fichier de `site-media`.
+
+Les deux comptes Auth existants sont conservés dans `staff_members`. Les règles
+RLS réservent les brouillons et les modifications à ces comptes. Les demandes de
+contact sont enregistrées dans `contact_messages` avant la notification e-mail.
+Sans clé secrète Supabase, le formulaire utilise encore l’envoi SMTP précédent.
+Voir [l’architecture détaillée](docs/SUPABASE_ARCHITECTURE.md).
 
 ## Déploiement Vercel
 
@@ -79,8 +112,10 @@ Depuis ce dossier lié au projet, publier les changements avec :
 vercel deploy --prod --yes --scope shabani2s-projects
 ```
 
-Le déploiement utilise les fichiers locaux. L’envoi des messages nécessite les
+Le déploiement utilise les fichiers locaux. La notification par e-mail nécessite les
 variables Gmail décrites ci-dessous dans l’environnement de production Vercel.
+La lecture du contenu Supabase nécessite aussi les deux variables publiques
+Supabase. `SUPABASE_SECRET_KEY` permet d’enregistrer les messages reçus.
 
 ## Formulaire et domaine
 
@@ -98,8 +133,10 @@ conserve le message après un échec. L’envoi utilise Gmail SMTP via Nodemaile
 avec TLS sur le port 465. Le compte expéditeur et le destinataire par défaut
 sont `andrino243@gmail.com`. `GMAIL_USER` et `CONTACT_EMAIL` permettent de les
 modifier. `Reply-To` contient l’adresse du visiteur pour lui répondre directement.
-Sans mot de passe d’application configuré, le formulaire indique que le message
-n’a pas été envoyé. Le secret reste uniquement sur le serveur.
+Avec `SUPABASE_SECRET_KEY`, le message reste enregistré même si la notification
+Gmail échoue. Sans clé Supabase, le formulaire utilise l’ancien envoi SMTP et
+signale un échec quand le mot de passe d’application manque. Les secrets restent
+uniquement sur le serveur.
 
 Activer la validation en deux étapes et créer un mot de passe d’application
 dans le [compte Google](https://myaccount.google.com/apppasswords) de l’expéditeur.

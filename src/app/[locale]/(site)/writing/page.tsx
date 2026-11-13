@@ -1,4 +1,4 @@
-import { useCopy } from "@/i18n/copy";
+import { getCopy } from "@/i18n/copy-server";
 import { Suspense } from "react";
 import { Rss, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/layout/container";
@@ -7,7 +7,8 @@ import { ArrowLink, Eyebrow } from "@/components/shared/editorial";
 import { FeaturedArticle } from "@/components/writing/featured-article";
 import { WritingExplorer } from "@/components/writing/writing-explorer";
 import { identity } from "@/config/identity";
-import { useTranslations } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
+import type { Locale } from "@/i18n/routing";
 import { getArticles } from "@/lib/articles";
 import { createMetadata } from "@/lib/seo";
 export async function generateMetadata() { return createMetadata(
@@ -15,9 +16,11 @@ export async function generateMetadata() { return createMetadata(
   "Ideas, observations and opinions on African narratives, Goma, media, innovation, society and the writing life.",
   "/writing",
 ); }
-export default function WritingPage() {
-  const c = useCopy();
-  const t = useTranslations("contactChannels");
+export default async function WritingPage() {
+  const c = await getCopy();
+  const t = await getTranslations("contactChannels");
+  const articles = await getArticles(await getLocale() as Locale);
+  const hasPublishedArticle = articles.some((article) => article.status === "published");
 
   return (
     <>
@@ -30,11 +33,11 @@ export default function WritingPage() {
         <Container>
           <div className="writing-intro-note mb-8">
             <span>{c("Dispatches from Goma & the Great Lakes")}</span>
-            <span>{c("6 editorial themes · First publications forthcoming")}</span>
+            <span>{hasPublishedArticle ? c("Articles available") : c("6 editorial themes · First publications forthcoming")}</span>
           </div>
-          <FeaturedArticle />
+          {!hasPublishedArticle && <FeaturedArticle />}
           <Suspense fallback={<p role="status">{c("Loading the journal…")}</p>}>
-            <WritingExplorer articles={getArticles()} />
+            <WritingExplorer articles={articles} />
           </Suspense>
           <div className="editorial-bottom-grid">
             <section className="editorial-standards">

@@ -1,4 +1,6 @@
-import { useCopy } from "@/i18n/copy";
+import { getCopy } from "@/i18n/copy-server";
+import { getLocale } from "next-intl/server";
+import type { Locale } from "@/i18n/routing";
 import { Users, HeartHandshake, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { PageHero } from "@/components/shared/page-hero";
@@ -13,10 +15,15 @@ export async function generateMetadata() { return createMetadata(
   "Ideas in progress: Naleta Story, community and youth initiatives, and communication for social impact.",
   "/projects",
 ); }
-export default function ProjectsPage() {
-  const c = useCopy();
+export default async function ProjectsPage() {
+  const c = await getCopy();
 
-  const projects = getProjects();
+  const projects = await getProjects(await getLocale() as Locale);
+  const featured = projects.find((project) => project.featured) ?? projects[0];
+  const community = projects.find((project) => project.slug === "community-youth");
+  const impact = projects.find((project) => project.slug === "communication-social-impact");
+  const additional = projects.filter((project) =>
+    project.slug !== featured?.slug && project.slug !== community?.slug && project.slug !== impact?.slug);
   return (
     <>
       <PageHero
@@ -28,7 +35,7 @@ export default function ProjectsPage() {
       <section className="pb-20">
         <Container>
           <Eyebrow>{c("Flagship platform")}</Eyebrow>
-          <FeaturedProject />
+          {featured && <FeaturedProject project={featured} />}
         </Container>
       </section>
       <section className="pb-20">
@@ -47,7 +54,7 @@ export default function ProjectsPage() {
                   <h3>{c("Community & youth initiatives")}</h3>
                 </div>
               </div>
-              <ProjectCard project={projects[1]} />
+              {community && <ProjectCard project={community} />}
               <div className="stream-note">
                 <Eyebrow>{c("Collaboration & learning")}</Eyebrow>
                 <h3>{c("Local knowledge. Shared possibilities.")}</h3>
@@ -67,7 +74,7 @@ export default function ProjectsPage() {
                   <h3>{c("Communication for social impact")}</h3>
                 </div>
               </div>
-              <ProjectCard project={projects[2]} />
+              {impact && <ProjectCard project={impact} />}
               <div className="stream-note">
                 <Eyebrow>{c("Stories behind the work")}</Eyebrow>
                 <h3>{c("Making complex projects accessible.")}</h3>
@@ -78,6 +85,15 @@ export default function ProjectsPage() {
           </div>
         </Container>
       </section>
+      {additional.length > 0 && (
+        <section className="pb-20">
+          <Container>
+            <div className="project-streams">
+              {additional.map((project) => <ProjectCard key={project.slug} project={project} />)}
+            </div>
+          </Container>
+        </section>
+      )}
       <section className="pb-20">
         <Container>
           <div className="governance">

@@ -1,4 +1,6 @@
 import { getCopy } from "@/i18n/copy-server";
+import { getLocale } from "next-intl/server";
+import type { Locale } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/container";
 import {
@@ -7,21 +9,18 @@ import {
   Eyebrow,
 } from "@/components/shared/editorial";
 import { CallToAction } from "@/components/shared/call-to-action";
-import { getProjects, getProjectBySlug } from "@/lib/projects";
+import { getProjectBySlug } from "@/lib/projects";
 import { createMetadata } from "@/lib/seo";
 type Props = { params: Promise<{ slug: string }> };
-export function generateStaticParams() {
-  return getProjects().map((item) => ({ slug: item.slug }));
-}
 export async function generateMetadata({ params }: Props) {
-  const project = getProjectBySlug((await params).slug);
+  const project = await getProjectBySlug(await getLocale() as Locale, (await params).slug);
   if (!project) notFound();
   return createMetadata(project.title, project.description, "/projects/" + project.slug);
 }
 export default async function ProjectPage({ params }: Props) {
   const c = await getCopy();
 
-  const project = getProjectBySlug((await params).slug);
+  const project = await getProjectBySlug(await getLocale() as Locale, (await params).slug);
   if (!project) notFound();
   return (
     <article className="detail-page">

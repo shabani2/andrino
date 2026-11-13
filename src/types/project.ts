@@ -10,4 +10,5 @@ export type Project = {
   status: string;
   tags: string[];
   url?: string;
+  featured?: boolean;
 };

@@ -1,4 +1,6 @@
-import { useCopy } from "@/i18n/copy";
+import { getCopy } from "@/i18n/copy-server";
+import { getLocale } from "next-intl/server";
+import type { Locale } from "@/i18n/routing";
 import { Suspense } from "react";
 import { Container } from "@/components/layout/container";
 import { PageHero } from "@/components/shared/page-hero";
@@ -11,8 +13,9 @@ export async function generateMetadata() { return createMetadata(
   "Selected areas of work in strategic communication, digital media, editorial storytelling and project visibility.",
   "/portfolio",
 ); }
-export default function PortfolioPage() {
-  const c = useCopy();
+export default async function PortfolioPage() {
+  const c = await getCopy();
+  const items = await getPortfolioItems(await getLocale() as Locale);
 
   return (
     <>
@@ -25,7 +28,7 @@ export default function PortfolioPage() {
       <section className="pb-20">
         <Container>
           <Suspense fallback={<p role="status">{c("Loading the work index…")}</p>}>
-            <PortfolioExplorer items={getPortfolioItems()} />
+            <PortfolioExplorer items={items} />
           </Suspense>
           <div className="portfolio-notes">
             <div className="insight-strip">
