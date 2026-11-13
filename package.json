@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "next typegen && tsc --noEmit",
+    "bootstrap:admin": "node --env-file=.env.local scripts/bootstrap-admin.mjs",
     "test:contact": "node scripts/verify-contact.mjs",
     "test:supabase": "node --env-file=.env.local scripts/verify-supabase.mjs",
     "test:i18n": "node scripts/check-locales.mjs"
@@ -17,6 +18,7 @@
     "node": ">=20.9.0"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.119.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
