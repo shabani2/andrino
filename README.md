@@ -123,6 +123,10 @@ Cette option active aussi un compte `staff_members` inactif. Elle ne remplace
 pas les champs de profil existants. La clé secrète Supabase doit rester locale
 ou dans un environnement serveur, jamais dans le navigateur.
 
+La connexion administrateur est accessible sur `/fr/admin/login` (ou
+`/en/admin/login`). Après connexion, `/fr/admin` vérifie le compte Auth et le
+rôle `admin` actif. La déconnexion est disponible sur cette page.
+
 ## Déploiement Vercel
 
 Projet : `shabani2s-projects/andrino`.
