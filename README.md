@@ -96,6 +96,33 @@ contact sont enregistrées dans `contact_messages` avant la notification e-mail.
 Sans clé secrète Supabase, le formulaire utilise encore l’envoi SMTP précédent.
 Voir [l’architecture détaillée](docs/SUPABASE_ARCHITECTURE.md).
 
+### Créer un compte administrateur
+
+Avec `NEXT_PUBLIC_SUPABASE_URL` et `SUPABASE_SECRET_KEY` dans `.env.local`,
+vérifier l’accès au projet, puis lancer la commande dans un terminal interactif :
+
+```bash
+npm run bootstrap:admin -- --check
+npm run bootstrap:admin
+```
+
+La commande demande l’adresse e-mail et le mot de passe deux fois. Le mot de
+passe est masqué et n’est pas enregistré dans le dépôt. Elle crée un compte
+Supabase Auth confirmé, puis lui attribue le rôle `admin` dans `staff_members`.
+Le nom, la photo et le téléphone restent vides jusqu’à leur saisie dans une
+future page de profil. Cette page n’est pas encore développée.
+
+Si l’adresse appartient déjà à un compte Auth, la commande s’arrête sans le
+modifier. Pour définir un nouveau mot de passe et lui attribuer le rôle admin :
+
+```bash
+npm run bootstrap:admin -- --reset-existing
+```
+
+Cette option active aussi un compte `staff_members` inactif. Elle ne remplace
+pas les champs de profil existants. La clé secrète Supabase doit rester locale
+ou dans un environnement serveur, jamais dans le navigateur.
+
 ## Déploiement Vercel
 
 Projet : `shabani2s-projects/andrino`.

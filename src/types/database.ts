@@ -154,19 +154,28 @@ export type Database = {
       staff_members: {
         Row: {
           active: boolean
+          avatar_path: string | null
           created_at: string
+          display_name: string | null
+          phone: string | null
           role: string
           user_id: string
         }
         Insert: {
           active?: boolean
+          avatar_path?: string | null
           created_at?: string
+          display_name?: string | null
+          phone?: string | null
           role: string
           user_id: string
         }
         Update: {
           active?: boolean
+          avatar_path?: string | null
           created_at?: string
+          display_name?: string | null
+          phone?: string | null
           role?: string
           user_id?: string
         }

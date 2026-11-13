@@ -5,7 +5,7 @@
 - Les pages Next.js lisent directement les entrées publiées avec la clé publique Supabase et les règles RLS.
 - `entries` porte le type, le slug, l’ordre, les tags et les chemins des médias.
 - `entry_translations` porte le contenu anglais et français. Chaque langue a son propre état `draft` ou `published`.
-- `staff_members` relie les comptes Supabase Auth aux droits de publication.
+- `staff_members` relie les comptes Supabase Auth aux droits de publication et aux champs de profil facultatifs.
 - `contact_messages` conserve les demandes reçues. Seuls les membres actifs peuvent les lire.
 - `site-media` sert les images publiées ; `draft-media` protège les images en préparation.
 
