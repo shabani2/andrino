@@ -146,3 +146,6 @@
   .admin-panel-heading, .admin-collection-row, .admin-recent-item { padding-left: 18px; padding-right: 18px; }
   .admin-login-card { padding: 28px 23px; }
 }
+@media (max-width: 360px) {
+  .admin-menu-trigger span { display: none; }
+}

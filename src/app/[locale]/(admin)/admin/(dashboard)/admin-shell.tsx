@@ -158,7 +158,7 @@ export function AdminShell({ children, locale, email, displayName, role, signOut
               aria-expanded={open} aria-controls="admin-mobile-navigation"
               onClick={() => setOpen(true)}>
               <Menu size={21} strokeWidth={1.8} aria-hidden="true" />
-              <span>{adminText(locale, "Menu", "Menu")}</span>
+              <span>{adminText(locale, "Ouvrir le menu", "Open menu")}</span>
             </button>
           </div>
         </header>
