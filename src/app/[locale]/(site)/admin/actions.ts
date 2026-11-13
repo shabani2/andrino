@@ -9,12 +9,12 @@ const copy = {
   fr: {
     fields: "Informations manquantes. Saisissez votre e-mail et votre mot de passe.",
     credentials: "Connexion impossible. Vérifiez votre e-mail et votre mot de passe.",
-    access: "Accès refusé. Utilisez un compte administrateur actif.",
+    access: "Accès refusé. Utilisez un compte d’équipe actif.",
   },
   en: {
     fields: "Information missing. Enter your email and password.",
     credentials: "Sign-in failed. Check your email and password.",
-    access: "Access denied. Use an active administrator account.",
+    access: "Access denied. Use an active team account.",
   },
 } as const;
 
@@ -34,7 +34,7 @@ export async function signIn(locale: string, _state: LoginState, formData: FormD
     .select("role,active")
     .eq("user_id", data.user.id)
     .maybeSingle();
-  if (staff.error || staff.data?.role !== "admin" || !staff.data.active) {
+  if (staff.error || !staff.data?.active) {
     await supabase.auth.signOut();
     return { error: copy[language].access };
   }

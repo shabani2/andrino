@@ -109,8 +109,8 @@ npm run bootstrap:admin
 La commande demande l’adresse e-mail et le mot de passe deux fois. Le mot de
 passe est masqué et n’est pas enregistré dans le dépôt. Elle crée un compte
 Supabase Auth confirmé, puis lui attribue le rôle `admin` dans `staff_members`.
-Le nom, la photo et le téléphone restent vides jusqu’à leur saisie dans une
-future page de profil. Cette page n’est pas encore développée.
+Le nom, la photo et le téléphone restent vides jusqu’à leur saisie sur la
+page `/fr/admin/profil`.
 
 Si l’adresse appartient déjà à un compte Auth, la commande s’arrête sans le
 modifier. Pour définir un nouveau mot de passe et lui attribuer le rôle admin :
@@ -123,9 +123,11 @@ Cette option active aussi un compte `staff_members` inactif. Elle ne remplace
 pas les champs de profil existants. La clé secrète Supabase doit rester locale
 ou dans un environnement serveur, jamais dans le navigateur.
 
-La connexion administrateur est accessible sur `/fr/admin/login` (ou
-`/en/admin/login`). Après connexion, `/fr/admin` vérifie le compte Auth et le
-rôle `admin` actif. La déconnexion est disponible sur cette page.
+La connexion de l’équipe est accessible sur `/fr/admin/login` (ou
+`/en/admin/login`). Après connexion, `/fr/admin` vérifie le compte Auth et
+l’accès actif. Le tableau de bord mène aux articles, projets, rubriques, thèmes
+d’écriture, études de cas, messages reçus et profil. Les administrateurs peuvent
+aussi gérer les membres de l’équipe. La déconnexion est dans la navigation.
 
 ## Déploiement Vercel
 

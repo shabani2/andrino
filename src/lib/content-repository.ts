@@ -23,5 +23,5 @@ async function queryPublishedEntries(kinds: EntryKind[], locale: Locale) {
 export const getPublishedEntries = unstable_cache(
   queryPublishedEntries,
   ["andrino-published-entries"],
-  { revalidate: 60 },
+  { revalidate: 60, tags: ["andrino-content"] },
 );

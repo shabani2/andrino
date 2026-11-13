@@ -13,7 +13,7 @@ function localPortfolioItems(): PortfolioItem[] {
 }
 export async function getPortfolioItems(locale: Locale): Promise<PortfolioItem[]> {
   if (!hasSupabaseContent()) return localPortfolioItems();
-  const entries = await getPublishedEntries(["practice_area"], locale);
+  const entries = await getPublishedEntries(["practice_area", "case_study"], locale);
   return entries.map(({ translation: t, ...entry }) => ({
     slug: entry.slug,
     title: t.title,

@@ -3,6 +3,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  experimental: { serverActions: { bodySizeLimit: "5mb" } },
   images: {
     remotePatterns: process.env.NEXT_PUBLIC_SUPABASE_URL ? [{
       protocol: "https",
