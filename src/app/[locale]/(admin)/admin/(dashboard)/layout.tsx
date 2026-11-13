@@ -12,7 +12,7 @@ export default async function AdminLayout({ children, params }: {
 
   return (
     <AdminShell locale={locale} email={user.email ?? ""} displayName={staff.display_name}
-      role={staff.role} signOutAction={signOut.bind(null, locale)}>
+      role={staff.role} avatarPath={staff.avatar_path} signOutAction={signOut.bind(null, locale)}>
       {children}
     </AdminShell>
   );

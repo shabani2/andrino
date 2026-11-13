@@ -26,6 +26,7 @@ export async function saveProfile(locale: string, _state: ProfileState, formData
     ...(avatarPath ? { avatar_path: avatarPath } : {}),
   }).eq("user_id", user.id);
   if (updated.error) return { error: "Profil non enregistré. Vérifiez les champs et réessayez.", success: null };
+  revalidatePath(`/${language}/admin`, "layout");
   revalidatePath(`/${language}/admin/profil`);
   return { error: null, success: "Profil enregistré." };
 }
