@@ -1,12 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, useTransition, type ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { DropdownMenu } from "radix-ui";
 import {
   ArrowUpRight,
   BookOpen,
   ChevronRight,
+  ChevronsUpDown,
   Feather,
   FileText,
   Folder,
@@ -20,6 +23,7 @@ import {
   X,
 } from "lucide-react";
 import { adminText, contentSections } from "@/lib/admin-sections";
+import { ReadingPreferences } from "@/components/layout/reading-preferences";
 
 type Item = { slug: string; label: string; icon: typeof House };
 
@@ -33,28 +37,32 @@ function navigationItems(locale: string, admin: boolean): Item[] {
     { slug: "themes", label: label(contentSections.themes.fr, contentSections.themes.en), icon: Feather },
     { slug: "portfolio", label: label(contentSections.portfolio.fr, contentSections.portfolio.en), icon: BookOpen },
     { slug: "messages", label: label("Messages", "Messages"), icon: Mail },
-    { slug: "profil", label: label("Mon profil", "My profile"), icon: UserRound },
     ...(admin ? [{ slug: "equipe", label: label("Équipe", "Team"), icon: UsersRound }] : []),
   ];
 }
 
-function Sidebar({ locale, items, pathname, account, email, role, signOutAction, onNavigate }: {
+function Sidebar({ locale, items, pathname, account, email, role, avatarPath, signOutAction, onNavigate, mobile = false }: {
   locale: string;
   items: Item[];
   pathname: string;
   account: string;
   email: string;
   role: string;
+  avatarPath: string | null;
   signOutAction: () => Promise<void>;
   onNavigate?: () => void;
+  mobile?: boolean;
 }) {
   const base = `/${locale}/admin`;
+  const [signingOut, startSignOut] = useTransition();
   return (
     <div className="admin-sidebar-inner">
       <Link href={base} className="admin-brand" onClick={onNavigate} aria-label="Andrino Studio">
         <span className="admin-brand-name">ANDRINO</span>
         <span className="admin-brand-subtitle">Studio</span>
       </Link>
+
+      {mobile && <div className="admin-drawer-preferences"><ReadingPreferences compact /></div>}
 
       <nav aria-label={adminText(locale, "Navigation admin", "Admin navigation")} className="admin-nav">
         {items.map(({ slug, label, icon: ItemIcon }) => {
@@ -71,35 +79,58 @@ function Sidebar({ locale, items, pathname, account, email, role, signOutAction,
       </nav>
 
       <div className="admin-sidebar-foot">
-        <div className="admin-account">
-          <div className="admin-account-avatar" aria-hidden="true">{account.trim().charAt(0).toUpperCase() || "A"}</div>
-          <div className="admin-account-copy">
-            <strong>{account}</strong>
-            <span>{email}</span>
-            <small>{role === "admin" ? adminText(locale, "Administrateur", "Administrator") : adminText(locale, "Éditeur", "Editor")}</small>
-          </div>
-        </div>
-        <Link href={`/${locale}`} className="admin-foot-link" onClick={onNavigate}>
-          <ArrowUpRight size={18} strokeWidth={1.8} aria-hidden="true" />
-          {adminText(locale, "Voir le site", "View site")}
-        </Link>
-        <form action={signOutAction}>
-          <button type="submit" className="admin-foot-link">
-            <LogOut size={18} strokeWidth={1.8} aria-hidden="true" />
-            {adminText(locale, "Se déconnecter", "Sign out")}
-          </button>
-        </form>
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger className="admin-account-trigger"
+            aria-label={adminText(locale, "Ouvrir le menu du compte", "Open account menu")}>
+            <span className="admin-account-avatar" aria-hidden="true">
+              {avatarPath
+                ? <Image src={avatarPath} alt="" width={38} height={38} className="admin-account-photo" />
+                : account.trim().charAt(0).toUpperCase() || "A"}
+            </span>
+            <span className="admin-account-copy">
+              <strong>{account}</strong>
+              <span>{email}</span>
+              <small>{role === "admin" ? adminText(locale, "Administrateur", "Administrator") : adminText(locale, "Éditeur", "Editor")}</small>
+            </span>
+            <ChevronsUpDown size={15} strokeWidth={1.8} aria-hidden="true" />
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content className="admin-account-menu" side="top" align="start" sideOffset={8} collisionPadding={12}>
+              <p className="admin-account-menu-heading">{email}</p>
+              <DropdownMenu.Separator className="admin-account-menu-separator" />
+              <DropdownMenu.Item asChild>
+                <Link href={`${base}/profil`} onClick={onNavigate} className="admin-account-menu-item">
+                  <UserRound size={17} strokeWidth={1.8} aria-hidden="true" />
+                  {adminText(locale, "Voir mon profil", "View my profile")}
+                </Link>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item asChild>
+                <Link href={`/${locale}`} onClick={onNavigate} className="admin-account-menu-item">
+                  <ArrowUpRight size={17} strokeWidth={1.8} aria-hidden="true" />
+                  {adminText(locale, "Voir le site", "View site")}
+                </Link>
+              </DropdownMenu.Item>
+              <DropdownMenu.Separator className="admin-account-menu-separator" />
+              <DropdownMenu.Item className="admin-account-menu-item" disabled={signingOut}
+                onSelect={() => startSignOut(async () => { await signOutAction(); })}>
+                <LogOut size={17} strokeWidth={1.8} aria-hidden="true" />
+                {adminText(locale, "Se déconnecter", "Sign out")}
+              </DropdownMenu.Item>
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
       </div>
     </div>
   );
 }
 
-export function AdminShell({ children, locale, email, displayName, role, signOutAction }: {
+export function AdminShell({ children, locale, email, displayName, role, avatarPath, signOutAction }: {
   children: ReactNode;
   locale: string;
   email: string;
   displayName: string | null;
   role: string;
+  avatarPath: string | null;
   signOutAction: () => Promise<void>;
 }) {
   const pathname = usePathname();
@@ -111,6 +142,8 @@ export function AdminShell({ children, locale, email, displayName, role, signOut
     const href = `/${locale}/admin${item.slug ? `/${item.slug}` : ""}`;
     return pathname === href || (item.slug && pathname.startsWith(`${href}/`));
   }).at(-1) ?? items[0];
+  const currentLabel = pathname.startsWith(`/${locale}/admin/profil`)
+    ? adminText(locale, "Mon profil", "My profile") : current.label;
 
   useEffect(() => {
     if (!open) return;
@@ -130,9 +163,7 @@ export function AdminShell({ children, locale, email, displayName, role, signOut
   }, [open]);
 
   const account = displayName || email.split("@")[0] || "Admin";
-  const sidebarProps = { locale, items, pathname, account, email, role, signOutAction };
-  const otherLocale = locale === "fr" ? "en" : "fr";
-  const translatedPath = pathname.replace(/^\/(fr|en)/, `/${otherLocale}`);
+  const sidebarProps = { locale, items, pathname, account, email, role, avatarPath, signOutAction };
 
   return (
     <div className="admin-shell">
@@ -146,13 +177,10 @@ export function AdminShell({ children, locale, email, displayName, role, signOut
           <nav aria-label={adminText(locale, "Fil d’Ariane", "Breadcrumb")} className="admin-breadcrumb">
             <Link href={`/${locale}/admin`}>{adminText(locale, "Administration", "Administration")}</Link>
             <ChevronRight size={15} strokeWidth={1.8} aria-hidden="true" />
-            <span>{current.label}</span>
+            <span>{currentLabel}</span>
           </nav>
           <div className="admin-topbar-actions">
-            <nav className="admin-language" aria-label={adminText(locale, "Langue", "Language")}>
-              <span aria-current="page">{locale.toUpperCase()}</span>
-              <Link href={translatedPath} lang={otherLocale} hrefLang={otherLocale}>{otherLocale.toUpperCase()}</Link>
-            </nav>
+            <div className="admin-topbar-preferences"><ReadingPreferences compact /></div>
             <button ref={menuRef} type="button" className="admin-menu-trigger"
               aria-label={adminText(locale, "Ouvrir le menu", "Open menu")}
               aria-expanded={open} aria-controls="admin-mobile-navigation"
@@ -177,7 +205,7 @@ export function AdminShell({ children, locale, email, displayName, role, signOut
             onClick={() => setOpen(false)}>
             <X size={23} strokeWidth={1.8} aria-hidden="true" />
           </button>
-          <Sidebar {...sidebarProps} onNavigate={() => setOpen(false)} />
+          <Sidebar {...sidebarProps} mobile onNavigate={() => setOpen(false)} />
         </aside>
       </div>}
     </div>

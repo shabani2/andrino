@@ -3,7 +3,10 @@ import { requireStaff } from "@/lib/admin-guard";
 import { adminText } from "@/lib/admin-sections";
 import { ProfileForms } from "./forms";
 
-export const metadata = { title: "Mon profil", robots: { index: false, follow: false } };
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return { title: adminText(locale, "Mon profil", "My profile"), robots: { index: false, follow: false } };
+}
 
 export default async function ProfilePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

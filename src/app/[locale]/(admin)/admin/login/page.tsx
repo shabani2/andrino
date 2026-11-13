@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { adminSessionClient } from "@/lib/admin-session";
+import { ReadingPreferences } from "@/components/layout/reading-preferences";
 import { LoginForm } from "./login-form";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -24,9 +25,7 @@ export default async function AdminLoginPage({ params }: { params: Promise<{ loc
     <div className="admin-login">
       <header className="admin-login-header">
         <Link href={`/${locale}`} className="admin-login-brand">ANDRINO</Link>
-        <Link href={`/${locale}`} className="admin-login-site-link">
-          {fr ? "Voir le site" : "View site"} <ArrowUpRight size={16} aria-hidden="true" />
-        </Link>
+        <div className="admin-login-preferences"><ReadingPreferences compact /></div>
       </header>
       <main id="main-content" className="admin-login-main" aria-labelledby="admin-login-title">
         <div className="admin-login-card">
@@ -38,6 +37,9 @@ export default async function AdminLoginPage({ params }: { params: Promise<{ loc
             {fr ? "Connectez-vous avec votre compte d’équipe." : "Sign in with your team account."}
           </p>
           <LoginForm locale={locale} />
+          <Link href={`/${locale}`} className="admin-login-site-link">
+            {fr ? "Voir le site" : "View site"} <ArrowUpRight size={16} aria-hidden="true" />
+          </Link>
         </div>
       </main>
     </div>
