@@ -63,9 +63,6 @@ export default async function ProjectPage({ params }: Props) {
             <ArticleShare title={project.title} locale={locale}
               url={new URL(`/${locale}/projects/${project.slug}`, siteConfig.url).toString()} />
             {project.id && engagement && <PostEngagement entryId={project.id} locale={locale} {...engagement} />}
-            <h2>{c("Project updates.")}</h2>
-            <p className="prose">
-              {c("I will update this page as the project develops. I will name my role and collaborators.")}</p>
           </div>
           <aside className="detail-sidebar">
             <Eyebrow>{c("Project details")}</Eyebrow>
@@ -77,8 +74,6 @@ export default async function ProjectPage({ params }: Props) {
                 </span>
               ))}
             </div>
-            <p>
-              {c("I work on these projects from Goma.")}</p>
             <ArrowLink href="/contact">{c("Discuss this project")}</ArrowLink>
           </aside>
         </div>

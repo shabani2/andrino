@@ -39,9 +39,6 @@ export function ArticleShare({ title, locale, url }: { title: string; locale: st
       <button type="button" onClick={copy}><Copy size={16} aria-hidden="true" />
         {fr ? "Copier le lien" : "Copy link"}</button>
     </div>
-    <p className="post-share-note">{fr
-      ? "Pour Instagram, partagez le lien via votre application."
-      : "For Instagram, share the link using your app."}</p>
     {message && <p role="status" className="post-share-status">{message}</p>}
   </section>;
 }

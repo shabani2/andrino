@@ -7,9 +7,10 @@ import { submitContact } from "@/actions/contact";
 import { contactSubjects } from "@/lib/contact-validation";
 import type { ContactInput, ContactResult } from "@/types/contact";
 const initial: ContactResult = { status: "idle", message: "" };
-export function ContactForm() {
+export function ContactForm({ idPrefix = "contact" }: { idPrefix?: string }) {
   const c = useCopy();
   const locale = useLocale();
+  const id = (suffix: string) => `${idPrefix}-${suffix}`;
 
   const [state, action, pending] = useActionState(submitContact, initial);
   const [fields, setFields] = useState<ContactInput>({
@@ -31,11 +32,11 @@ export function ContactForm() {
     setFields((current) => ({ ...current, [key]: value }));
   }
   return (
-    <section id="contact-form" className="contact-form-panel" aria-labelledby="inquiry-title">
+    <section id={id("form")} className="contact-form-panel" aria-labelledby={id("inquiry-title")}>
       <div className="contact-form-top">
         <div>
           <p className="eyebrow">{c("Write to Andrino")}</p>
-          <h2 id="inquiry-title">{c("Write to me.")}</h2>
+          <h2 id={id("inquiry-title")}>{c("Write to me.")}</h2>
           <p>
             {c("Tell me about an article, a project or a question.")}</p>
         </div>
@@ -65,7 +66,7 @@ export function ContactForm() {
               <ul>
                 {Object.entries(errors).map(([field, error]) => (
                   <li key={field}>
-                    <a href={"#contact-" + field}>{c(error)}</a>
+                    <a href={`#${id(field)}`}>{c(error)}</a>
                   </li>
                 ))}
               </ul>
@@ -76,9 +77,9 @@ export function ContactForm() {
           <legend className="sr-only">{c("Your message to Andrino")}</legend>
           <div className="form-row">
             <div className="field">
-              <label htmlFor="contact-name">{c("Full name *")}</label>
+              <label htmlFor={id("name")}>{c("Full name *")}</label>
               <input
-                id="contact-name"
+                id={id("name")}
                 name="name"
                 autoComplete="name"
                 placeholder={c("Your full name")}
@@ -87,18 +88,18 @@ export function ContactForm() {
                 value={fields.name}
                 onChange={(event) => update("name", event.target.value)}
                 aria-invalid={!!errors.name}
-                aria-describedby={errors.name ? "name-error" : undefined}
+                aria-describedby={errors.name ? id("name-error") : undefined}
               />
               {errors.name && (
-                <p className="field-error" id="name-error">
+                <p className="field-error" id={id("name-error")}>
                   {c(errors.name)}
                 </p>
               )}
             </div>
             <div className="field">
-              <label htmlFor="contact-email">{c("Email address *")}</label>
+              <label htmlFor={id("email")}>{c("Email address *")}</label>
               <input
-                id="contact-email"
+                id={id("email")}
                 name="email"
                 type="email"
                 autoComplete="email"
@@ -108,26 +109,26 @@ export function ContactForm() {
                 value={fields.email}
                 onChange={(event) => update("email", event.target.value)}
                 aria-invalid={!!errors.email}
-                aria-describedby={errors.email ? "email-error" : undefined}
+                aria-describedby={errors.email ? id("email-error") : undefined}
               />
               {errors.email && (
-                <p className="field-error" id="email-error">
+                <p className="field-error" id={id("email-error")}>
                   {c(errors.email)}
                 </p>
               )}
             </div>
           </div>
           <div className="field">
-            <label htmlFor="contact-subject">
+            <label htmlFor={id("subject")}>
               {c("Subject *")}</label>
             <select
-              id="contact-subject"
+              id={id("subject")}
               name="subject"
               value={fields.subject}
               onChange={(event) => update("subject", event.target.value)}
               required
               aria-invalid={!!errors.subject}
-              aria-describedby={errors.subject ? "subject-error" : undefined}
+              aria-describedby={errors.subject ? id("subject-error") : undefined}
             >
               <option value="">{c("Choose a subject")}</option>
               {contactSubjects.map((subject) => (
@@ -137,15 +138,15 @@ export function ContactForm() {
               ))}
             </select>
             {errors.subject && (
-              <p className="field-error" id="subject-error">
+              <p className="field-error" id={id("subject-error")}>
                 {c(errors.subject)}
               </p>
             )}
           </div>
           <div className="field">
-            <label htmlFor="contact-message">{c("Your message *")}</label>
+            <label htmlFor={id("message")}>{c("Your message *")}</label>
             <textarea
-              id="contact-message"
+              id={id("message")}
               name="message"
               placeholder={c("Describe your article, question or project…")}
               maxLength={2500}
@@ -154,22 +155,22 @@ export function ContactForm() {
               onChange={(event) => update("message", event.target.value)}
               aria-invalid={!!errors.message}
               aria-describedby={
-                "message-count" + (errors.message ? " message-error" : "")
+                id("message-count") + (errors.message ? ` ${id("message-error")}` : "")
               }
             />
-            <p className="character-count" id="message-count">
+            <p className="character-count" id={id("message-count")}>
               {fields.message.length.toLocaleString(locale)} / {(2500).toLocaleString(locale)}
             </p>
             {errors.message && (
-              <p className="field-error" id="message-error">
+              <p className="field-error" id={id("message-error")}>
                 {c(errors.message)}
               </p>
             )}
           </div>
           <div className="honeypot" aria-hidden="true">
-            <label htmlFor="contact-website">{c("Leave this field empty")}</label>
+            <label htmlFor={id("website")}>{c("Leave this field empty")}</label>
             <input
-              id="contact-website"
+              id={id("website")}
               name="website"
               tabIndex={-1}
               autoComplete="off"
@@ -178,20 +179,20 @@ export function ContactForm() {
           <div>
             <label className="checkbox-field">
               <input
-                id="contact-consent"
+                id={id("consent")}
                 name="consent"
                 type="checkbox"
                 checked={fields.consent}
                 onChange={(event) => update("consent", event.target.checked)}
                 required
                 aria-invalid={!!errors.consent}
-                aria-describedby={errors.consent ? "consent-error" : undefined}
+                aria-describedby={errors.consent ? id("consent-error") : undefined}
               />
               <span>
                 {c("I agree to receive a reply by email. My address will only be used for this exchange.")}</span>
             </label>
             {errors.consent && (
-              <p className="field-error mt-2" id="consent-error">
+              <p className="field-error mt-2" id={id("consent-error")}>
                 {c(errors.consent)}
               </p>
             )}
