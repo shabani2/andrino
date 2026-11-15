@@ -230,6 +230,22 @@
 .admin-profile-dialog .ui-action-secondary:hover:not(:disabled) { background: var(--surface-high); color: var(--color-link); }
 .admin-profile-error { padding: 10px 12px; border-radius: 8px; background: var(--error-surface); color: var(--destructive); font-size: 12px; }
 
+.team-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; }
+.team-members { display: grid; gap: 13px; margin-top: 31px; max-width: 900px; }
+.team-member { padding: 20px 22px; border: 1px solid var(--admin-soft-line); border-radius: 14px; background: var(--card); box-shadow: var(--admin-soft-shadow); }
+.team-member-identity { display: flex; align-items: center; gap: 13px; min-width: 0; }
+.team-member-avatar { display: grid; flex: none; place-items: center; width: 48px; height: 48px; overflow: hidden; border-radius: 50%; background: var(--admin-active); color: var(--color-link); font-size: 17px; font-weight: 700; }
+.team-member-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.team-member-actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+.team-self-link { display: inline-flex; margin-top: 17px; font-size: 12px; font-weight: 650; }
+.team-dialog-tabs { display: flex; gap: 4px; margin-top: 22px; padding: 4px; border-radius: 9px; background: var(--surface-high); }
+.team-dialog-tabs button { flex: 1; min-height: 34px; padding: 6px 8px; border-radius: 6px; color: var(--muted-foreground); font-size: 11px; font-weight: 650; }
+.team-dialog-tabs button.is-active { background: var(--card); color: var(--foreground); box-shadow: 0 1px 3px color-mix(in srgb, var(--color-shadow) 15%, transparent); }
+.team-active-toggle { display: flex; align-items: center; gap: 9px; min-height: 30px; font-size: 13px; font-weight: 600; }
+.team-active-toggle input { width: 16px; height: 16px; }
+.team-delete-trigger { color: var(--destructive); }
+.team-delete-button { background: var(--destructive); color: white; }
+
 @media (max-width: 560px) {
   .admin-profile-panel { padding: 22px 20px; }
   .admin-profile-identity { gap: 13px; }
@@ -237,6 +253,8 @@
   .admin-profile-details > div { grid-template-columns: 1fr; gap: 2px; padding: 12px 0; }
   .admin-profile-security { align-items: flex-start; flex-direction: column; }
   .admin-profile-dialog { padding: 24px 20px; }
+  .team-heading { align-items: start; flex-direction: column; }
+  .team-member { padding: 18px; }
 }
 
 @media (max-width: 1000px) {
