@@ -26,12 +26,10 @@ function RubricDialog({ locale, rubric, trigger }: { locale: string; rubric?: Ru
       <Dialog.Content className="admin-profile-dialog">
         <div className="admin-profile-dialog-heading"><Dialog.Title>{rubric ? (fr ? "Modifier la rubrique" : "Edit category") : (fr ? "Créer une rubrique" : "Create category")}</Dialog.Title>
           <Dialog.Close className="admin-profile-dialog-close" aria-label={fr ? "Fermer la fenêtre" : "Close dialog"}><X size={20} aria-hidden="true" /></Dialog.Close></div>
-        <Dialog.Description>{fr ? "Les deux langues sont publiées ensemble." : "Both languages are published together."}</Dialog.Description>
+        <Dialog.Description>{fr ? "La version dans l’autre langue est créée automatiquement." : "The other language is created automatically."}</Dialog.Description>
         <form action={action} className="admin-profile-dialog-form">
-          <label className="admin-profile-field"><span>Nom en français</span><Input name="title_fr" defaultValue={rubric?.fr.title ?? ""} maxLength={240} required /></label>
-          <label className="admin-profile-field"><span>Description en français</span><Textarea name="summary_fr" defaultValue={rubric?.fr.summary ?? ""} rows={3} maxLength={2000} /></label>
-          <label className="admin-profile-field"><span>English name</span><Input name="title_en" defaultValue={rubric?.en.title ?? ""} maxLength={240} required /></label>
-          <label className="admin-profile-field"><span>English description</span><Textarea name="summary_en" defaultValue={rubric?.en.summary ?? ""} rows={3} maxLength={2000} /></label>
+          <label className="admin-profile-field"><span>{fr ? "Nom de la rubrique" : "Category name"}</span><Input name="title" defaultValue={fr ? rubric?.fr.title ?? "" : rubric?.en.title ?? ""} maxLength={240} required /></label>
+          <label className="admin-profile-field"><span>{fr ? "Description" : "Description"}</span><Textarea name="summary" defaultValue={fr ? rubric?.fr.summary ?? "" : rubric?.en.summary ?? ""} rows={3} maxLength={2000} /></label>
           <label className="admin-profile-field"><span>{fr ? "Adresse de la rubrique" : "Category address"}</span><Input name="slug" defaultValue={rubric?.slug ?? ""} maxLength={120} /><small>{fr ? "Créée à partir du nom si ce champ est vide." : "Created from the name if left blank."}</small></label>
           <Feedback state={state} /><div className="admin-profile-dialog-actions"><Button type="submit" disabled={pending}>{rubric ? (fr ? "Enregistrer la rubrique" : "Save category") : (fr ? "Créer la rubrique" : "Create category")}</Button></div>
         </form>

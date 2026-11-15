@@ -245,11 +245,12 @@
 .team-active-toggle input { width: 16px; height: 16px; }
 .team-delete-trigger { color: var(--destructive); }
 .team-delete-button { background: var(--destructive); color: white; }
-.rubric-list { display: grid; gap: 12px; max-width: 900px; margin-top: 31px; }
-.rubric-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 22px; border: 1px solid var(--admin-soft-line); border-radius: 14px; background: var(--card); box-shadow: var(--admin-soft-shadow); }
+.rubric-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 31px; }
+.rubric-row { display: flex; align-items: start; justify-content: space-between; flex-direction: column; gap: 16px; min-height: 190px; padding: 20px 22px; border: 1px solid var(--admin-soft-line); border-radius: 14px; background: var(--card); box-shadow: var(--admin-soft-shadow); }
 .rubric-row h2 { font-family: var(--font-dm-sans), Arial, sans-serif; font-size: 15px; font-weight: 700; }
 .rubric-row p { margin-top: 4px; color: var(--muted-foreground); font-size: 13px; line-height: 1.45; }
 .rubric-row small { display: block; margin-top: 8px; color: var(--muted-foreground); font-size: 11px; }
+@media (max-width: 1000px) { .rubric-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 @media (max-width: 560px) {
   .admin-profile-panel { padding: 22px 20px; }
@@ -260,7 +261,8 @@
   .admin-profile-dialog { padding: 24px 20px; }
   .team-heading { align-items: start; flex-direction: column; }
   .team-member { padding: 18px; }
-  .rubric-row { align-items: start; flex-direction: column; padding: 18px; }
+  .rubric-list { grid-template-columns: 1fr; }
+  .rubric-row { padding: 18px; }
 }
 
 @media (max-width: 1000px) {

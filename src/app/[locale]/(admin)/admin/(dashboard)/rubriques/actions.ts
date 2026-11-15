@@ -2,6 +2,8 @@
 
 import { revalidatePath, updateTag } from "next/cache";
 import { requireStaff } from "@/lib/admin-guard";
+import { identity } from "@/config/identity";
+import { translateContent } from "@/lib/content-translation";
 
 export type RubricState = { error: string | null; success: string | null };
 
@@ -9,15 +11,13 @@ const slugify = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036
   .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 120);
 
 function values(data: FormData) {
-  const titleFr = String(data.get("title_fr") ?? "").trim();
-  const titleEn = String(data.get("title_en") ?? "").trim();
-  const summaryFr = String(data.get("summary_fr") ?? "").trim();
-  const summaryEn = String(data.get("summary_en") ?? "").trim();
-  const slug = String(data.get("slug") ?? "").trim() || slugify(titleFr || titleEn);
-  if (!titleFr || !titleEn) return { error: "Nom manquant. Renseignez le français et l’anglais." };
+  const title = String(data.get("title") ?? "").trim();
+  const summary = String(data.get("summary") ?? "").trim();
+  const slug = String(data.get("slug") ?? "").trim() || slugify(title);
+  if (!title) return { error: "Nom manquant. Saisissez le nom de la rubrique." };
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || slug.length > 120) return { error: "Adresse invalide. Utilisez des minuscules, chiffres et tirets." };
-  if (titleFr.length > 240 || titleEn.length > 240 || summaryFr.length > 2000 || summaryEn.length > 2000) return { error: "Texte trop long. Raccourcissez les champs." };
-  return { titleFr, titleEn, summaryFr, summaryEn, slug };
+  if (title.length > 240 || summary.length > 2000) return { error: "Texte trop long. Raccourcissez les champs." };
+  return { title, summary, slug };
 }
 
 function refreshRubrics(language: string) {
@@ -34,6 +34,14 @@ export async function saveRubric(locale: string, entryId: string | null, _state:
   const form = values(formData);
   if ("error" in form) return { error: form.error ?? "Rubrique invalide. Vérifiez les champs.", success: null };
   if (entryId && !/^[0-9a-f-]{36}$/i.test(entryId)) return { error: "Rubrique introuvable. Rechargez la page.", success: null };
+  const sourceLocale = language === "fr" ? "fr" : "en";
+  const targetLocale = sourceLocale === "fr" ? "en" : "fr";
+  let translated;
+  try {
+    translated = await translateContent({ title: form.title, summary: form.summary, body: "", category_label: "", project_status: "", cover_alt: "" }, sourceLocale, identity.email);
+  } catch {
+    return { error: "Traduction indisponible. Réessayez dans un instant.", success: null };
+  }
 
   let id = entryId;
   if (id) {
@@ -47,8 +55,8 @@ export async function saveRubric(locale: string, entryId: string | null, _state:
     id = created.data.id;
   }
   const translations = [
-    { entry_id: id, locale: "fr", title: form.titleFr, summary: form.summaryFr, state: "published" },
-    { entry_id: id, locale: "en", title: form.titleEn, summary: form.summaryEn, state: "published" },
+    { entry_id: id, locale: sourceLocale, title: form.title, summary: form.summary, state: "published", generated_from_locale: null },
+    { entry_id: id, locale: targetLocale, title: translated.title, summary: translated.summary, state: "published", generated_from_locale: sourceLocale },
   ];
   const saved = await supabase.from("entry_translations").upsert(translations, { onConflict: "entry_id,locale" });
   if (saved.error) return { error: "Rubrique non enregistrée. Réessayez plus tard.", success: null };
