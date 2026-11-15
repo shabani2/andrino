@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { DropdownMenu } from "radix-ui";
 import { CalendarDays, ChevronDown } from "lucide-react";
@@ -16,10 +17,7 @@ export function TimeFilter({ locale, value }: { locale: string; value: TimeFilte
   const fr = locale === "fr";
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const selected = (() => {
-    const period = searchParams.get("periode");
-    return period === "day" || period === "week" || period === "month" || period === "older" ? period : value === "all" ? "all" : "all";
-  })();
+  const [selected, setSelected] = useState<TimeFilterValue>(value);
   const hrefFor = (next: TimeFilterValue) => {
     const params = new URLSearchParams(searchParams);
     params.delete("page");
@@ -30,6 +28,6 @@ export function TimeFilter({ locale, value }: { locale: string; value: TimeFilte
   return <DropdownMenu.Root><DropdownMenu.Trigger className="admin-time-filter" aria-label={fr ? "Filtrer par période" : "Filter by period"}>
     <CalendarDays size={16} aria-hidden="true" /> {labels[selected][fr ? "fr" : "en"]}<ChevronDown size={15} aria-hidden="true" />
   </DropdownMenu.Trigger><DropdownMenu.Portal><DropdownMenu.Content className="admin-time-filter-menu" align="end" sideOffset={7}>
-    {(Object.keys(labels) as TimeFilterValue[]).map((item) => <DropdownMenu.Item key={item} asChild><Link href={hrefFor(item)} className={`admin-time-filter-item${item === selected ? " is-active" : ""}`}>{labels[item][fr ? "fr" : "en"]}</Link></DropdownMenu.Item>)}
+    {(Object.keys(labels) as TimeFilterValue[]).map((item) => <DropdownMenu.Item key={item} asChild><Link href={hrefFor(item)} onClick={() => setSelected(item)} className={`admin-time-filter-item${item === selected ? " is-active" : ""}`}>{labels[item][fr ? "fr" : "en"]}</Link></DropdownMenu.Item>)}
   </DropdownMenu.Content></DropdownMenu.Portal></DropdownMenu.Root>;
 }
