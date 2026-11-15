@@ -2,29 +2,36 @@ import Link from "next/link";
 import { requireStaff } from "@/lib/admin-guard";
 import { adminText } from "@/lib/admin-sections";
 import { Button } from "@/components/ui/button";
+import { TimeFilter } from "@/components/admin/time-filter";
+import { timeFilter, timeRange } from "@/lib/time-filter";
 import { setMessageStatus } from "./actions";
 
 export const metadata = { title: "Messages reçus", robots: { index: false, follow: false } };
 
 export default async function MessagesPage({ params, searchParams }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{ page?: string; periode?: string }>;
 }) {
   const { locale } = await params;
   const query = await searchParams;
   const parsed = Number(query.page ?? "1");
   const page = Number.isInteger(parsed) && parsed > 0 ? Math.min(parsed, 10000) : 1;
+  const period = timeFilter(query.periode);
+  const range = timeRange(period);
   const { supabase } = await requireStaff(locale);
-  const result = await supabase.from("contact_messages")
+  let request = supabase.from("contact_messages")
     .select("id,name,email,subject,message,locale,status,created_at", { count: "exact" })
-    .order("created_at", { ascending: false }).range((page - 1) * 25, page * 25 - 1);
+    .order("created_at", { ascending: false });
+  if (range.after) request = request.gte("created_at", range.after);
+  if (range.before) request = request.lt("created_at", range.before);
+  const result = await request.range((page - 1) * 25, page * 25 - 1);
   if (result.error) throw new Error("Messages unavailable");
 
   return (
     <div>
       <p className="text-sm text-muted-foreground">{adminText(locale, "Correspondance", "Correspondence")}</p>
       <h1 className="mt-2 font-serif text-4xl">{adminText(locale, "Messages reçus", "Received messages")}</h1>
-      <p className="mt-3 text-sm text-muted-foreground">{result.count ?? 0} {adminText(locale, "messages", "messages")}</p>
+      <div className="admin-list-tools"><p className="text-sm text-muted-foreground">{result.count ?? 0} {adminText(locale, "messages", "messages")}</p><TimeFilter locale={locale} value={period} /></div>
       {result.data.length === 0 ? (
         <p className="mt-8 rounded-2xl border border-border bg-card p-6 text-muted-foreground">
           {adminText(locale, "Aucun message reçu. Revenez plus tard.", "No messages received. Check back later.")}
@@ -62,10 +69,10 @@ export default async function MessagesPage({ params, searchParams }: {
         </div>
       )}
       <nav aria-label={adminText(locale, "Pages de messages", "Message pages")} className="mt-6 flex gap-4 text-sm">
-        {page > 1 && <Link href={`/${locale}/admin/messages?page=${page - 1}`} className="underline">
+        {page > 1 && <Link href={`/${locale}/admin/messages?page=${page - 1}${period === "all" ? "" : `&periode=${period}`}`} className="underline">
           {adminText(locale, "Voir les précédents", "View previous")}
         </Link>}
-        {page * 25 < (result.count ?? 0) && <Link href={`/${locale}/admin/messages?page=${page + 1}`} className="underline">
+        {page * 25 < (result.count ?? 0) && <Link href={`/${locale}/admin/messages?page=${page + 1}${period === "all" ? "" : `&periode=${period}`}`} className="underline">
           {adminText(locale, "Voir les suivants", "View next")}
         </Link>}
       </nav>

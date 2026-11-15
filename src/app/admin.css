@@ -82,6 +82,14 @@
 .editor-delete { margin: 30px 0 0; }
 .editor-delete button { color: var(--destructive); font-size: 12px; text-decoration: underline; }
 .moderation-page > p { margin-top: 8px; color: var(--muted-foreground); font-size: 14px; }
+.admin-list-tools { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 12px; }
+.moderation-tools { align-items: start; }
+.moderation-tools > p { margin: 0; color: var(--muted-foreground); font-size: 14px; }
+.admin-time-filter { display: inline-flex; align-items: center; flex: none; gap: 7px; min-height: 38px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--foreground); font-size: 12px; font-weight: 650; }
+.admin-time-filter:hover { background: var(--surface-high); }
+.admin-time-filter-menu { z-index: 100; min-width: 185px; padding: 5px; border: 1px solid var(--border); border-radius: 10px; background: var(--card); box-shadow: var(--shadow-menu); }
+.admin-time-filter-item { display: flex; min-height: 34px; align-items: center; padding: 7px 9px; border-radius: 6px; color: var(--foreground); font-size: 12px; outline: none; }
+.admin-time-filter-item:hover, .admin-time-filter-item[data-highlighted], .admin-time-filter-item.is-active { background: var(--surface-high); color: var(--foreground); text-decoration: none; }
 .moderation-list { display: grid; gap: 15px; max-width: 800px; margin-top: 28px; }
 .moderation-card, .moderation-empty { padding: 25px; border-radius: 18px; background: var(--card); box-shadow: 0 8px 34px -30px var(--color-shadow); }
 .moderation-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
@@ -261,6 +269,7 @@
   .admin-profile-dialog { padding: 24px 20px; }
   .team-heading { align-items: start; flex-direction: column; }
   .team-member { padding: 18px; }
+  .admin-list-tools { align-items: start; flex-direction: column; }
   .rubric-list { grid-template-columns: 1fr; }
   .rubric-row { padding: 18px; }
 }
