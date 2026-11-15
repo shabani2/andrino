@@ -39,7 +39,6 @@ const ways = [
 ];
 export function ContactInformation() {
   const c = useCopy();
-  const t = useTranslations("contactChannels");
 
   return (
     <aside className="contact-sidebar" aria-label={c("Contact information")}>
@@ -98,36 +97,44 @@ export function ContactInformation() {
           ))}
         </div>
       </section>
-      <section className="sidebar-panel">
-        <Eyebrow>{c("Write or call")}</Eyebrow>
-        <div className="channel-list">
-          <a className="channel-link" href={"mailto:" + identity.email}>
-            <div className="channel-identity"><PlatformIcon name="Direct email" /><div>{c("Direct email")}<small>{identity.email}</small></div></div>
-            <ArrowUpRight size={18} aria-hidden="true" />
-          </a>
-          <a className="channel-link" href={"tel:" + identity.phone}>
-            <div className="channel-identity"><PlatformIcon name="Phone" /><div>{t("phone")}<small>{identity.phoneDisplay}</small></div></div>
-            <ArrowUpRight size={18} aria-hidden="true" />
-          </a>
-          <a
-            className="channel-link"
-            href={identity.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="channel-identity"><PlatformIcon name="WhatsApp" /><div>WhatsApp<small>{identity.phoneDisplay}</small></div></div>
+    </aside>
+  );
+}
+
+export function ContactChannels() {
+  const c = useCopy();
+  const t = useTranslations("contactChannels");
+
+  return (
+    <section className="sidebar-panel contact-channels" aria-labelledby="contact-channels-title">
+      <h2 id="contact-channels-title" className="eyebrow">{c("Write or call")}</h2>
+      <div className="channel-list">
+        <a className="channel-link" href={"mailto:" + identity.email}>
+          <div className="channel-identity"><PlatformIcon name="Direct email" /><div>{c("Direct email")}<small>{identity.email}</small></div></div>
+          <ArrowUpRight size={18} aria-hidden="true" />
+        </a>
+        <a className="channel-link" href={"tel:" + identity.phone}>
+          <div className="channel-identity"><PlatformIcon name="Phone" /><div>{t("phone")}<small>{identity.phoneDisplay}</small></div></div>
+          <ArrowUpRight size={18} aria-hidden="true" />
+        </a>
+        <a
+          className="channel-link"
+          href={identity.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="channel-identity"><PlatformIcon name="WhatsApp" /><div>WhatsApp<small>{identity.phoneDisplay}</small></div></div>
+          <ArrowUpRight size={18} aria-hidden="true" />
+          <span className="sr-only">{c("Opens in a new tab")}</span>
+        </a>
+        {socialLinks.map((link) => (
+          <a key={link.label} className="channel-link" href={link.href} target="_blank" rel="noopener noreferrer">
+            <div className="channel-identity"><PlatformIcon name={link.label} /><span>{link.label}</span></div>
             <ArrowUpRight size={18} aria-hidden="true" />
             <span className="sr-only">{c("Opens in a new tab")}</span>
           </a>
-          {socialLinks.map((link) => (
-            <a key={link.label} className="channel-link" href={link.href} target="_blank" rel="noopener noreferrer">
-              <div className="channel-identity"><PlatformIcon name={link.label} /><span>{link.label}</span></div>
-              <ArrowUpRight size={18} aria-hidden="true" />
-              <span className="sr-only">{c("Opens in a new tab")}</span>
-            </a>
-          ))}
-        </div>
-      </section>
-    </aside>
+        ))}
+      </div>
+    </section>
   );
 }

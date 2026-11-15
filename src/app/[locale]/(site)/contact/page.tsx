@@ -2,7 +2,7 @@ import { useCopy } from "@/i18n/copy";
 import { Info, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Eyebrow } from "@/components/shared/editorial";
-import { ContactInformation } from "@/components/contact/contact-information";
+import { ContactChannels, ContactInformation } from "@/components/contact/contact-information";
 import { ContactForm } from "@/components/contact/contact-form";
 import { createMetadata } from "@/lib/seo";
 export async function generateMetadata() { return createMetadata(
@@ -41,6 +41,7 @@ export default function ContactPage() {
           <div className="contact-columns">
             <ContactInformation />
             <ContactForm />
+            <ContactChannels />
           </div>
         </Container>
       </section>
