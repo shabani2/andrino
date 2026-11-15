@@ -44,7 +44,7 @@ export default async function AnalyticsPage({ params }: { params: Promise<{ loca
 
     <section className="analytics-section analytics-content-section" aria-labelledby="analytics-content">
       <div className="analytics-section-heading">
-        <div><h2 id="analytics-content">{adminText(locale, "Contenus les plus lus", "Most-read content")}</h2>
+        <div><h2 id="analytics-content">{adminText(locale, "Articles et projets les plus lus", "Most-read posts and projects")}</h2>
           <p>{fr ? "Sur les 30 derniers jours." : "Over the last 30 days."}</p></div>
         <span className="analytics-total">{fr ? `${data.all_time.views} visites depuis le début` : `${data.all_time.views} visits all time`}</span>
       </div>

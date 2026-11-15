@@ -9,7 +9,7 @@ export default async function NewContentPage({ params }: {
   params: Promise<{ locale: string; section: string }>;
 }) {
   const { locale, section } = await params;
-  if (!isContentSection(section)) notFound();
+  if (!isContentSection(section) || section === "rubriques") notFound();
   await requireStaff(locale);
   return <ContentEditor locale={locale} section={section}
     sectionTitle={locale === "fr" ? contentSections[section].fr : contentSections[section].en} />;

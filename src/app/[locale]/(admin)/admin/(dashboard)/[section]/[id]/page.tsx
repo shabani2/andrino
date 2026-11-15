@@ -9,7 +9,7 @@ export default async function EditContentPage({ params }: {
   params: Promise<{ locale: string; section: string; id: string }>;
 }) {
   const { locale, section, id } = await params;
-  if (!isContentSection(section) || !/^[0-9a-f-]{36}$/.test(id)) notFound();
+  if (!isContentSection(section) || section === "rubriques" || !/^[0-9a-f-]{36}$/.test(id)) notFound();
   const { supabase } = await requireStaff(locale);
   const result = await supabase.from("entries")
     .select("*,entry_translations(*)").eq("id", id).maybeSingle();

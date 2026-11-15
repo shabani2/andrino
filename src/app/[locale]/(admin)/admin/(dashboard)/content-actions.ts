@@ -69,7 +69,7 @@ export async function saveContent(
   const titleEn = field(formData, "title_en");
   const current = entryId ? await supabase.from("entries").select("*").eq("id", entryId).maybeSingle() : null;
   if (entryId && (current?.error || current?.data?.kind !== contentSections[section].kind)) {
-    return { error: "Contenu introuvable. Revenez à la liste." };
+    return { error: "Article ou projet introuvable. Revenez à la liste." };
   }
   const prior = current?.data;
   const slug = field(formData, "slug") || prior?.slug || slugify(titleFr || titleEn);
@@ -90,7 +90,7 @@ export async function saveContent(
   }
   if (!titleFr && !titleEn) return { error: "Titre manquant. Renseignez au moins une langue." };
   if (titleFr.length > 240 || titleEn.length > 240 || tags.length > 20 || gallery.length > 20) {
-    return { error: "Contenu trop long. Raccourcissez les titres ou les listes." };
+    return { error: "Article trop long. Raccourcissez les titres ou les listes." };
   }
   if (!Number.isInteger(sortOrder) || sortOrder < -10000 || sortOrder > 10000) {
     return { error: "Ordre invalide. Saisissez un nombre entier entre -10000 et 10000." };

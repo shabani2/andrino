@@ -2,13 +2,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireStaff } from "@/lib/admin-guard";
 import { contentSections, isContentSection, adminText } from "@/lib/admin-sections";
+import { RubricManager, type Rubric } from "../rubriques/rubric-manager";
 
 export async function generateMetadata({ params }: {
   params: Promise<{ locale: string; section: string }>;
 }) {
   const { locale, section } = await params;
   const item = isContentSection(section) ? contentSections[section] : null;
-  return { title: item ? (locale === "fr" ? item.fr : item.en) : "Contenus",
+  return { title: item ? (locale === "fr" ? item.fr : item.en) : "Articles",
     robots: { index: false, follow: false } };
 }
 
@@ -22,6 +23,18 @@ export default async function ContentListPage({ params, searchParams }: {
   const page = Number.isInteger(parsed) && parsed > 0 ? Math.min(parsed, 10000) : 1;
   if (!isContentSection(section)) notFound();
   const { supabase } = await requireStaff(locale);
+  if (section === "rubriques") {
+    const rubricsResult = await supabase.from("entries")
+      .select("id,slug,entry_translations(locale,title,summary)")
+      .eq("kind", "practice_area").order("sort_order", { ascending: true });
+    if (rubricsResult.error) throw new Error("Rubric list unavailable");
+    const rubrics = (rubricsResult.data ?? []).flatMap((entry): Rubric[] => {
+      const fr = entry.entry_translations.find((item) => item.locale === "fr");
+      const en = entry.entry_translations.find((item) => item.locale === "en");
+      return fr && en ? [{ id: entry.id, slug: entry.slug, fr: { title: fr.title, summary: fr.summary }, en: { title: en.title, summary: en.summary } }] : [];
+    });
+    return <RubricManager locale={locale} rubrics={rubrics} />;
+  }
   const result = await supabase.from("entries")
     .select("id,slug,updated_at,entry_translations(locale,title,state)", { count: "exact" })
     .eq("kind", contentSections[section].kind)
@@ -30,16 +43,16 @@ export default async function ContentListPage({ params, searchParams }: {
   const title = locale === "fr" ? contentSections[section].fr : contentSections[section].en;
   const createLabel = section === "articles" ? adminText(locale, "Créer un article", "Create article")
     : section === "projets" ? adminText(locale, "Créer un projet", "Create project")
-    : adminText(locale, "Créer un contenu", "Create content");
+    : adminText(locale, "Créer une rubrique", "Create category");
   const emptyLabel = section === "articles" ? adminText(locale, "Aucun article. Créez le premier.", "No articles yet. Create the first one.")
     : section === "projets" ? adminText(locale, "Aucun projet. Créez le premier.", "No projects yet. Create the first one.")
-    : adminText(locale, "Aucun contenu. Créez le premier.", "No content yet. Create the first item.");
+    : adminText(locale, "Aucune rubrique. Créez la première.", "No categories yet. Create the first one.");
 
   return (
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-sm text-muted-foreground">{adminText(locale, "Contenus", "Content")}</p>
+          <p className="text-sm text-muted-foreground">{adminText(locale, "Articles et projets", "Posts and projects")}</p>
           <h1 className="mt-2 font-serif text-4xl">{title}</h1>
         </div>
         <Link href={`/${locale}/admin/${section}/nouveau`} className="ui-action-primary rounded-lg px-5 py-3 text-sm font-medium">
@@ -71,7 +84,7 @@ export default async function ContentListPage({ params, searchParams }: {
           })}
         </div>
       )}
-      <nav aria-label={adminText(locale, "Pages de contenus", "Content pages")} className="mt-6 flex gap-4 text-sm">
+      <nav aria-label={adminText(locale, "Pages d’articles", "Post pages")} className="mt-6 flex gap-4 text-sm">
         {page > 1 && <Link href={`/${locale}/admin/${section}?page=${page - 1}`} className="underline">
           {adminText(locale, "Voir les précédents", "View previous")}
         </Link>}

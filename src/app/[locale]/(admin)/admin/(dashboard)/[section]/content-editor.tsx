@@ -54,7 +54,7 @@ export function ContentEditor({ locale, section, entry }: {
       </label>
       <label className="editor-field"><span>{fr ? "Résumé" : "Summary"}</span>
         <Textarea name={`summary_${language}`} rows={3} defaultValue={item?.summary ?? ""}
-          placeholder={fr ? "Une ou deux phrases pour présenter le contenu" : "One or two sentences introducing this content"} />
+          placeholder={fr ? "Une ou deux phrases pour présenter l’article" : "One or two sentences introducing the post"} />
       </label>
       <label className="editor-field"><span>{article ? (fr ? "Article" : "Article") : (fr ? "Description" : "Description")}</span>
         <Textarea name={`body_${language}`} rows={optional ? 8 : 16} defaultValue={item?.body ?? ""}
@@ -78,7 +78,7 @@ export function ContentEditor({ locale, section, entry }: {
   return <div className="editor-page">
     <Link href={`/${locale}/admin/${section}`} className="editor-back">← {fr ? "Voir la liste" : "View list"}</Link>
     <div className="editor-heading">
-      <h1>{entry ? (fr ? "Modifier" : "Edit") : (fr ? "Créer" : "Create")} {article ? (fr ? "un article" : "an article") : project ? (fr ? "un projet" : "a project") : (fr ? "un contenu" : "content")}</h1>
+      <h1>{entry ? (fr ? "Modifier" : "Edit") : (fr ? "Créer" : "Create")} {article ? (fr ? "un article" : "a post") : (fr ? "un projet" : "a project")}</h1>
       <p>{autoTranslateAvailable
         ? (fr ? "Rédigez en français. La version anglaise sera créée automatiquement."
           : "Write in English. The French version will be created automatically.")
@@ -92,7 +92,7 @@ export function ContentEditor({ locale, section, entry }: {
             ? (article
               ? (fr ? "Votre article en français" : "Your post in English")
               : (fr ? "Votre projet en français" : "Your project in English"))
-            : (fr ? "Votre contenu" : "Your content")}</h2></div>
+            : (fr ? "Votre projet" : "Your project")}</h2></div>
           {languageFields(primary)}
           {autoTranslateAvailable && <label className="editor-translation-toggle">
             <input name="auto_translate" type="checkbox" defaultChecked />
@@ -162,17 +162,17 @@ export function ContentEditor({ locale, section, entry }: {
         <p className="editor-side-label">{fr ? "Aperçu" : "Preview"}</p>
         {preview && <div className="editor-side-image"><Image src={preview} alt="" fill unoptimized sizes="260px" /></div>}
         <strong>{title || (fr ? "Votre titre apparaîtra ici" : "Your title will appear here")}</strong>
-        <p>{fr ? "Choisissez « Publier sur le site » pour rendre le contenu visible." : "Choose “Publish on the site” to make it visible."}</p>
+        <p>{fr ? "Choisissez « Publier sur le site » pour rendre l’article visible." : "Choose “Publish on the site” to make the post visible."}</p>
         {state.error && <p role="alert" className="editor-error">{state.error}</p>}
         <Button type="submit" disabled={pending} className="editor-save">
-          {pending ? (fr ? "Enregistrer…" : "Saving…") : entry ? (fr ? "Enregistrer les modifications" : "Save changes") : (fr ? "Enregistrer le contenu" : "Save content")}
+          {pending ? (fr ? "Enregistrer…" : "Saving…") : entry ? (fr ? "Enregistrer les modifications" : "Save changes") : (article ? (fr ? "Enregistrer l’article" : "Save post") : (fr ? "Enregistrer le projet" : "Save project"))}
         </Button>
       </div></aside>
     </form>
     {entry && <form action={deleteContent.bind(null, locale, section, entry.id)} className="editor-delete">
       <button type="submit" onClick={(event) => {
-        if (!window.confirm(fr ? "Supprimer ce contenu et ses traductions ?" : "Delete this content and its translations?")) event.preventDefault();
-      }}>{fr ? "Supprimer le contenu" : "Delete content"}</button>
+        if (!window.confirm(fr ? "Supprimer cet élément et ses traductions ?" : "Delete this item and its translations?")) event.preventDefault();
+      }}>{article ? (fr ? "Supprimer l’article" : "Delete post") : (fr ? "Supprimer le projet" : "Delete project")}</button>
     </form>}
   </div>;
 }

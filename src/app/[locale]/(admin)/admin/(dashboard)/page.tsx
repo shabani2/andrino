@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, BookOpen, FileText, Folder, Layers3, Mail, PenLine } from "lucide-react";
+import { ArrowRight, ArrowUpRight, FileText, Folder, Layers3, Mail } from "lucide-react";
 import { requireStaff } from "@/lib/admin-guard";
 import { adminText, contentSections } from "@/lib/admin-sections";
 
@@ -22,7 +22,7 @@ export default async function AdminPage({ params }: { params: Promise<{ locale: 
   ]));
   const sectionEntries = Object.entries(contentSections);
   const total = Object.values(counts).reduce((sum, count) => sum + count, 0);
-  const sectionIcons = [FileText, Folder, Layers3, PenLine, BookOpen];
+  const sectionIcons = [FileText, Folder, Layers3];
 
   return (
     <div>
@@ -32,8 +32,8 @@ export default async function AdminPage({ params }: { params: Promise<{ locale: 
           <h1 className="mt-2 font-serif">{adminText(locale, "Vue d’ensemble", "Overview")}</h1>
           <p className="admin-dashboard-intro">
             {staff.display_name
-              ? adminText(locale, `Bonjour ${staff.display_name}. Voici vos contenus.`, `Hello ${staff.display_name}. Here is your content.`)
-              : adminText(locale, "Retrouvez vos contenus et messages.", "Find your content and messages.")}
+              ? adminText(locale, `Bonjour ${staff.display_name}. Retrouvez vos articles et projets.`, `Hello ${staff.display_name}. Find your posts and projects.`)
+              : adminText(locale, "Retrouvez vos articles, projets et messages.", "Find your posts, projects and messages.")}
           </p>
         </div>
         <Link href={`/${locale}`} className="admin-dashboard-site-link">
@@ -45,9 +45,9 @@ export default async function AdminPage({ params }: { params: Promise<{ locale: 
       <div className="admin-stats">
         <div className="admin-stat">
           <span className="admin-stat-icon"><FileText size={18} aria-hidden="true" /></span>
-          <span className="admin-stat-label">{adminText(locale, "Contenus", "Content")}</span>
+          <span className="admin-stat-label">{adminText(locale, "Articles", "Posts")}</span>
           <strong className="admin-stat-number">{total}</strong>
-          <span className="admin-stat-link">{adminText(locale, "Dans cinq rubriques", "Across five sections")}</span>
+          <span className="admin-stat-link">{adminText(locale, "Articles, projets et rubriques", "Posts, projects and categories")}</span>
         </div>
         <div className="admin-stat">
           <span className="admin-stat-icon"><Folder size={18} aria-hidden="true" /></span>
@@ -70,7 +70,7 @@ export default async function AdminPage({ params }: { params: Promise<{ locale: 
       <div className="admin-dashboard-grid">
         <section className="admin-panel" aria-labelledby="admin-sections-title">
           <div className="admin-panel-heading">
-            <h2 id="admin-sections-title">{adminText(locale, "Gérer les contenus", "Manage content")}</h2>
+            <h2 id="admin-sections-title">{adminText(locale, "Gérer le site", "Manage the site")}</h2>
           </div>
           {sectionEntries.map(([slug, section], index) => {
             const Icon = sectionIcons[index];
@@ -91,7 +91,7 @@ export default async function AdminPage({ params }: { params: Promise<{ locale: 
             <h2 id="admin-recent-title">{adminText(locale, "Modifiés récemment", "Recently updated")}</h2>
           </div>
           {recent.data.length === 0 ? <p className="admin-empty">
-            {adminText(locale, "Aucun contenu. Créez votre premier article.", "No content yet. Create your first article.")}
+            {adminText(locale, "Aucun article. Créez votre premier article.", "No posts yet. Create your first post.")}
           </p> : recent.data.map((entry) => {
             const slug = sectionEntries.find(([, section]) => section.kind === entry.kind)?.[0];
             const title = entry.entry_translations.find((item) => item.locale === locale)?.title
