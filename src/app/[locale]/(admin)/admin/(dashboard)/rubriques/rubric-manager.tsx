@@ -30,7 +30,6 @@ function RubricDialog({ locale, rubric, trigger }: { locale: string; rubric?: Ru
         <form action={action} className="admin-profile-dialog-form">
           <label className="admin-profile-field"><span>{fr ? "Nom de la rubrique" : "Category name"}</span><Input name="title" defaultValue={fr ? rubric?.fr.title ?? "" : rubric?.en.title ?? ""} maxLength={240} required /></label>
           <label className="admin-profile-field"><span>{fr ? "Description" : "Description"}</span><Textarea name="summary" defaultValue={fr ? rubric?.fr.summary ?? "" : rubric?.en.summary ?? ""} rows={3} maxLength={2000} /></label>
-          <label className="admin-profile-field"><span>{fr ? "Adresse de la rubrique" : "Category address"}</span><Input name="slug" defaultValue={rubric?.slug ?? ""} maxLength={120} /><small>{fr ? "Créée à partir du nom si ce champ est vide." : "Created from the name if left blank."}</small></label>
           <Feedback state={state} /><div className="admin-profile-dialog-actions"><Button type="submit" disabled={pending}>{rubric ? (fr ? "Enregistrer la rubrique" : "Save category") : (fr ? "Créer la rubrique" : "Create category")}</Button></div>
         </form>
       </Dialog.Content>

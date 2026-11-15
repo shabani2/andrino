@@ -13,7 +13,7 @@ const slugify = (value: string) => value.normalize("NFD").replace(/[\u0300-\u036
 function values(data: FormData) {
   const title = String(data.get("title") ?? "").trim();
   const summary = String(data.get("summary") ?? "").trim();
-  const slug = String(data.get("slug") ?? "").trim() || slugify(title);
+  const slug = slugify(title);
   if (!title) return { error: "Nom manquant. Saisissez le nom de la rubrique." };
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || slug.length > 120) return { error: "Adresse invalide. Utilisez des minuscules, chiffres et tirets." };
   if (title.length > 240 || summary.length > 2000) return { error: "Texte trop long. Raccourcissez les champs." };
