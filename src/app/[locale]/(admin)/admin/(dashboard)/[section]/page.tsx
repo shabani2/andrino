@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { Heart } from "lucide-react";
 import { notFound } from "next/navigation";
 import { requireStaff } from "@/lib/admin-guard";
 import { contentSections, isContentSection, adminText } from "@/lib/admin-sections";
 import { RubricManager, type Rubric } from "../rubriques/rubric-manager";
+import { privateSupabase } from "@/lib/supabase";
 
 export async function generateMetadata({ params }: {
   params: Promise<{ locale: string; section: string }>;
@@ -40,6 +42,12 @@ export default async function ContentListPage({ params, searchParams }: {
     .eq("kind", contentSections[section].kind)
     .order("updated_at", { ascending: false }).range((page - 1) * 25, page * 25 - 1);
   if (result.error) throw new Error("Content list unavailable");
+  const likesByEntry = new Map<string, number>();
+  if (section === "articles" && result.data.length) {
+    const likes = await privateSupabase().from("post_likes").select("entry_id").in("entry_id", result.data.map((entry) => entry.id));
+    if (likes.error) throw new Error("Article likes unavailable");
+    for (const like of likes.data ?? []) likesByEntry.set(like.entry_id, (likesByEntry.get(like.entry_id) ?? 0) + 1);
+  }
   const title = locale === "fr" ? contentSections[section].fr : contentSections[section].en;
   const createLabel = section === "articles" ? adminText(locale, "Créer un article", "Create article")
     : section === "projets" ? adminText(locale, "Créer un projet", "Create project")
@@ -68,6 +76,7 @@ export default async function ContentListPage({ params, searchParams }: {
           {result.data.map((entry) => {
             const fr = entry.entry_translations.find((item) => item.locale === "fr");
             const en = entry.entry_translations.find((item) => item.locale === "en");
+            const published = fr?.state === "published" || en?.state === "published";
             return (
               <Link key={entry.id} href={`/${locale}/admin/${section}/${entry.id}`}
                 className="flex flex-wrap items-center justify-between gap-3 border-b border-border p-5 last:border-0 hover:bg-muted/50">
@@ -76,6 +85,7 @@ export default async function ContentListPage({ params, searchParams }: {
                   <span className="text-sm text-muted-foreground">/{entry.slug}</span>
                 </div>
                 <div className="flex gap-2 text-xs">
+                  {section === "articles" && published && <span className="admin-like-count"><Heart size={14} aria-hidden="true" /> {likesByEntry.get(entry.id) ?? 0}</span>}
                   <span className="rounded-full border border-border px-2 py-1">FR · {fr?.state === "published" ? adminText(locale, "Publié", "Published") : adminText(locale, "Brouillon", "Draft")}</span>
                   <span className="rounded-full border border-border px-2 py-1">EN · {en?.state === "published" ? adminText(locale, "Publié", "Published") : adminText(locale, "Brouillon", "Draft")}</span>
                 </div>

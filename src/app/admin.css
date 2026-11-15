@@ -133,7 +133,8 @@
 .admin-account-menu-item svg { flex: none; color: var(--muted-foreground); }
 
 .admin-workspace { min-width: 0; }
-.admin-topbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 18px; height: 66px; padding: 0 clamp(24px, 4vw, 58px); border-bottom: 1px solid var(--admin-soft-line); background: var(--card); }
+.admin-topbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 18px; height: 66px; padding: 0 clamp(24px, 4vw, 58px); border-bottom: 1px solid var(--admin-soft-line); background: transparent; }
+.admin-like-count { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 999px; background: var(--admin-active); color: var(--color-link); font-weight: 700; }
 .admin-breadcrumb { display: flex; align-items: center; gap: 10px; min-width: 0; color: var(--muted-foreground); font-size: 12px; }
 .admin-breadcrumb a { color: var(--muted-foreground); }
 .admin-breadcrumb span { overflow: hidden; color: var(--foreground); font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
