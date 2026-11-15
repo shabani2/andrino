@@ -18,6 +18,7 @@ import { siteConfig } from "@/config/site";
 import { ArticleGrid } from "@/components/writing/article-grid";
 import { getArticles, getArticleBySlug } from "@/lib/articles";
 import { createMetadata } from "@/lib/seo";
+import { PageViewTracker } from "@/components/analytics/page-view-tracker";
 type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props) {
   const article = await getArticleBySlug(await getLocale() as Locale, (await params).slug);
@@ -34,6 +35,7 @@ export default async function ArticlePage({ params }: Props) {
   const engagement = article.id ? await getEngagement(article.id) : null;
   return (
     <article className="detail-page">
+      {article.id && <PageViewTracker entryId={article.id} />}
       <Container>
         <ArrowLink href="/writing" className="detail-back">
           {c("Back to posts")}</ArrowLink>

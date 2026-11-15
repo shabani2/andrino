@@ -20,6 +20,14 @@ export type Database = {
         Update: { entry_id?: string; visitor_id?: string; created_at?: string }
         Relationships: []
       }
+      site_page_views: {
+        Row: { id: number; visitor_id: string; path: string; entry_id: string | null; viewed_at: string }
+        Insert: { id?: never; visitor_id: string; path: string; entry_id?: string | null; viewed_at?: string }
+        Update: { id?: never; visitor_id?: string; path?: string; entry_id?: string | null; viewed_at?: string }
+        Relationships: [
+          { foreignKeyName: "site_page_views_entry_id_fkey"; columns: ["entry_id"]; isOneToOne: false; referencedRelation: "entries"; referencedColumns: ["id"] },
+        ]
+      }
       site_follows: {
         Row: { visitor_id: string; created_at: string }
         Insert: { visitor_id: string; created_at?: string }
@@ -207,7 +215,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      record_site_page_view: {
+        Args: { p_visitor_id: string; p_path: string; p_entry_id?: string | null }
+        Returns: undefined
+      }
+      get_site_analytics: {
+        Args: { p_locale: string; p_days?: number }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never

@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { DropdownMenu } from "radix-ui";
 import {
   ArrowUpRight,
+  BarChart3,
   BookOpen,
   ChevronRight,
   ChevronsUpDown,
@@ -39,6 +40,7 @@ function navigationItems(locale: string, admin: boolean): Item[] {
     { slug: "portfolio", label: label(contentSections.portfolio.fr, contentSections.portfolio.en), icon: BookOpen },
     { slug: "messages", label: label("Messages", "Messages"), icon: Mail },
     { slug: "commentaires", label: label("Commentaires", "Comments"), icon: MessageSquare },
+    ...(admin ? [{ slug: "statistiques", label: label("Statistiques", "Statistics"), icon: BarChart3 }] : []),
     ...(admin ? [{ slug: "equipe", label: label("Équipe", "Team"), icon: UsersRound }] : []),
   ];
 }

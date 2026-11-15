@@ -1,20 +1,7 @@
 "use server";
 
-import { randomUUID } from "node:crypto";
-import { cookies } from "next/headers";
 import { privateSupabase } from "@/lib/supabase";
-
-const idPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-
-async function visitorId() {
-  const jar = await cookies();
-  const stored = jar.get("andrino-visitor")?.value;
-  if (stored && idPattern.test(stored)) return stored;
-  const value = randomUUID();
-  jar.set("andrino-visitor", value, { httpOnly: true, secure: process.env.NODE_ENV === "production",
-    sameSite: "lax", maxAge: 60 * 60 * 24 * 365, path: "/" });
-  return value;
-}
+import { getVisitorId, idPattern } from "@/lib/visitor";
 
 async function publishedEntry(entryId: string) {
   if (!idPattern.test(entryId)) return false;
@@ -25,7 +12,7 @@ async function publishedEntry(entryId: string) {
 
 export async function toggleLike(entryId: string) {
   if (!await publishedEntry(entryId)) return;
-  const visitor = await visitorId();
+  const visitor = await getVisitorId();
   const client = privateSupabase();
   const previous = await client.from("post_likes").select("entry_id").eq("entry_id", entryId)
     .eq("visitor_id", visitor).maybeSingle();
@@ -34,7 +21,7 @@ export async function toggleLike(entryId: string) {
 }
 
 export async function toggleFollow() {
-  const visitor = await visitorId();
+  const visitor = await getVisitorId();
   const client = privateSupabase();
   const previous = await client.from("site_follows").select("visitor_id").eq("visitor_id", visitor).maybeSingle();
   if (previous.data) await client.from("site_follows").delete().eq("visitor_id", visitor);
@@ -54,7 +41,7 @@ export async function submitComment(entryId: string, _state: CommentState, data:
   if ((body.match(/https?:\/\//gi) ?? []).length > 1) {
     return { error: "Commentaire refusé. Retirez les liens supplémentaires.", success: false };
   }
-  const visitor = await visitorId();
+  const visitor = await getVisitorId();
   const client = privateSupabase();
   const recent = await client.from("post_comments").select("created_at").eq("visitor_id", visitor)
     .order("created_at", { ascending: false }).limit(1);

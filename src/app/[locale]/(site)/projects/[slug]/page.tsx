@@ -16,6 +16,7 @@ import { ArticleShare } from "@/components/writing/article-share";
 import { PostEngagement } from "@/components/shared/post-engagement";
 import { getEngagement } from "@/lib/engagement";
 import { siteConfig } from "@/config/site";
+import { PageViewTracker } from "@/components/analytics/page-view-tracker";
 type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props) {
   const project = await getProjectBySlug(await getLocale() as Locale, (await params).slug);
@@ -32,6 +33,7 @@ export default async function ProjectPage({ params }: Props) {
   const engagement = project.id ? await getEngagement(project.id) : null;
   return (
     <article className="detail-page">
+      {project.id && <PageViewTracker entryId={project.id} />}
       <Container>
         <ArrowLink href="/projects" className="detail-back">
           {c("Back to projects")}</ArrowLink>
