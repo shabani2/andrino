@@ -17,6 +17,7 @@ import {
   Layers3,
   LogOut,
   Mail,
+  MessageSquare,
   Menu,
   UserRound,
   UsersRound,
@@ -37,6 +38,7 @@ function navigationItems(locale: string, admin: boolean): Item[] {
     { slug: "themes", label: label(contentSections.themes.fr, contentSections.themes.en), icon: Feather },
     { slug: "portfolio", label: label(contentSections.portfolio.fr, contentSections.portfolio.en), icon: BookOpen },
     { slug: "messages", label: label("Messages", "Messages"), icon: Mail },
+    { slug: "commentaires", label: label("Commentaires", "Comments"), icon: MessageSquare },
     ...(admin ? [{ slug: "equipe", label: label("Équipe", "Team"), icon: UsersRound }] : []),
   ];
 }

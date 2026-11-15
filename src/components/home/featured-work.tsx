@@ -15,9 +15,9 @@ export function FeaturedWork() {
       <Container>
         <SectionIntro
           number="03"
-          label={c("Work & practice")}
-          title={c("Selected work.")}
-          action={<ArrowLink href="/portfolio">{c("Explore my portfolio")}</ArrowLink>}
+          label={c("My work")}
+          title={c("Projects and areas of work.")}
+          action={<ArrowLink href="/portfolio">{c("View my portfolio")}</ArrowLink>}
         />
         <div className="work-grid">
           {portfolioAreas.slice(0, 5).map((item, index) => (
@@ -40,7 +40,7 @@ export function FeaturedWork() {
               </Link>
               <p>{c(item.description)}</p>
               <ArrowLink href={"/portfolio/" + item.slug}>
-                {c("Explore this practice")}</ArrowLink>
+                {c("View this area")}</ArrowLink>
             </article>
           ))}
         </div>

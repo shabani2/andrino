@@ -4,7 +4,7 @@ import { Eyebrow } from "./editorial";
 export function PageHero({
   title,
   description,
-  label = "ANDRINO / FIELD NOTES",
+  label = "Andrino Akuda Kangela",
   number,
 }: {
   title: string;
@@ -19,7 +19,7 @@ export function PageHero({
       <Container>
         <div className="hero-folio">
           <Eyebrow>{c(label)}</Eyebrow>
-          {number && <span className="folio-number">{c(number)} {c("/ SELECTION")}</span>}
+          {number && <span className="folio-number">{c(number)}</span>}
         </div>
         <h1>{c(title)}</h1>
         {description && <p className="page-hero-description">{c(description)}</p>}

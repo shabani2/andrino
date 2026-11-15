@@ -18,22 +18,22 @@ import { PlatformIcon } from "@/components/shared/platform-icon";
 const ways = [
   {
     title: "Editorial writing & stories",
-    text: "Stories, essays, opinions and observations that deserve attention.",
+    text: "Articles, interviews and opinion pieces.",
     Icon: Feather,
   },
   {
     title: "Strategic communication",
-    text: "Clear messages, engaging content and communication planning.",
+    text: "Communication plans, messages and content.",
     Icon: Megaphone,
   },
   {
     title: "Humanitarian storytelling",
-    text: "Connecting programme activities with lived human experiences.",
+    text: "Stories about people involved in humanitarian programmes.",
     Icon: HeartHandshake,
   },
   {
     title: "Multimedia & creative work",
-    text: "Photography, video, audio and other ways to bring stories to life.",
+    text: "Videos from my work in Goma and beyond.",
     Icon: Video,
   },
 ];
@@ -59,7 +59,7 @@ export function ContactInformation() {
           <div className="info-line">
             <MapPin size={20} aria-hidden="true" />
             <div>
-              <Eyebrow>{c("Base station")}</Eyebrow>
+              <Eyebrow>{c("Based in")}</Eyebrow>
               <strong>
                 {c("Goma, North Kivu · Democratic Republic of the Congo")}</strong>
             </div>
@@ -85,7 +85,7 @@ export function ContactInformation() {
         </div>
       </section>
       <section className="sidebar-panel">
-        <h2 className="text-2xl!">{c("Ways we can work together")}</h2>
+        <h2 className="text-2xl!">{c("What you can write to me about")}</h2>
         <div className="cooperation-list">
           {ways.map(({ title, text, Icon }) => (
             <div className="cooperation-item" key={title}>
@@ -99,7 +99,7 @@ export function ContactInformation() {
         </div>
       </section>
       <section className="sidebar-panel">
-        <Eyebrow>{c("Direct channels")}</Eyebrow>
+        <Eyebrow>{c("Write or call")}</Eyebrow>
         <div className="channel-list">
           <a className="channel-link" href={"mailto:" + identity.email}>
             <div className="channel-identity"><PlatformIcon name="Direct email" /><div>{c("Direct email")}<small>{identity.email}</small></div></div>
@@ -128,11 +128,6 @@ export function ContactInformation() {
           ))}
         </div>
       </section>
-      <blockquote className="sidebar-panel">
-        <Eyebrow>{c("A shared curiosity")}</Eyebrow>
-        <p className="font-serif text-xl! italic">
-          {c("“I welcome conversations that can lead to meaningful work.”")}</p>
-      </blockquote>
     </aside>
   );
 }

@@ -5,11 +5,43 @@ import { redirect } from "next/navigation";
 import { requireStaff } from "@/lib/admin-guard";
 import { contentSections, isContentSection } from "@/lib/admin-sections";
 import { uploadPublicImage, validImagePath } from "@/lib/admin-media";
+import { getEmbeddedMedia } from "@/lib/media";
+import { translateContent, type TranslatableContent } from "@/lib/content-translation";
+import { identity } from "@/config/identity";
+import type { Database } from "@/types/database";
 
 export type ContentFormState = { error: string | null };
+type Locale = "fr" | "en";
+type Translation = Database["public"]["Tables"]["entry_translations"]["Row"];
+type SubmittedTranslation = TranslatableContent & { state: "draft" | "published" };
+
+const translatedFields = ["title", "summary", "body", "category_label", "project_status", "cover_alt"] as const;
+
+function submittedTranslation(data: FormData, locale: Locale, previous?: Translation): SubmittedTranslation {
+  const optional = (name: string, fallback: string | null | undefined) =>
+    data.has(`${name}_${locale}`) ? field(data, `${name}_${locale}`) : fallback ?? "";
+  return {
+    title: field(data, `title_${locale}`),
+    summary: field(data, `summary_${locale}`),
+    body: field(data, `body_${locale}`),
+    category_label: optional("category_label", previous?.category_label),
+    project_status: optional("project_status", previous?.project_status),
+    cover_alt: optional("cover_alt", previous?.cover_alt),
+    state: field(data, `state_${locale}`) === "published" ? "published" : "draft",
+  };
+}
+
+function contentChanged(submitted: SubmittedTranslation, previous?: Translation): boolean {
+  return !previous || translatedFields.some((name) => submitted[name] !== (previous[name] ?? ""));
+}
 
 function field(data: FormData, name: string) {
   return String(data.get(name) ?? "").trim();
+}
+
+function slugify(value: string) {
+  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 120);
 }
 
 function refreshContent() {
@@ -33,22 +65,30 @@ export async function saveContent(
   const { supabase, language } = await requireStaff(locale);
   if (!isContentSection(section)) return { error: "Rubrique inconnue. Revenez à l’administration." };
 
-  const slug = field(formData, "slug");
   const titleFr = field(formData, "title_fr");
   const titleEn = field(formData, "title_en");
-  const coverPath = field(formData, "cover_path");
-  const gallery = field(formData, "gallery_paths").split(/\r?\n/).map((item) => item.trim()).filter(Boolean);
-  const tags = field(formData, "tags").split(",").map((item) => item.trim()).filter(Boolean);
-  const externalUrl = field(formData, "external_url");
-  const sortOrder = Number(field(formData, "sort_order") || "0");
+  const current = entryId ? await supabase.from("entries").select("*").eq("id", entryId).maybeSingle() : null;
+  if (entryId && (current?.error || current?.data?.kind !== contentSections[section].kind)) {
+    return { error: "Contenu introuvable. Revenez à la liste." };
+  }
+  const prior = current?.data;
+  const slug = field(formData, "slug") || prior?.slug || slugify(titleFr || titleEn);
+  const coverPath = formData.has("cover_path") ? field(formData, "cover_path") : prior?.cover_path ?? "";
+  const gallery = formData.has("gallery_paths")
+    ? field(formData, "gallery_paths").split(/\r?\n/).map((item) => item.trim()).filter(Boolean)
+    : prior?.gallery_paths ?? [];
+  const tags = formData.has("tags")
+    ? field(formData, "tags").split(",").map((item) => item.trim()).filter(Boolean)
+    : prior?.tags ?? [];
+  const externalUrl = formData.has("external_url") ? field(formData, "external_url")
+    : getEmbeddedMedia(prior?.external_url) ? "" : prior?.external_url ?? "";
+  const mediaUrl = formData.has("media_url") ? field(formData, "media_url")
+    : getEmbeddedMedia(prior?.external_url) ? prior?.external_url ?? "" : "";
+  const sortOrder = formData.has("sort_order") ? Number(field(formData, "sort_order") || "0") : prior?.sort_order ?? 0;
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || slug.length > 120) {
     return { error: "Identifiant invalide. Utilisez des minuscules, chiffres et tirets." };
   }
   if (!titleFr && !titleEn) return { error: "Titre manquant. Renseignez au moins une langue." };
-  if ((!titleFr && field(formData, "state_fr") === "published") ||
-      (!titleEn && field(formData, "state_en") === "published")) {
-    return { error: "Publication impossible. Renseignez le titre de cette langue." };
-  }
   if (titleFr.length > 240 || titleEn.length > 240 || tags.length > 20 || gallery.length > 20) {
     return { error: "Contenu trop long. Raccourcissez les titres ou les listes." };
   }
@@ -61,29 +101,78 @@ export async function saveContent(
   if (externalUrl && (!URL.canParse(externalUrl) || !["https:", "http:"].includes(new URL(externalUrl).protocol))) {
     return { error: "Lien externe invalide. Saisissez une adresse HTTP ou HTTPS." };
   }
+  if (mediaUrl && !getEmbeddedMedia(mediaUrl)) {
+    return { error: "Lien vidéo invalide. Utilisez une vidéo YouTube, Instagram ou TikTok." };
+  }
+  if (mediaUrl && externalUrl) {
+    return { error: "Deux liens renseignés. Gardez la vidéo ou le lien du projet." };
+  }
 
   const image = formData.get("cover_file");
   if (image instanceof File && image.size > 0 && (!image.type.startsWith("image/") || image.size > 4_000_000)) {
     return { error: "Image refusée. Choisissez un fichier de moins de 4 Mo." };
   }
 
+  const previous = entryId ? await supabase.from("entry_translations")
+    .select("*").eq("entry_id", entryId) : null;
+  if (previous?.error) return { error: "Traductions indisponibles. Réessayez dans un instant." };
+  const existing = Object.fromEntries((previous?.data ?? []).map((item) => [item.locale, item])) as Partial<Record<Locale, Translation>>;
+  const translations: Record<Locale, SubmittedTranslation> = {
+    fr: submittedTranslation(formData, "fr", existing.fr),
+    en: submittedTranslation(formData, "en", existing.en),
+  };
+  const origin: Locale = language === "fr" ? "fr" : "en";
+  const target: Locale = origin === "fr" ? "en" : "fr";
+  const generatedFrom: Partial<Record<Locale, Locale>> = {};
+  const autoRequested = (section === "articles" || section === "projets") &&
+    formData.get("auto_translate") === "on";
+  const targetWasEdited = existing[target]
+    ? contentChanged(translations[target], existing[target])
+    : Boolean(translations[target].title);
+  const canGenerate = autoRequested && translations[origin].title && !targetWasEdited &&
+    (!existing[target] || existing[target].generated_from_locale === origin);
+  if (canGenerate) {
+    generatedFrom[target] = origin;
+    if (contentChanged(translations[origin], existing[origin]) || !existing[target]) {
+      try {
+        const generated = await translateContent(translations[origin], origin, process.env.CONTACT_EMAIL || identity.email);
+        translations[target] = { ...generated, state: translations[origin].state };
+      } catch (error) {
+        console.error("Content translation failed", error);
+        return { error: language === "fr"
+          ? "Traduction indisponible. Réessayez ou désactivez la traduction automatique."
+          : "Translation unavailable. Retry or turn off automatic translation." };
+      }
+    } else {
+      translations[target].state = translations[origin].state;
+    }
+  }
+  for (const translationLocale of ["fr", "en"] as const) {
+    if (!translations[translationLocale].title && translations[translationLocale].state === "published") {
+      return { error: language === "fr"
+        ? "Publication impossible. Renseignez le titre de cette langue."
+        : "Publication failed. Add a title for this language." };
+    }
+    if (translations[translationLocale].title.length > 240) {
+      return { error: language === "fr"
+        ? "Titre trop long. Raccourcissez la version traduite."
+        : "Title too long. Shorten the translated version." };
+    }
+  }
+
   const entryFields = {
     slug,
-    category_code: field(formData, "category_code") || null,
+    category_code: formData.has("category_code") ? field(formData, "category_code") || null : prior?.category_code ?? null,
     tags,
     cover_path: coverPath || null,
     gallery_paths: gallery,
-    external_url: externalUrl || null,
+    external_url: mediaUrl || externalUrl || null,
     featured: formData.get("featured") === "on",
     sort_order: sortOrder,
   };
   let id = entryId;
   let created = false;
   if (id) {
-    const current = await supabase.from("entries").select("id,kind").eq("id", id).maybeSingle();
-    if (current.error || current.data?.kind !== contentSections[section].kind) {
-      return { error: "Contenu introuvable. Revenez à la liste." };
-    }
     const saved = await supabase.from("entries").update(entryFields).eq("id", id);
     if (saved.error) return { error: saved.error.code === "23505"
       ? "Identifiant déjà utilisé. Choisissez un autre identifiant."
@@ -105,34 +194,37 @@ export async function saveContent(
       if (changed.error) throw changed.error;
     }
 
-    const previous = await supabase.from("entry_translations")
-      .select("locale,published_at").eq("entry_id", id);
-    if (previous.error) throw previous.error;
     for (const translationLocale of ["fr", "en"] as const) {
-      const title = translationLocale === "fr" ? titleFr : titleEn;
+      const submitted = translations[translationLocale];
+      const title = submitted.title;
       if (!title) {
-        if (previous.data.some((item) => item.locale === translationLocale)) {
+        if (existing[translationLocale]) {
           const removed = await supabase.from("entry_translations")
             .delete().eq("entry_id", id).eq("locale", translationLocale);
           if (removed.error) throw removed.error;
         }
         continue;
       }
-      const desiredState = field(formData, `state_${translationLocale}`) === "published" ? "published" : "draft";
+      const desiredState = submitted.state;
+      const priorTranslation = existing[translationLocale];
       const publishedAt = desiredState === "published"
-        ? previous.data.find((item) => item.locale === translationLocale)?.published_at ?? new Date().toISOString()
+        ? priorTranslation?.published_at ?? new Date().toISOString()
         : null;
       const translation = {
         entry_id: id,
         locale: translationLocale,
         title,
-        summary: field(formData, `summary_${translationLocale}`),
-        body: field(formData, `body_${translationLocale}`),
-        category_label: field(formData, `category_label_${translationLocale}`) || null,
-        project_status: field(formData, `project_status_${translationLocale}`) || null,
-        cover_alt: field(formData, `cover_alt_${translationLocale}`),
-        seo_title: field(formData, `seo_title_${translationLocale}`) || null,
-        seo_description: field(formData, `seo_description_${translationLocale}`) || null,
+        summary: submitted.summary,
+        body: submitted.body,
+        category_label: submitted.category_label || null,
+        project_status: submitted.project_status || null,
+        cover_alt: submitted.cover_alt,
+        generated_from_locale: generatedFrom[translationLocale] ?? (
+          translationLocale === origin && !contentChanged(submitted, priorTranslation)
+            ? priorTranslation?.generated_from_locale ?? null : null
+        ),
+        seo_title: generatedFrom[translationLocale] ? submitted.title : priorTranslation?.seo_title ?? null,
+        seo_description: generatedFrom[translationLocale] ? submitted.summary : priorTranslation?.seo_description ?? null,
         state: desiredState,
         published_at: publishedAt,
       };

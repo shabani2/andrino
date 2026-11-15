@@ -10,6 +10,11 @@ import {
 } from "@/components/shared/editorial";
 import { ArticleHeader } from "@/components/writing/article-header";
 import { ArticleShare } from "@/components/writing/article-share";
+import { PublishedBody } from "@/components/writing/published-body";
+import { MediaEmbed } from "@/components/shared/media-embed";
+import { PostEngagement } from "@/components/shared/post-engagement";
+import { getEngagement } from "@/lib/engagement";
+import { siteConfig } from "@/config/site";
 import { ArticleGrid } from "@/components/writing/article-grid";
 import { getArticles, getArticleBySlug } from "@/lib/articles";
 import { createMetadata } from "@/lib/seo";
@@ -17,7 +22,8 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props) {
   const article = await getArticleBySlug(await getLocale() as Locale, (await params).slug);
   if (!article) notFound();
-  return createMetadata(article.title, article.excerpt, "/writing/" + article.slug);
+  const metadata = await createMetadata(article.title, article.excerpt, "/writing/" + article.slug);
+  return { ...metadata, openGraph: { ...metadata.openGraph, type: "article", images: [article.coverImage] } };
 }
 export default async function ArticlePage({ params }: Props) {
   const c = await getCopy();
@@ -25,11 +31,12 @@ export default async function ArticlePage({ params }: Props) {
   const article = await getArticleBySlug(locale, (await params).slug);
   const related = (await getArticles(locale)).filter((item) => item.slug !== article?.slug).slice(0, 3);
   if (!article) notFound();
+  const engagement = article.id ? await getEngagement(article.id) : null;
   return (
     <article className="detail-page">
       <Container>
         <ArrowLink href="/writing" className="detail-back">
-          {c("Back to the journal")}</ArrowLink>
+          {c("Back to posts")}</ArrowLink>
         <ArticleHeader article={article} />
         <EditorialImage
           src={article.coverImage}
@@ -41,34 +48,33 @@ export default async function ArticlePage({ params }: Props) {
         <div className="detail-content">
           <div>
             {article.status === "published" ? (
-              <div className="prose">
-                {article.body.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
-              </div>
+              <PublishedBody body={article.body} />
             ) : (
               <>
-                <h2>{c("A subject I want to explore.")}</h2>
+                <h2>{c("A topic I am working on.")}</h2>
                 <div className="prose">
                   <p>{c(article.body)}</p>
-                  <p>{c("Some articles will be based on reporting and conversations with people. Others will be personal essays or commentary on issues that interest me.")}</p>
-                  <p>{c("The purpose is not to have an opinion on everything. It is to explore the subjects I care about with curiosity, context and a willingness to think critically.")}</p>
+                  <p>{c("I publish reporting, essays and opinion posts. I also share videos on YouTube.")}</p>
+                  <p>{c("I use reporting and personal essays to understand the subjects I write about.")}</p>
                 </div>
-                <p className="page-note">{c("This is an introduction to a future editorial theme. Reported stories and essays will be published here as they become available.")}</p>
+                <p className="page-note">{c("This topic is still in preparation. I will add articles when they are ready.")}</p>
               </>
             )}
-            <ArticleShare />
+            <MediaEmbed url={article.mediaUrl} locale={locale} />
+            <ArticleShare title={article.title} locale={locale}
+              url={new URL(`/${locale}/writing/${article.slug}`, siteConfig.url).toString()} />
+            {article.id && engagement && <PostEngagement entryId={article.id} locale={locale} {...engagement} />}
           </div>
           <aside className="detail-sidebar">
             <Eyebrow>{c("From Goma")}</Eyebrow>
-            <h2>{c("A note on opinions.")}</h2>
+            <h2>{c("About my opinions.")}</h2>
             <p>
-              {c("The opinions expressed in my personal writing are my own. I aim to distinguish personal perspectives from verified facts, give context to the issues I discuss and remain open to new information and different points of view.")}</p>
+              {c("These opinions are mine. I separate them from verified facts and correct errors.")}</p>
             <ArrowLink href="/about">{c("About the writer")}</ArrowLink>
           </aside>
         </div>
         <section className="detail-related">
-          <h2>{c("Other perspectives.")}</h2>
+          <h2>{c("More posts.")}</h2>
           <ArticleGrid
             articles={related}
           />

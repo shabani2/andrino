@@ -12,19 +12,19 @@ export function PortfolioExplorer({ items }: { items: PortfolioItem[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const categories = [
-    "All work",
+    "All areas",
     ...new Set(items.map((item) => item.category)),
   ];
   const selected = categories.includes(search.get("category") || "")
     ? search.get("category")!
-    : "All work";
+    : "All areas";
   const visible =
-    selected === "All work"
+    selected === "All areas"
       ? items
       : items.filter((item) => item.category === selected);
   function select(category: string) {
     const query = new URLSearchParams(search.toString());
-    if (category === "All work") query.delete("category");
+    if (category === "All areas") query.delete("category");
     else query.set("category", category);
     router.replace(pathname + (query.size ? "?" + query.toString() : ""), {
       scroll: false,
@@ -35,8 +35,8 @@ export function PortfolioExplorer({ items }: { items: PortfolioItem[] }) {
       <div className="filter-region">
         <div className="filter-label">
           <Filter size={14} aria-hidden="true" />
-          {c("Browse by practice")}</div>
-        <div className="filter-list" role="group" aria-label={c("Filter portfolio")}>
+          {c("Choose an area")}</div>
+        <div className="filter-list" role="group" aria-label={c("Filter work areas")}>
           {categories.map((category) => (
             <button
               className="filter-button"
@@ -46,13 +46,13 @@ export function PortfolioExplorer({ items }: { items: PortfolioItem[] }) {
               onClick={() => select(category)}
             >
               {c(category)}
-              {c(category === "All work" ? " (" + items.length + ")" : "")}
+              {c(category === "All areas" ? " (" + items.length + ")" : "")}
             </button>
           ))}
         </div>
         <p className="result-count" role="status">
           {c(visible.length)}{" "}
-          {c(visible.length === 1 ? "practice area" : "practice areas")} ·{" "}
+          {c(visible.length === 1 ? "area of work" : "areas of work")} ·{" "}
           {c(selected)}
         </p>
       </div>

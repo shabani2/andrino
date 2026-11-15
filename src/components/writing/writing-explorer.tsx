@@ -12,19 +12,19 @@ export function WritingExplorer({ articles }: { articles: Article[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const categories = [
-    "All themes",
+    "All posts",
     ...new Set(articles.map((article) => article.category)),
   ];
   const selected = categories.includes(search.get("category") || "")
     ? search.get("category")!
-    : "All themes";
+    : "All posts";
   const visible =
-    selected === "All themes"
+    selected === "All posts"
       ? articles
       : articles.filter((article) => article.category === selected);
   function select(category: string) {
     const query = new URLSearchParams(search.toString());
-    if (category === "All themes") query.delete("category");
+    if (category === "All posts") query.delete("category");
     else query.set("category", category);
     router.replace(pathname + (query.size ? "?" + query.toString() : ""), {
       scroll: false,
@@ -35,11 +35,11 @@ export function WritingExplorer({ articles }: { articles: Article[] }) {
       <div className="filter-region">
         <div className="filter-label">
           <Filter size={14} aria-hidden="true" />
-          {c("Browse by curated theme")}</div>
+          {c("Choose a topic")}</div>
         <div
           className="filter-list"
           role="group"
-          aria-label={c("Filter writing themes")}
+          aria-label={c("Filter topics")}
         >
           {categories.map((category) => (
             <button
@@ -54,7 +54,7 @@ export function WritingExplorer({ articles }: { articles: Article[] }) {
           ))}
         </div>
         <p role="status" className="result-count">
-          {c(visible.length)} {c(visible.length === 1 ? "theme" : "themes")} ·{" "}
+          {c(visible.length)} {c(visible.length === 1 ? "post" : "posts")} ·{" "}
           {c(selected)}
         </p>
       </div>

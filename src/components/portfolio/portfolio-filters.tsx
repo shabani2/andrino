@@ -18,7 +18,7 @@ export function PortfolioFilters({
   return (
     <div
       role="group"
-      aria-label={c("Filter portfolio")}
+      aria-label={c("Filter work areas")}
       className="mb-6 flex flex-wrap gap-2"
     >
       {categories.map((category) => (

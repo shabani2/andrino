@@ -13,7 +13,7 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
       <div className="portfolio-card-body">
         <div className="card-meta">
           <span>{c(item.category)}</span>
-          <span>{c("Practice area")}</span>
+          <span>{c("Area of work")}</span>
         </div>
         <h2>
           <Link href={"/portfolio/" + item.slug}>{c(item.title)}</Link>
@@ -27,7 +27,7 @@ export function PortfolioCard({ item }: { item: PortfolioItem }) {
               </span>
             ))}
           </div>
-          <ArrowLink href={"/portfolio/" + item.slug}>{c("View focus")}</ArrowLink>
+          <ArrowLink href={"/portfolio/" + item.slug}>{c("See this work")}</ArrowLink>
         </div>
       </div>
     </article>

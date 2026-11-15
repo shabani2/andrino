@@ -7,7 +7,7 @@ import { ContactForm } from "@/components/contact/contact-form";
 import { createMetadata } from "@/lib/seo";
 export async function generateMetadata() { return createMetadata(
   "Contact",
-  "Start a conversation about editorial enquiries, communications, creative projects or an idea worth sharing.",
+  "Contact Andrino about an article, a communications project or an invitation.",
   "/contact",
 ); }
 export default function ContactPage() {
@@ -24,7 +24,7 @@ export default function ContactPage() {
                 {c("Let’s start a")}{" "}<em>{c("conversation")}</em>.
               </h1>
               <p className="page-hero-description">
-                {c("I am always interested in connecting with people who care about stories, ideas, communication and the possibilities of creative collaboration. If you are an editor looking to discuss a story, a communications professional interested in working together, an organisation exploring a project, or simply someone with an idea worth sharing, I would be glad to hear from you.")}</p>
+                {c("You can write to me about an article, a communications project or an invitation to speak. Tell me what you have in mind.")}</p>
             </div>
             <div className="page-note">
               <Info
@@ -32,7 +32,7 @@ export default function ContactPage() {
                 className="mb-3 text-secondary"
                 aria-hidden="true"
               />
-              {c("For editorial enquiries, professional opportunities, collaborations and other conversations, use the contact form or connect with me on LinkedIn.")}</div>
+              {c("Use the form below or write to me on LinkedIn.")}</div>
           </div>
         </Container>
       </section>
@@ -48,9 +48,9 @@ export default function ContactPage() {
         <Container>
           <ShieldCheck size={30} strokeWidth={1.4} aria-hidden="true" />
           <div>
-            <h2>{c("Professional discretion & thoughtful communication.")}</h2>
+            <h2>{c("Share only what is needed.")}</h2>
             <p>
-              {c("Every story starts with listening. Please share only the details needed to start our conversation, especially when discussing people or sensitive contexts.")}</p>
+              {c("Send only the details needed to start. Avoid naming people in sensitive situations here.")}</p>
           </div>
         </Container>
       </section>

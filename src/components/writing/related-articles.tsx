@@ -8,7 +8,7 @@ export function RelatedArticles({ articles }: { articles: Article[] }) {
   if (!articles.length) return null;
   return (
     <section className="py-8">
-      <SectionHeading title={c("Other perspectives.")} />
+      <SectionHeading title={c("More posts.")} />
       <ArticleGrid articles={articles} />
     </section>
   );

@@ -10,36 +10,36 @@ export function Introduction() {
       <Container>
         <div className="prologue-grid">
           <div>
-            <Eyebrow>{c("01 / Prologue")}</Eyebrow>
-            <h2>{c("Stories, perspectives and possibilities.")}</h2>
+            <Eyebrow>{c("01 / From Goma")}</Eyebrow>
+            <h2>{c("Stories from Goma and the Great Lakes.")}</h2>
             <div className="rule-accent" />
             <p className="prologue-intro">
-              {c("Exploring the people, ideas and everyday realities shaping Africa, from the heart of the Great Lakes region.")}</p>
+              {c("I write about people and everyday life in the Great Lakes region.")}</p>
           </div>
           <div>
             <div className="prose prose-large">
               <p>
-                {c("My work sits at the intersection of communication, media, storytelling and community-driven initiatives. Through writing, digital content, campaigns and multimedia, I explore how stories can help people understand one another, discover new perspectives and see possibilities beyond the headlines.")}</p>
+                {c("I write articles and make content for projects and campaigns. I also use photography and video to tell those stories.")}</p>
               <p>
-                {c("Based in Goma, in the eastern Democratic Republic of the Congo, I am particularly interested in the stories that often go untold: the people building businesses, creating art, developing local solutions and imagining different futures for their communities.")}</p>
+                {c("In Goma, I pay attention to people starting businesses, making art and helping neighbours. Their stories need time and context.")}</p>
             </div>
             <div className="editorial-quote">
-              <span className="quote-label">{c("Editorial conviction")}</span>
+              <span className="quote-label">{c("My point of view")}</span>
               <blockquote>“{c(conviction)}”</blockquote>
               <cite>{c("Andrino Akuda Kangela")}</cite>
             </div>
             <div className="insight-strip">
               <div>
                 <strong>{c("Communication")}</strong>
-                <span>{c("Ideas made clear. Messages that connect.")}</span>
+                <span>{c("Clear words for the people concerned.")}</span>
               </div>
               <div>
                 <strong>{c("Storytelling")}</strong>
-                <span>{c("Human experiences beyond the statistics.")}</span>
+                <span>{c("The people behind the figures.")}</span>
               </div>
               <div>
-                <strong>{c("Goma based")}</strong>
-                <span>{c("Local perspectives. Wider conversations.")}</span>
+                <strong>{c("In Goma")}</strong>
+                <span>{c("A view from Goma.")}</span>
               </div>
             </div>
           </div>

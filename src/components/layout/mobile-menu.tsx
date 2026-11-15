@@ -54,7 +54,7 @@ export function MobileMenu() {
               {c(item.label)}
             </Link>
           ))}
-          <p>{c("Stories and perspectives from Goma.")}</p>
+          <p>{c("Articles, communication and projects from Goma.")}</p>
         </nav>
       )}
     </div>

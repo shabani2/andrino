@@ -28,7 +28,7 @@ export function ProjectCard({ project }: { project: Project }) {
           ))}
         </div>
         <ArrowLink href={"/projects/" + project.slug} className="mt-5">
-          {c("Explore this initiative")}</ArrowLink>
+          {c("See this project")}</ArrowLink>
       </div>
     </article>
   );

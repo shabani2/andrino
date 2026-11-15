@@ -13,10 +13,10 @@ export function ConnectSection() {
       <Container>
         <div className="connect-grid">
           <div>
-            <Eyebrow>{c("05 / Collaboration")}</Eyebrow>
+            <Eyebrow>{c("05 / Contact")}</Eyebrow>
             <h2>{c("Let’s connect.")}</h2>
             <p className="prose">
-              {c("Whether you are an editor, communications professional, fellow storyteller, organisation or someone with an interesting idea, I welcome conversations that can lead to meaningful work.")}</p>
+              {c("Tell me about an article, a project or a question.")}</p>
             <ActionLink href="/contact">{c("Get in touch")}</ActionLink>
           </div>
           <div className="connect-info">
@@ -38,7 +38,7 @@ export function ConnectSection() {
             <div className="info-line">
               <MapPin size={20} aria-hidden="true" />
               <div>
-                <strong>{c("Goma, DR Congo")}</strong>{c("Grounded in the Great Lakes region.")}</div>
+                <strong>{c("Goma, DR Congo")}</strong>{c("Based in Goma.")}</div>
             </div>
             <div className="info-line">
               <Clock3 size={20} aria-hidden="true" />
@@ -48,7 +48,7 @@ export function ConnectSection() {
             <div className="info-line">
               <Languages size={20} aria-hidden="true" />
               <div>
-                <strong>{c("French · English · Swahili")}</strong>{c("Conversations across perspectives.")}</div>
+                <strong>{c("French · English · Swahili")}</strong>{c("I can speak in three languages.")}</div>
             </div>
           </div>
         </div>

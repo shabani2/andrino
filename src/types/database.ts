@@ -14,6 +14,24 @@ export type Database = {
   }
   public: {
     Tables: {
+      post_likes: {
+        Row: { entry_id: string; visitor_id: string; created_at: string }
+        Insert: { entry_id: string; visitor_id: string; created_at?: string }
+        Update: { entry_id?: string; visitor_id?: string; created_at?: string }
+        Relationships: []
+      }
+      site_follows: {
+        Row: { visitor_id: string; created_at: string }
+        Insert: { visitor_id: string; created_at?: string }
+        Update: { visitor_id?: string; created_at?: string }
+        Relationships: []
+      }
+      post_comments: {
+        Row: { id: string; entry_id: string; visitor_id: string; author_name: string; body: string; status: string; created_at: string }
+        Insert: { id?: string; entry_id: string; visitor_id: string; author_name: string; body: string; status?: string; created_at?: string }
+        Update: { id?: string; entry_id?: string; visitor_id?: string; author_name?: string; body?: string; status?: string; created_at?: string }
+        Relationships: []
+      }
       contact_messages: {
         Row: {
           consent_at: string
@@ -101,6 +119,7 @@ export type Database = {
           category_label: string | null
           cover_alt: string
           entry_id: string
+          generated_from_locale: string | null
           locale: string
           project_status: string | null
           published_at: string | null
@@ -116,6 +135,7 @@ export type Database = {
           category_label?: string | null
           cover_alt?: string
           entry_id: string
+          generated_from_locale?: string | null
           locale: string
           project_status?: string | null
           published_at?: string | null
@@ -131,6 +151,7 @@ export type Database = {
           category_label?: string | null
           cover_alt?: string
           entry_id?: string
+          generated_from_locale?: string | null
           locale?: string
           project_status?: string | null
           published_at?: string | null

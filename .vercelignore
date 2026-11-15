@@ -2,6 +2,8 @@
 .next/
 node_modules/
 artifacts/
+.cache/
+.playwright-mcp/
 design/
 design-system/
 .env*

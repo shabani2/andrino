@@ -10,7 +10,7 @@ export async function sendContactEmail(
     return {
       status: "error",
       message:
-        "Message delivery is not available yet. Please use the direct email link or try again later. Your message has not been sent.",
+        "Message not sent. Use the email link or try again later.",
     };
   try {
     const transporter = nodemailer.createTransport({
@@ -51,23 +51,23 @@ export async function sendContactEmail(
       return {
         status: "error",
         message:
-          "Your message could not be sent. Please try again later or use the direct email link.",
+          "Message not sent. Try again later or use the email link.",
       };
     if (!result.messageId)
       return {
         status: "error",
-        message: "Delivery could not be confirmed. Please try again later.",
+        message: "Delivery not confirmed. Try again later.",
       };
     return {
       status: "success",
       message:
-        "Thank you. Your message has been sent. I look forward to continuing the conversation.",
+        "Message sent. I’ll reply by email.",
     };
   } catch {
     return {
       status: "error",
       message:
-        "The connection could not be completed. Please try again later. Your form is still here.",
+        "Connection failed. Try again later; your text is still here.",
     };
   }
 }

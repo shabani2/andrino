@@ -7,7 +7,7 @@ export default function Loading() {
       role="status"
       className="editorial-container py-20 text-muted-foreground"
     >
-      {c("Opening the work index…")}
+      {c("Loading portfolio…")}
     </p>
   );
 }

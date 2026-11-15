@@ -34,14 +34,14 @@ export function ContactForm() {
     <section id="contact-form" className="contact-form-panel" aria-labelledby="inquiry-title">
       <div className="contact-form-top">
         <div>
-          <p className="eyebrow">{c("Editorial contact")}</p>
-          <h2 id="inquiry-title">{c("Let’s hear your idea.")}</h2>
+          <p className="eyebrow">{c("Write to Andrino")}</p>
+          <h2 id="inquiry-title">{c("Write to me.")}</h2>
           <p>
-            {c("For editorial enquiries, professional opportunities, collaborations and other conversations.")}</p>
+            {c("Tell me about an article, a project or a question.")}</p>
         </div>
         <span className="status-badge">
           <Mail size={12} aria-hidden="true" />
-          {c("Open to conversations")}</span>
+          {c("Replies by email")}</span>
       </div>
       <form action={action} className="contact-form" noValidate>
         {state.status !== "idle" && (
@@ -119,7 +119,7 @@ export function ContactForm() {
           </div>
           <div className="field">
             <label htmlFor="contact-subject">
-              {c("Subject / Nature of enquiry *")}</label>
+              {c("Subject *")}</label>
             <select
               id="contact-subject"
               name="subject"
@@ -129,7 +129,7 @@ export function ContactForm() {
               aria-invalid={!!errors.subject}
               aria-describedby={errors.subject ? "subject-error" : undefined}
             >
-              <option value="">{c("Select the purpose of your note")}</option>
+              <option value="">{c("Choose a subject")}</option>
               {contactSubjects.map((subject) => (
                 <option key={subject} value={subject}>
                   {c(subject)}
@@ -147,7 +147,7 @@ export function ContactForm() {
             <textarea
               id="contact-message"
               name="message"
-              placeholder={c("Tell me about your idea, story or project…")}
+              placeholder={c("Describe your article, question or project…")}
               maxLength={2500}
               required
               value={fields.message}
@@ -188,7 +188,7 @@ export function ContactForm() {
                 aria-describedby={errors.consent ? "consent-error" : undefined}
               />
               <span>
-                {c("I agree to be contacted in response to this enquiry. My details will only be used to continue this conversation.")}</span>
+                {c("I agree to receive a reply by email. My address will only be used for this exchange.")}</span>
             </label>
             {errors.consent && (
               <p className="field-error mt-2" id="consent-error">
@@ -204,7 +204,7 @@ export function ContactForm() {
                   size={18}
                   aria-hidden="true"
                 />
-                {c("Sending your message…")}</>
+                {c("Sending…")}</>
             ) : (
               <>
                 {c("Send a message")}<ArrowRight size={18} aria-hidden="true" />
@@ -212,7 +212,7 @@ export function ContactForm() {
             ))}
           </button>
         </fieldset>
-        <p className="form-hint">{c("Your words deserve a thoughtful response.")}</p>
+        <p className="form-hint">{c("I will reply to the email address you provide.")}</p>
       </form>
     </section>
   );

@@ -3,6 +3,7 @@ import type { Project } from "@/types/project";
 import type { Locale } from "@/i18n/routing";
 import { getPublishedEntries } from "@/lib/content-repository";
 import { hasSupabaseContent } from "@/lib/supabase";
+import { getEmbeddedMedia } from "@/lib/media";
 
 function localProjects(): Project[] {
   return projectDirections.map((item, index) => ({
@@ -16,10 +17,12 @@ export async function getProjects(locale: Locale): Promise<Project[]> {
   if (!hasSupabaseContent()) return localProjects();
   const entries = await getPublishedEntries(["project"], locale);
   return entries.map(({ translation: t, ...entry }) => ({
+    id: entry.id,
     slug: entry.slug,
     title: t.title,
     description: t.summary,
     body: t.body,
+    mediaUrl: getEmbeddedMedia(entry.external_url) ? entry.external_url : null,
     paragraphs: t.body.split(/\n\s*\n/).filter(Boolean),
     image: entry.cover_path ?? "/images/projects/projects-1.webp",
     images: entry.gallery_paths,
@@ -27,7 +30,7 @@ export async function getProjects(locale: Locale): Promise<Project[]> {
     status: t.project_status ?? "",
     tags: entry.tags,
     featured: entry.featured,
-    ...(entry.external_url ? { url: entry.external_url } : {}),
+    ...(entry.external_url && !getEmbeddedMedia(entry.external_url) ? { url: entry.external_url } : {}),
   }));
 }
 export async function getProjectBySlug(locale: Locale, slug: string) {

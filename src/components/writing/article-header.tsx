@@ -10,7 +10,7 @@ export function ArticleHeader({ article }: { article: Article }) {
     <header className="detail-header">
       <Eyebrow>
         {c(article.category)} /{" "}
-        {c(article.status === "forthcoming" ? "Editorial focus" : "The journal")}
+        {c(article.status === "forthcoming" ? "Topic in preparation" : "Article")}
       </Eyebrow>
       <h1>{c(article.title)}</h1>
       <p>{c(article.excerpt)}</p>

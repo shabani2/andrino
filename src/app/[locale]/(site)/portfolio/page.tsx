@@ -10,7 +10,7 @@ import { getPortfolioItems } from "@/lib/portfolio";
 import { createMetadata } from "@/lib/seo";
 export async function generateMetadata() { return createMetadata(
   "Portfolio",
-  "Selected areas of work in strategic communication, digital media, editorial storytelling and project visibility.",
+  "Andrino’s work in communications, writing, photography and video.",
   "/portfolio",
 ); }
 export default async function PortfolioPage() {
@@ -20,45 +20,45 @@ export default async function PortfolioPage() {
   return (
     <>
       <PageHero
-        label={c("The work index")}
+        label={c("My portfolio")}
         number="03"
-        title={c("Selected work.")}
-        description={c("My portfolio brings together selected examples of my work in strategic communication, digital media, editorial storytelling and project visibility. Each project represents an opportunity to communicate an idea, document an experience or help an audience understand an issue more clearly.")}
+        title={c("Projects and areas of work.")}
+        description={c("I work with articles, photography, video and communication plans. This page shows the areas I work in and how I approach them.")}
       />
       <section className="pb-20">
         <Container>
-          <Suspense fallback={<p role="status">{c("Loading the work index…")}</p>}>
+          <Suspense fallback={<p role="status">{c("Loading portfolio…")}</p>}>
             <PortfolioExplorer items={items} />
           </Suspense>
           <div className="portfolio-notes">
             <div className="insight-strip">
               <div>
-                <strong>{c("Context first")}</strong>
+                <strong>{c("Start with the context")}</strong>
                 <span>
-                  {c("Every project begins with a purpose, an audience and a story.")}</span>
+                  {c("I ask who the work is for and what it should explain.")}</span>
               </div>
               <div>
-                <strong>{c("Clear contribution")}</strong>
+                <strong>{c("My role")}</strong>
                 <span>
-                  {c("My role, collaborators and selected outputs will be documented.")}</span>
+                  {c("Each case study will name my role and the people involved.")}</span>
               </div>
               <div>
-                <strong>{c("Verified results")}</strong>
+                <strong>{c("Published work")}</strong>
                 <span>
-                  {c("Approved materials and published work will be added as available.")}</span>
+                  {c("I will add work I can share and verify.")}</span>
               </div>
             </div>
             <p className="page-note mt-6">
-              {c("The index currently introduces my areas of practice. Detailed case studies and approved outputs will be added progressively.")}</p>
+              {c("For now, this page introduces my areas of work. I will add detailed examples when they are ready to share.")}</p>
           </div>
         </Container>
       </section>
       <section className="section-padding portfolio-collaboration">
         <Container>
           <CallToAction
-            title={c("Have a project or collaboration in mind?")}
+            title={c("A project to discuss?")}
             href="/contact"
-            label={c("Initiate conversation")}
+            label={c("Discuss your project")}
           />
         </Container>
       </section>

@@ -12,7 +12,7 @@ import { getProjects } from "@/lib/projects";
 import { createMetadata } from "@/lib/seo";
 export async function generateMetadata() { return createMetadata(
   "Projects",
-  "Ideas in progress: Naleta Story, community and youth initiatives, and communication for social impact.",
+  "Naleta Story and Andrino’s projects with young people and local groups.",
   "/projects",
 ); }
 export default async function ProjectsPage() {
@@ -27,40 +27,33 @@ export default async function ProjectsPage() {
   return (
     <>
       <PageHero
-        label={c("Initiatives & ideas")}
+        label={c("My projects")}
         number="05"
-        title={c("Ideas in progress.")}
-        description={c("Some ideas begin as questions. Others start as conversations, observations or a desire to solve a problem. This section documents selected initiatives I have contributed to, developed or supported. It will also provide space to follow the evolution of projects as they grow.")}
+        title={c("Projects I am working on.")}
+        description={c("I develop some projects myself and support others. Each page shows what the project is and where it stands.")}
       />
       <section className="pb-20">
         <Container>
-          <Eyebrow>{c("Flagship platform")}</Eyebrow>
+          <Eyebrow>{c("Featured project")}</Eyebrow>
           {featured && <FeaturedProject project={featured} />}
         </Container>
       </section>
       <section className="pb-20">
         <Container>
           <SectionIntro
-            label={c("Portfolio streams")}
-            title={c("People, ideas and impact.")}
+            label={c("Other projects")}
+            title={c("Youth, media and communication.")}
           >
-            {c("Following how people organise, create, communicate and develop solutions in their communities.")}</SectionIntro>
+            {c("These projects concern young people, local groups and communication.")}</SectionIntro>
           <div className="project-streams">
             <div>
               <div className="stream-header">
                 <Users size={30} strokeWidth={1.3} aria-hidden="true" />
                 <div>
-                  <Eyebrow>{c("Stream A")}</Eyebrow>
-                  <h3>{c("Community & youth initiatives")}</h3>
+                  <h3>{c("Projects with young people")}</h3>
                 </div>
               </div>
               {community && <ProjectCard project={community} />}
-              <div className="stream-note">
-                <Eyebrow>{c("Collaboration & learning")}</Eyebrow>
-                <h3>{c("Local knowledge. Shared possibilities.")}</h3>
-                <p>
-                  {c("Selected initiatives will highlight my contribution and the lessons learned through collaboration with young people and community organisations.")}</p>
-              </div>
             </div>
             <div>
               <div className="stream-header">
@@ -70,17 +63,10 @@ export default async function ProjectsPage() {
                   aria-hidden="true"
                 />
                 <div>
-                  <Eyebrow>{c("Stream B")}</Eyebrow>
-                  <h3>{c("Communication for social impact")}</h3>
+                  <h3>{c("Communication for local projects")}</h3>
                 </div>
               </div>
               {impact && <ProjectCard project={impact} />}
-              <div className="stream-note">
-                <Eyebrow>{c("Stories behind the work")}</Eyebrow>
-                <h3>{c("Making complex projects accessible.")}</h3>
-                <p>
-                  {c("Stories, digital content and visibility materials can connect programme activities with the people and experiences behind them.")}</p>
-              </div>
             </div>
           </div>
         </Container>
@@ -99,9 +85,9 @@ export default async function ProjectsPage() {
           <div className="governance">
             <ShieldCheck size={30} strokeWidth={1.4} aria-hidden="true" />
             <div>
-              <Eyebrow>{c("Editorial governance & ethical framework")}</Eyebrow>
-              <blockquote>
-                {c("“Each project will clearly identify my role, collaborators and contribution. Only approved and publicly shareable materials will be featured.”")}</blockquote>
+              <Eyebrow>{c("How projects are presented")}</Eyebrow>
+              <p>
+                {c("I will explain my role in each project and name collaborators where I can. I will only share approved material.")}</p>
             </div>
           </div>
         </Container>
@@ -109,9 +95,9 @@ export default async function ProjectsPage() {
       <section className="pb-20">
         <Container>
           <CallToAction
-            title={c("Have an initiative or collaboration in development?")}
+            title={c("Working on a project?")}
             href="/contact"
-            label={c("Propose a collaboration")}
+            label={c("Talk about working together")}
           />
         </Container>
       </section>

@@ -10,27 +10,27 @@ export function VisionSection() {
       <Container>
         <div className="vision-grid">
           <div>
-            <Eyebrow>{c("Horizon & vision")}</Eyebrow>
+            <Eyebrow>{c("What comes next")}</Eyebrow>
             <h2>
-              {c("What I am")}<br />
-              {c("working towards.")}</h2>
+              {c("What I want to")}{" "}<br />
+              {c("build next.")}</h2>
             <div className="prose">
               <p>
-                {c("I want to keep growing as a communications professional, develop my voice as a writer and contribute to media that takes African perspectives seriously.")}</p>
+                {c("I want to keep writing and contribute to media that gives African voices room.")}</p>
               <p>
-                {c("I am interested in building platforms, supporting meaningful initiatives and producing work that connects local experiences with wider conversations.")}</p>
+                {c("I want to support local projects and explain their work beyond Goma.")}</p>
               <p>
-                {c("Most importantly, I want to remain curious: about people, places, ideas and the possibilities that emerge when we look beyond what we think we already know.")}</p>
+                {c("I want to keep asking questions and checking what I think I know.")}</p>
             </div>
             <div className="actions-row">
               <ActionLink href="/portfolio" variant="peach">
-                {c("Explore selected work")}</ActionLink>
+                {c("View my work")}</ActionLink>
               <ArrowLink href="/contact">
                 {c("Get in touch")}</ArrowLink>
             </div>
           </div>
           <div className="manifesto">
-            <Eyebrow>{c("Editorial conviction")}</Eyebrow>
+            <Eyebrow>{c("My point of view")}</Eyebrow>
             <blockquote>“{c(conviction)}”</blockquote>
             <cite>
               {c("ANDRINO AKUDA KANGELA")}<br />

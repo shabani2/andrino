@@ -9,8 +9,8 @@ export function ValuesSection() {
   return (
     <section className="section-padding">
       <Container>
-        <SectionIntro label={c("Guiding principles")} title={c("What I believe in.")}>
-          {c("Five convictions that shape the way I approach stories, communication and collaboration.")}</SectionIntro>
+        <SectionIntro label={c("My principles")} title={c("What guides my work.")}>
+          {c("I use these principles when I write, plan and work with others.")}</SectionIntro>
         <div className="beliefs-grid">
           {beliefs.map((belief, index) => (
             <article className="belief-card" key={belief.title}>
@@ -20,7 +20,6 @@ export function ValuesSection() {
               </div>
               <h3>{c(belief.title)}</h3>
               <p>{c(belief.body)}</p>
-              <span className="tag">{c("Core tenet ·")}{" "}{c(belief.tenet)}</span>
             </article>
           ))}
         </div>

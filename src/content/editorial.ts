@@ -1,83 +1,78 @@
 export const conviction =
-  "I believe that where a story comes from should never limit how far it can travel.";
+  "I want stories from Goma to reach people beyond the region.";
 export const disciplines = [
   {
-    title: "Strategic Communications",
+    title: "Messages and campaigns",
     description:
-      "I help transform ideas, projects and objectives into clear communication strategies, engaging content and meaningful messages for different audiences.",
+      "I plan messages, choose formats and write content for specific audiences.",
     icon: "campaign",
-    tags: ["Communication plans", "Key messages", "Audience strategy"],
+    tags: ["Communication plans", "Key messages", "Who it is for"],
   },
   {
-    title: "Storytelling and Writing",
+    title: "Articles and reporting",
     description:
-      "I develop stories that bring people, experiences and ideas closer to audiences, with a particular interest in African narratives and human-centred reporting.",
+      "I write about people and places, with attention to context and sources.",
     icon: "writing",
-    tags: ["Human-interest stories", "Editorial writing", "Field reporting"],
+    tags: ["Interviews and stories", "Writing articles", "Reporting from Goma"],
   },
   {
-    title: "Digital Media and Content Creation",
+    title: "Photos, video and social media",
     description:
-      "From social media campaigns to editorial content and multimedia storytelling, I explore creative ways to communicate ideas and connect with audiences.",
+      "I make social posts, articles, photographs and video for digital platforms.",
     icon: "media",
-    tags: ["Digital content", "Social campaigns", "Multimedia"],
+    tags: ["Online posts", "Social campaigns", "Multimedia"],
   },
   {
-    title: "Projects and Innovation",
+    title: "Local projects",
     description:
-      "I am interested in initiatives that use creativity, technology, communication and local knowledge to address challenges and create opportunities.",
+      "I follow projects that combine local knowledge, media and technology.",
     icon: "ideas",
-    tags: ["Local knowledge", "Creative initiatives", "New possibilities"],
+    tags: ["People in Goma", "Projects in Goma", "New ideas"],
   },
 ] as const;
 
 export const biography = [
-  "My professional journey has brought me into humanitarian communication, digital media, editorial storytelling and community-focused initiatives. I work across communication planning, content creation, social media, photography, video, reporting and the development of stories that help audiences understand people and projects beyond statistics.",
-  "Growing up and working in the Great Lakes region has made me attentive to the complexity of places that are often described through a narrow lens. In Goma, conflict and uncertainty are part of the reality, but so are creativity, entrepreneurship, humour, culture, solidarity and ambition.",
-  "I want to contribute to a broader understanding of these realities. Not by ignoring difficult truths, but by making room for the full picture.",
-  "For me, communication is not simply about making information visible. It is about finding the right words, images and perspectives to make people care, understand and engage.",
-  "I enjoy taking an idea from its early stages and turning it into something tangible: an article, a campaign, a story, a digital experience or a project that connects with people.",
-  "Beyond my professional responsibilities, I am interested in independent media, African storytelling, creative entrepreneurship and the possibilities of technology. I am curious about how people build solutions with the resources available to them, how local ideas travel, and how digital platforms can create new opportunities for African voices.",
-  "This website brings these interests together. It is my portfolio, my writing space and a record of the work, ideas and questions that continue to shape my journey.",
+  "I work in humanitarian communication and digital media. I also write, take photographs and make videos. These formats help me explain people's work without losing its context.",
+  "I grew up in the Great Lakes region and now work in Goma. Conflict is part of life here. So are work, humour, art and mutual support.",
+  "I want to describe these places without leaving out difficult facts or everyday life.",
+  "Good communication starts with listening. Then I choose the words and images that explain the subject.",
+  "I like taking an idea through to an article, a campaign or a project.",
+  "I follow independent media and African entrepreneurs. I want to understand how local ideas travel and which tools help them.",
+  "This site brings together my work, my posts and the projects I am developing.",
 ];
 export const beliefs = [
   {
-    title: "Stories matter.",
-    body: "The stories we tell influence what people see, what they understand and what they believe is possible.",
-    tenet: "Perspective",
+    title: "Stories change what we notice.",
+    body: "A story can reveal people and work that would otherwise be missed.",
     icon: "writing",
   },
   {
-    title: "Context matters.",
-    body: "People and places deserve to be understood in their complexity, not reduced to a single narrative.",
-    tenet: "Complexity",
+    title: "Give the context.",
+    body: "I check the facts and listen before drawing conclusions about a place.",
     icon: "context",
   },
   {
-    title: "Local knowledge matters.",
-    body: "Some of the most interesting ideas and solutions emerge from people who understand their communities firsthand.",
-    tenet: "Local voices",
+    title: "Listen to local voices.",
+    body: "People who live with a problem often know where to begin.",
     icon: "community",
   },
   {
-    title: "Creativity creates possibilities.",
-    body: "Words, images, technology and imagination can help people communicate, collaborate and build something new.",
-    tenet: "Imagination",
+    title: "Use the tools at hand.",
+    body: "Text, photography and video can make a difficult subject easier to understand.",
     icon: "ideas",
   },
   {
-    title: "Learning never stops.",
-    body: "Every project, conversation and story offers an opportunity to ask better questions and improve the way we work.",
-    tenet: "Curiosity",
+    title: "Keep learning.",
+    body: "I look at what worked and what failed. Then I change how I work.",
     icon: "book",
   },
 ] as const;
 export const portfolioAreas = [
   {
     slug: "strategic-communication",
-    title: "Strategic Communication and Campaigns",
+    title: "Communication plans and campaigns",
     description:
-      "Developing communication plans, editorial calendars, key messages and digital content to support organisational objectives and reach relevant audiences.",
+      "Communication plans, editorial calendars and messages for specific audiences.",
     category: "Strategic Communication",
     image: "/images/portfolio/portfolio-1.webp",
     alt: "A collaborative communication planning session around a table",
@@ -85,19 +80,19 @@ export const portfolioAreas = [
   },
   {
     slug: "humanitarian-storytelling",
-    title: "Humanitarian and Development Storytelling",
+    title: "Stories from community projects",
     description:
-      "Documenting people's experiences, community initiatives and project activities through human-interest stories, interviews, photography and multimedia content.",
+      "Interviews, photographs and stories about people involved in community projects.",
     category: "Humanitarian Storytelling",
     image: "/images/portfolio/portfolio-2.webp",
     alt: "A documentary scene of everyday life and community exchange",
-    tags: ["Human-interest stories", "Documentary"],
+    tags: ["Interviews and stories", "Documentary"],
   },
   {
     slug: "digital-content",
-    title: "Digital Content and Social Media",
+    title: "Content for websites and social media",
     description:
-      "Creating content for digital platforms, including social media campaigns, captions, carousels, short-form scripts and audience-focused communication materials.",
+      "Posts, captions, short videos and visuals for websites and social media.",
     category: "Digital Media",
     image: "/images/portfolio/portfolio-3.webp",
     alt: "A creative workspace with digital content and production equipment",
@@ -105,9 +100,9 @@ export const portfolioAreas = [
   },
   {
     slug: "editorial-media",
-    title: "Editorial and Media Work",
+    title: "Articles and media",
     description:
-      "Developing story ideas, writing articles, exploring underreported perspectives and contributing to conversations about African narratives and representation.",
+      "Articles and reported stories about Goma, African media and representation.",
     category: "Editorial Work",
     image: "/images/portfolio/portfolio-4.webp",
     alt: "An editorial publication and notebooks in a reading workspace",
@@ -115,9 +110,9 @@ export const portfolioAreas = [
   },
   {
     slug: "multimedia-production",
-    title: "Multimedia and Creative Production",
+    title: "Photo, video and audio",
     description:
-      "Exploring how photography, video, audio and digital formats can bring stories to life and help audiences connect with people and places.",
+      "Photos, video and audio used to document people and places.",
     category: "Multimedia",
     image: "/images/portfolio/portfolio-5.webp",
     alt: "Documentary media production in the Great Lakes region",
@@ -125,9 +120,9 @@ export const portfolioAreas = [
   },
   {
     slug: "community-initiatives",
-    title: "Community-focused Initiatives",
+    title: "Projects with local groups",
     description:
-      "Engaging with youth-focused, community and civil-society initiatives, and exploring the lessons learned through collaboration.",
+      "Work with young people, local groups and civil-society organisations.",
     category: "Community",
     image: "/images/portfolio/portfolio-6.webp",
     alt: "Young people working together at a community initiative",
@@ -137,10 +132,10 @@ export const portfolioAreas = [
 export const writingThemes = [
   {
     slug: "african-narratives",
-    title: "African Narratives and Representation",
+    title: "Africa in the media",
     category: "African Narratives",
     description:
-      "How Africa is represented in international media, who tells its stories, and how local perspectives can help create a more complete picture of the continent.",
+      "Who describes Africa in international media? I want to hear more from people who live here.",
     image: "/images/articles/writing-7.webp",
     alt: "A documentary scene reflecting local perspectives in eastern Congo",
     tags: ["Representation", "Local perspectives"],
@@ -150,47 +145,47 @@ export const writingThemes = [
     title: "Goma and the Great Lakes",
     category: "Goma & Great Lakes",
     description:
-      "Stories about people, businesses, creativity, culture and everyday life in eastern DRC and the wider Great Lakes region.",
+      "Posts on Goma’s people, businesses, art and everyday life.",
     image: "/images/articles/writing-2.webp",
     alt: "Everyday urban life in the Great Lakes region",
     tags: ["Goma", "Everyday life"],
   },
   {
     slug: "media-communication",
-    title: "Media and Communication",
+    title: "Journalism and social media",
     category: "Media & Communication",
     description:
-      "Reflections on storytelling, digital communication, public-interest media, social media and the responsibilities that come with publishing.",
+      "Posts on journalism, social media and the care needed when publishing.",
     image: "/images/articles/writing-3.webp",
     alt: "A journalist's notebooks and tools for communicating stories",
     tags: ["Storytelling", "Media"],
   },
   {
     slug: "innovation-entrepreneurship",
-    title: "Innovation and Entrepreneurship",
+    title: "Local businesses and new ideas",
     category: "Innovation & Enterprise",
     description:
-      "Exploring local solutions, creative businesses, emerging technologies and the people turning ideas into practical opportunities.",
+      "I follow local businesses and the tools they use to grow.",
     image: "/images/articles/writing-4.webp",
     alt: "A creative entrepreneur exploring local technology and ideas",
     tags: ["Local solutions", "Enterprise"],
   },
   {
     slug: "society-culture",
-    title: "Society, Culture and Community",
+    title: "People and culture around me",
     category: "Society & Culture",
     description:
-      "Observations about the experiences, challenges, creativity and ambitions that shape the communities around us.",
+      "Posts on the people, work and culture around me.",
     image: "/images/articles/writing-5.webp",
     alt: "A gathering celebrating culture and community in eastern Congo",
     tags: ["Culture", "Community"],
   },
   {
     slug: "personal-reflections",
-    title: "Personal Reflections",
-    category: "Personal Reflections",
+    title: "Notes from Goma",
+    category: "Notes from Goma",
     description:
-      "Lessons from my professional journey, ideas I am still working through, experiences that have changed my perspective and questions for which I do not yet have all the answers.",
+      "Notes on what I learn through work, reading and life in Goma.",
     image: "/images/articles/writing-6.webp",
     alt: "A quiet reading and writing scene for personal reflection",
     tags: ["Reflections", "The writing life"],

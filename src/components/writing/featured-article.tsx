@@ -1,7 +1,6 @@
 import { useCopy } from "@/i18n/copy";
 import {
   EditorialImage,
-  Eyebrow,
   ArrowLink,
 } from "@/components/shared/editorial";
 export function FeaturedArticle() {
@@ -16,24 +15,21 @@ export function FeaturedArticle() {
       />
       <div className="featured-article-copy">
         <div className="card-meta">
-          <span>{c("Lead perspective")}</span>
+          <span>{c("Coming soon")}</span>
           <span>{c("African narratives")}</span>
         </div>
         <h2>{c("Who gets to tell Africa’s stories?")}</h2>
         <p>
-          {c("How Africa is represented in international media, who tells its stories, and how local perspectives can help create a more complete picture of the continent.")}</p>
-        <blockquote>
-          {c("“The purpose is not to have an opinion on everything. It is to explore the subjects I care about with curiosity, context and a willingness to think critically.”")}</blockquote>
+          {c("Who describes Africa in international media? I want to hear more from people who live here.")}</p>
         <div className="author-line">
           <span className="author-initial" aria-hidden="true">
             {c("A")}</span>
           <div>
-            {c("Andrino AKUDA KANGELA")}<small>{c("Goma · Editorial focus")}</small>
+            {c("Andrino AKUDA KANGELA")}<small>{c("Goma · Article in preparation")}</small>
           </div>
         </div>
-        <Eyebrow>{c("Stories, essays and observations to come")}</Eyebrow>
         <ArrowLink href="/writing/african-narratives">
-          {c("Explore this perspective")}</ArrowLink>
+          {c("See the topic")}</ArrowLink>
       </div>
     </div>
   );

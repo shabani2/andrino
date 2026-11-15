@@ -15,12 +15,12 @@ export function LatestWriting() {
       <Container>
         <SectionIntro
           number="04"
-          label={c("Dispatches & essays")}
-          title={c("Latest writing.")}
-          action={<ArrowLink href="/writing">{c("Read all articles")}</ArrowLink>}
+          label={c("Articles and essays")}
+          title={c("Subjects I’m writing about.")}
+          action={<ArrowLink href="/writing">{c("Read all posts")}</ArrowLink>}
         />
         <p className="prose mb-9 max-w-3xl">
-          {c("A space for articles, personal essays, opinions and reflections. The first publications are taking shape around these themes.")}</p>
+          {c("I write about Goma, African media and the questions these stories raise.")}</p>
         <div className="writing-grid">
           {[writingThemes[0], writingThemes[3], writingThemes[1]].map(
             (item, index) => (
@@ -33,14 +33,14 @@ export function LatestWriting() {
                   />
                   <div className="card-meta">
                     <span>{c(item.category)}</span>
-                    <span>{c("Editorial focus")}</span>
+                    <span>{c("Topic in preparation")}</span>
                   </div>
                   <h3>{c(item.title)}</h3>
                 </Link>
                 <p className="card-description">{c(item.description)}</p>
                 <div className="article-card-bottom">
-                  <span>{c("Forthcoming writing")}</span>
-                  <ArrowLink href={"/writing/" + item.slug}>{c("Explore")}</ArrowLink>
+                  <span>{c("Article in preparation")}</span>
+                  <ArrowLink href={"/writing/" + item.slug}>{c("See the topic")}</ArrowLink>
                 </div>
               </article>
             ),

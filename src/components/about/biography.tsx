@@ -13,18 +13,18 @@ export function Biography() {
   return (
     <section className="section-padding surface-white">
       <Container>
-        <SectionIntro label={c("Chapter 02")} title={c("My journey & field philosophy.")}>
-          {c("Humanitarian communication, digital media, editorial storytelling and community-focused initiatives.")}</SectionIntro>
+        <SectionIntro label={c("My path")} title={c("My path to this work.")}>
+          {c("Communications, articles, photos and video from Goma.")}</SectionIntro>
         <div className="journey-grid">
           <div>
-            <Eyebrow>{c("02.1 / Trajectory")}</Eyebrow>
+            <Eyebrow>{c("02.1 / My path")}</Eyebrow>
             <div className="prose prose-large">
               <p>{c(biography[0])}</p>
             </div>
             <div className="editorial-quote">
               <blockquote>
                 {c("“Who gets to tell Africa’s stories, and what happens when we begin to tell them differently?”")}</blockquote>
-              <cite>{c("A question at the heart of my work")}</cite>
+              <cite>{c("A question I return to")}</cite>
             </div>
             <div className="prose">
               {biography.slice(1).map((paragraph) => (
@@ -34,13 +34,13 @@ export function Biography() {
           </div>
           <aside
             className="journey-aside"
-            aria-label={c("Practice and perspectives")}
+            aria-label={c("About my work")}
           >
             <div className="sidebar-panel">
               <DisciplineIcon name="book" />
-              <h3 className="mt-4">{c("The editorial ethos.")}</h3>
+              <h3 className="mt-4">{c("How I write.")}</h3>
               <p>
-                {c("Making room for the full picture. Finding the words, images and perspectives that help people care, understand and engage.")}</p>
+                {c("I listen first, then check the facts and choose the right format.")}</p>
             </div>
             <figure>
               <EditorialImage
@@ -52,14 +52,14 @@ export function Biography() {
               </figcaption>
             </figure>
             <div className="sidebar-panel">
-              <Eyebrow>{c("Practices & disciplines")}</Eyebrow>
+              <Eyebrow>{c("What I do")}</Eyebrow>
               <ul className="practice-list">
                 {[
                   "Communication planning",
                   "Human-interest storytelling",
                   "Digital media & content",
                   "Photography & video",
-                  "Editorial writing",
+                  "Writing articles",
                 ].map((practice, index) => (
                   <li key={practice}>
                     {c(practice)}

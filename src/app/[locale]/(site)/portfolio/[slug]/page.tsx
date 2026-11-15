@@ -28,7 +28,7 @@ export default async function CaseStudyPage({ params }: Props) {
         <ArrowLink href="/portfolio" className="detail-back">
           {c("Back to portfolio")}</ArrowLink>
         <header className="detail-header">
-          <Eyebrow>{c(item.category)} {c("/ Practice area")}</Eyebrow>
+          <Eyebrow>{c(item.category)}</Eyebrow>
           <h1>{c(item.title)}</h1>
           <p>{c(item.description)}</p>
         </header>
@@ -41,22 +41,19 @@ export default async function CaseStudyPage({ params }: Props) {
         />
         <div className="detail-content">
           <div>
-            <h2>{c("Communication with context.")}</h2>
+            <h2>{c("What I do in this area.")}</h2>
             <div className="prose">
               <p>
-                {c("Each project represents an opportunity to communicate an idea, document an experience or help an audience understand an issue more clearly.")}</p>
-              <p>{c(item.description)}</p>
+                {c("I start with the people the work is for and what it needs to explain.")}</p>
             </div>
-            <h2>{c("What this portfolio will document.")}</h2>
+            <h2>{c("What you will find here.")}</h2>
             <div className="prose">
               <p>
-                {c("Each entry will include the project context, objective, my role, selected outputs, collaborators where relevant, verified results where available, and a link to the published work.")}</p>
+                {c("I will add work I can share, with my role and the people involved.")}</p>
             </div>
-            <p className="page-note">
-              {c("This page introduces an area of practice. Approved case studies and publicly shareable outputs will be added progressively.")}</p>
           </div>
           <aside className="detail-sidebar">
-            <Eyebrow>{c("In focus")}</Eyebrow>
+            <Eyebrow>{c("This area")}</Eyebrow>
             <h2>{c(item.category)}</h2>
             <div className="tag-list mb-6">
               {item.tags.map((tag) => (
@@ -66,13 +63,13 @@ export default async function CaseStudyPage({ params }: Props) {
               ))}
             </div>
             <p>
-              {c("Interested in an editorial project, communication challenge or creative collaboration?")}</p>
-            <ArrowLink href="/contact">{c("Start a conversation")}</ArrowLink>
+              {c("Have a project in this area?")}</p>
+            <ArrowLink href="/contact">{c("Write to me about it")}</ArrowLink>
           </aside>
         </div>
         <div className="detail-related">
           <CallToAction
-            title={c("An idea worth exploring together?")}
+            title={c("A project to discuss?")}
             href="/contact"
             label={c("Get in touch")}
           />

@@ -9,7 +9,7 @@ import { VisionSection } from "@/components/about/vision-section";
 import { createMetadata } from "@/lib/seo";
 export async function generateMetadata() { return createMetadata(
   "About",
-  "Meet Andrino Akuda Kangela: communications professional, storyteller and writer based in Goma, Democratic Republic of the Congo.",
+  "Andrino Akuda Kangela writes and works in communications from Goma, DRC.",
   "/about",
 ); }
 export default function AboutPage() {
@@ -20,33 +20,28 @@ export default function AboutPage() {
       <section className="section-padding about-hero">
         <Container>
           <div className="hero-folio">
-            <Eyebrow>{c("About the person")}</Eyebrow>
-            <span className="folio-number">{c("01 / Dossier")}</span>
+            <Eyebrow>{c("About me")}</Eyebrow>
+            <span className="folio-number">{c("01 / About")}</span>
           </div>
           <div className="hero-grid">
             <div className="hero-copy">
               <div>
-                <h1>
-                  {c("The person")}<br />
-                  {c("behind the stories.")}</h1>
+                <h1>{c("Andrino Akuda Kangela")}</h1>
                 <p className="hero-description">
-                  {c("My name is")}{" "}
-                  <strong className="font-medium text-primary">
-                    {c("Andrino AKUDA KANGELA")}</strong>
-                  {c(". I am a communications professional and storyteller from the Democratic Republic of the Congo, based in Goma.")}</p>
+                  {c("I work in communications and write from Goma, in the Democratic Republic of the Congo.")}</p>
               </div>
               <div className="location-card">
                 <MapPin size={24} strokeWidth={1.4} aria-hidden="true" />
                 <div>
-                  <Eyebrow>{c("Field dispatch base")}</Eyebrow>
+                  <Eyebrow>{c("Based in")}</Eyebrow>
                   <strong>{c("Goma, North Kivu · DRC")}</strong>
                   <div className="location-details">
                     <span>
                       {c("Coordinates")}<br />
                       {c("1°40′S 29°13′E")}</span>
                     <span>
-                      {c("Focus area")}<br />
-                      {c("Great Lakes storytelling")}</span>
+                      {c("I write about")}<br />
+                      {c("Goma and the wider region")}</span>
                   </div>
                 </div>
               </div>
@@ -61,36 +56,35 @@ export default function AboutPage() {
                   alt={c("Black-and-white profile portrait of Andrino Akuda Kangela")}
                   className="object-cover"
                 />
-                <span className="portrait-stamp">{c("Fig. 01 · Perspective")}</span>
+                <span className="portrait-stamp">{c("Goma · Portrait")}</span>
                 <div className="portrait-caption">
                   <div>
                     <p>{c("Andrino Akuda Kangela")}</p>
-                    <span>{c("Communications · Storytelling · Writing")}</span>
+                    <span>{c("Communication · Articles · Images")}</span>
                   </div>
                 </div>
               </div>
               <figcaption className="image-caption">
                 <span>{c("Portrait of Andrino Akuda Kangela")}</span>
-                <span>{c("FIELD NOTES")}</span>
               </figcaption>
             </figure>
           </div>
           <div className="insight-strip about-traits">
             <div>
               <strong>{c("Communication")}</strong>
-              <span>{c("Ideas, messages and audiences.")}</span>
+              <span>{c("Clear messages for real people.")}</span>
             </div>
             <div>
               <strong>{c("Storytelling")}</strong>
-              <span>{c("People beyond the statistics.")}</span>
+              <span>{c("People and their stories.")}</span>
             </div>
             <div>
               <strong>{c("Great Lakes")}</strong>
-              <span>{c("A local point of view.")}</span>
+              <span>{c("I live and work here.")}</span>
             </div>
             <div>
               <strong>{c("Curiosity")}</strong>
-              <span>{c("Always learning, always looking.")}</span>
+              <span>{c("I keep learning.")}</span>
             </div>
           </div>
         </Container>

@@ -9,47 +9,47 @@ export const links: PublicLink[] = [
   {
     label: "LinkedIn",
     href: identity.linkedin,
-    description: "Professional updates, ideas and collaborations.",
+    description: "My professional profile and recent posts.",
     external: true,
   },
   {
-    label: "Published articles",
+    label: "Published posts",
     href: "/writing",
-    description: "Stories, observations and the subjects I am exploring.",
+    description: "Read my articles and opinion posts.",
   },
   {
     label: "X",
     href: identity.social,
     description:
-      "Selected work, perspectives and conversations across the web.",
+      "Short updates and links to my work.",
     external: true,
   },
   {
     label: "Multimedia",
     href: "/portfolio?category=Multimedia",
-    description: "Photography, video, audio and other storytelling formats.",
+    description: "Photos, videos and audio from my work.",
   },
   {
     label: "Projects and collaborations",
     href: "/projects",
-    description: "Selected initiatives and ideas as they develop.",
+    description: "See the projects I am working on.",
   },
   {
     label: "Facebook",
     href: identity.facebook,
-    description: "Selected work, perspectives and conversations across the web.",
+    description: "Short updates and links to my work.",
     external: true,
   },
   {
     label: "Instagram",
     href: identity.instagram,
-    description: "Photography, video, audio and other storytelling formats.",
+    description: "Photos, videos and audio from my work.",
     external: true,
   },
   {
     label: "YouTube",
     href: identity.youtube,
-    description: "Photography, video, audio and other ways to bring stories to life.",
+    description: "Videos from my work in Goma and beyond.",
     external: true,
   },
   {

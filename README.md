@@ -78,13 +78,40 @@ Les migrations sont dans `supabase/migrations/`. `supabase/seed.sql` importe les
 node scripts/generate-supabase-seed.mjs
 ```
 
-Dans Supabase Studio, créer une ligne `entries`, puis une ligne
-`entry_translations` par langue. Le champ `kind` accepte `article`,
-`writing_theme`, `project`, `practice_area` et `case_study`. Les contenus sont
-visibles seulement lorsque leur traduction a l’état `published`. Les slugs des
-articles et des thèmes d’écriture doivent être distincts. `body` contient des
-paragraphes en texte brut, séparés par une ligne vide. Les pages rafraîchissent
-les données publiques au plus tard après 60 secondes.
+Depuis `/fr/admin`, ouvrir **Articles** ou **Projets**, puis **Créer un article**
+ou **Créer un projet**. Renseigner le titre, le résumé et le texte ; ajouter une
+image ; choisir **Publier sur le site** dans **Visibilité** ; enregistrer. Un
+identifiant URL est créé automatiquement à partir du titre. Pour les articles et
+projets, **Traduire automatiquement** est activé quand la seconde langue est
+absente ou déjà générée. La traduction française ou anglaise est enregistrée
+avec la même visibilité que l’original. Elle est recalculée quand le texte
+d’origine change. Une traduction corrigée dans le formulaire devient manuelle
+et n’est plus écrasée. Pour un intertitre dans un article,
+commencer un paragraphe par `## `. Les pages publiques se rafraîchissent au
+plus tard après 60 secondes.
+
+`next-intl` traduit les textes fixes de l’interface, pas les contenus Supabase.
+La traduction des contenus est faite lors de leur enregistrement avec l’API
+MyMemory, puis conservée dans `entry_translations`. Le titre, le résumé, le
+texte, la rubrique et la description de l’image sont traduits ; les liens et
+les intertitres sont conservés. L’adresse publique `identity.email` est envoyée
+à MyMemory pour bénéficier de sa limite de 50 000 caractères par jour. Si le
+service échoue, le formulaire garde le contenu saisi et demande de réessayer
+ou de décocher la traduction automatique. Relire les textes générés avant de
+les diffuser, surtout pour les noms propres et les sujets sensibles.
+
+Un lien de vidéo YouTube, Instagram ou TikTok peut être ajouté au formulaire.
+La vidéo est intégrée à la page depuis sa plateforme d’origine. Le même champ
+de stockage sert au lien externe d’un projet : choisir un lien de projet ou une
+vidéo pour ce contenu. Les boutons de partage ouvrent Facebook, X, LinkedIn et
+WhatsApp avec le lien de la page. Pour Instagram, utiliser le partage du téléphone
+ou copier le lien ; publier automatiquement sur ces comptes nécessiterait une
+intégration et des autorisations propres à chaque plateforme.
+
+La migration `20261114123000_post_engagement.sql` ajoute les commentaires
+modérés, les mentions « J’aime » et le suivi anonyme. Après son application,
+les réactions s’affichent sur les articles et projets. Les commentaires
+attendent une décision dans `/fr/admin/commentaires`.
 
 Les images publiées vont dans le bucket `site-media`. Le bucket `draft-media`
 reste privé. `cover_path` accepte une image locale `/images/...` ou l’URL
@@ -195,6 +222,7 @@ npm run lint
 npm run typecheck
 npm run test:contact
 npm run test:i18n
+npm run test:translation
 npm run build
 npm start
 ```

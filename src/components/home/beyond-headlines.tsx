@@ -9,25 +9,25 @@ export function BeyondHeadlines() {
       <Container>
         <div className="beyond-grid">
           <div>
-            <Eyebrow>{c("Dispatch from Goma / North Kivu")}</Eyebrow>
+            <Eyebrow>{c("From Goma, North Kivu")}</Eyebrow>
             <h2>
-              {c("Beyond the")}<br />
-              {c("headlines.")}</h2>
+              {c("Goma as")}{" "}<br />
+              {c("I know it.")}</h2>
             <p className="beyond-lede">
-              {c("Africa is more than the stories most frequently told about it. Goma is more than the headlines that define it.")}</p>
+              {c("Goma has its difficulties. It also has artists, businesses and people helping one another.")}</p>
             <div className="prose">
               <p>
-                {c("I want to explore the people, creativity, businesses, cultures and ideas that make our communities what they are.")}</p>
+                {c("I want to write about the people who make this city what it is.")}</p>
               <p>
-                {c("My work is an ongoing attempt to document these realities, ask better questions and contribute to a richer understanding of the places we call home.")}</p>
+                {c("I use interviews, photography and writing to show what happens here.")}</p>
             </div>
             <div className="beyond-meta">
               <span>
                 {c("Lake Kivu")}<br />
-                {c("Living waters")}</span>
+                {c("By the lake")}</span>
               <span>
                 {c("Goma")}<br />
-                {c("Creative possibilities")}</span>
+                {c("My city")}</span>
               <span>
                 {c("Great Lakes")}<br />
                 {c("Local perspectives")}</span>
@@ -41,7 +41,6 @@ export function BeyondHeadlines() {
               />
               <figcaption className="image-caption">
                 <span>{c("On the shores of Lake Kivu, Goma.")}</span>
-                <span>{c("FIELD NOTES")}</span>
               </figcaption>
             </figure>
             <div className="beyond-gallery-bottom">

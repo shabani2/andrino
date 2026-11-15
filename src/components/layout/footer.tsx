@@ -21,7 +21,7 @@ export function Footer() {
               {c("ANDRINO")}</Link>
             <p className="footer-tagline">{c(identity.tagline)}</p>
             <p className="footer-description">
-              {c("Communications · Storytelling · Writing · Ideas")}<br />
+              {c("Communication · Articles · Projects")}<br />
               {c("Goma, Democratic Republic of the Congo.")}</p>
             <div className="footer-contact">
               <a href={"mailto:" + identity.email}><PlatformIcon name="Direct email" />{identity.email}</a>

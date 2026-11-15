@@ -16,7 +16,7 @@ export function CategoryFilter({
   return (
     <div
       role="group"
-      aria-label={c("Filter writing themes")}
+      aria-label={c("Filter topics")}
       className="mb-6 flex flex-wrap gap-2"
     >
       {categories.map((category) => (

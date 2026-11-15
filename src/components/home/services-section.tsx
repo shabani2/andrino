@@ -9,8 +9,8 @@ export function ServicesSection() {
   return (
     <section className="section-padding">
       <Container>
-        <SectionIntro number="02" label={c("Core disciplines")} title={c("What I do.")}>
-          {c("Communication, media, storytelling and community-driven ideas. Different formats, a shared curiosity.")}</SectionIntro>
+        <SectionIntro number="02" label={c("What I work on")} title={c("What I do.")}>
+          {c("I work with text, images and campaigns to make a subject clear.")}</SectionIntro>
         <div className="discipline-grid">
           {disciplines.map((item, index) => (
             <article className="discipline-card" key={item.title}>

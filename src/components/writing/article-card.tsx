@@ -19,7 +19,7 @@ export function ArticleCard({ article }: { article: Article }) {
       <div className="card-meta">
         <span>{c(article.category)}</span>
         <span>
-          {c(article.status === "forthcoming" ? "Editorial focus" : "Published")}
+          {c(article.status === "forthcoming" ? "Topic in preparation" : "Published")}
         </span>
       </div>
       <h3>
@@ -36,13 +36,13 @@ export function ArticleCard({ article }: { article: Article }) {
       <div className="article-card-bottom">
         <span>
           {article.status === "forthcoming"
-            ? c("Forthcoming writing")
+            ? c("Article in preparation")
             : article.publishedAt
               ? new Intl.DateTimeFormat(locale, { dateStyle: "medium", timeZone: "UTC" }).format(new Date(article.publishedAt))
               : ""}
         </span>
         <ArrowLink href={"/writing/" + article.slug}>
-          {c(article.status === "forthcoming" ? "Explore" : "Read")}
+          {c(article.status === "forthcoming" ? "See the topic" : "Read")}
         </ArrowLink>
       </div>
     </article>

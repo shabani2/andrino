@@ -14,16 +14,16 @@ export function CallToAction({
   return (
     <div className="collaboration-panel">
       <div>
-        <Eyebrow>{c("COLLABORATION & INQUIRY")}</Eyebrow>
+        <Eyebrow>{c("Write to me")}</Eyebrow>
         <h2>{c(title)}</h2>
         <p>
-          {c("Whether you are an editor, communications professional, fellow storyteller or someone with an interesting idea, I welcome conversations that can lead to meaningful work.")}</p>
+          {c("Write to me about an article, a project or an idea you want to discuss.")}</p>
       </div>
       <div className="collaboration-actions">
         <ActionLink href={href} variant="peach">
           {c(label)}
         </ActionLink>
-        <ArrowLink href="/about">{c("About my practice")}</ArrowLink>
+        <ArrowLink href="/about">{c("About my work")}</ArrowLink>
       </div>
     </div>
   );

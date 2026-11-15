@@ -15,7 +15,7 @@ export async function submitContact(
   if (read("website"))
     return {
       status: "error",
-      message: "Message not accepted. Try again.",
+      message: "Message refused. Try again.",
     };
   const input = {
     name: read("name"),
@@ -28,7 +28,7 @@ export async function submitContact(
   if (Object.keys(errors).length)
     return {
       status: "error",
-      message: "Some fields need correction. Check the highlighted fields.",
+      message: "Some fields are incomplete. Check the highlighted fields.",
       errors,
     };
   if (!process.env.SUPABASE_SECRET_KEY) return sendContactEmail(input);
@@ -48,5 +48,5 @@ export async function submitContact(
     return { status: "error", message: "Message not saved. Try again later." };
   }
   await sendContactEmail(input);
-  return { status: "success", message: "Message saved. I’ll reply by email." };
+  return { status: "success", message: "Message received. I’ll reply by email." };
 }

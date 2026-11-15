@@ -3,6 +3,7 @@ import type { Article } from "@/types/article";
 import type { Locale } from "@/i18n/routing";
 import { getPublishedEntries } from "@/lib/content-repository";
 import { hasSupabaseContent } from "@/lib/supabase";
+import { getEmbeddedMedia } from "@/lib/media";
 
 function localArticles(): Article[] {
   return writingThemes.map((item) => ({
@@ -21,10 +22,12 @@ export async function getArticles(locale: Locale): Promise<Article[]> {
   if (!hasSupabaseContent()) return localArticles();
   const entries = await getPublishedEntries(["writing_theme", "article"], locale);
   return entries.map(({ translation: t, ...entry }) => ({
+    id: entry.id,
     slug: entry.slug,
     title: t.title,
     excerpt: t.summary,
     body: t.body,
+    mediaUrl: getEmbeddedMedia(entry.external_url) ? entry.external_url : null,
     category: t.category_label ?? entry.category_code ?? "",
     coverImage: entry.cover_path ?? "/images/articles/writing-1.webp",
     alt: t.cover_alt,

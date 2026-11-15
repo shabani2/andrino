@@ -28,6 +28,12 @@ export default async function ContentListPage({ params, searchParams }: {
     .order("updated_at", { ascending: false }).range((page - 1) * 25, page * 25 - 1);
   if (result.error) throw new Error("Content list unavailable");
   const title = locale === "fr" ? contentSections[section].fr : contentSections[section].en;
+  const createLabel = section === "articles" ? adminText(locale, "Créer un article", "Create article")
+    : section === "projets" ? adminText(locale, "Créer un projet", "Create project")
+    : adminText(locale, "Créer un contenu", "Create content");
+  const emptyLabel = section === "articles" ? adminText(locale, "Aucun article. Créez le premier.", "No articles yet. Create the first one.")
+    : section === "projets" ? adminText(locale, "Aucun projet. Créez le premier.", "No projects yet. Create the first one.")
+    : adminText(locale, "Aucun contenu. Créez le premier.", "No content yet. Create the first item.");
 
   return (
     <div>
@@ -37,12 +43,12 @@ export default async function ContentListPage({ params, searchParams }: {
           <h1 className="mt-2 font-serif text-4xl">{title}</h1>
         </div>
         <Link href={`/${locale}/admin/${section}/nouveau`} className="ui-action-primary rounded-lg px-5 py-3 text-sm font-medium">
-          {adminText(locale, "Créer un contenu", "Create content")}
+          {createLabel}
         </Link>
       </div>
       {result.data.length === 0 ? (
         <p className="mt-8 rounded-2xl border border-border bg-card p-6 text-muted-foreground">
-          {adminText(locale, "Aucun contenu. Créez le premier.", "No content yet. Create the first item.")}
+          {emptyLabel}
         </p>
       ) : (
         <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-card">

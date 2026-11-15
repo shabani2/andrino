@@ -2,7 +2,7 @@
 export const identity = {
   name: "ANDRINO",
   fullName: "Andrino AKUDA KANGELA",
-  tagline: "My work. My stories. My point of view.",
+  tagline: "Articles, communication and projects from Goma.",
   email: "andrino243@gmail.com",
   phone: "+243979359315",
   phoneDisplay: "+243 979 359 315",
